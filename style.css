@@ -46,19 +46,16 @@ header nav{
 }
 header nav .logo{
     width: 150px;
+    color: var(--scondary-color-hover);
 }
-/* header nav .logo img{
-    width: 60%;
-} */
 header nav .logo p{
     font-size: 1.2rem;
     font-family: var(--secondary-text);
-    color: var(--primary-color);
+    
 }
 header nav .logo p #web{
     font-family: var(--cta-text);
     font-weight: bold;
-    color: var(--scondary-color-hover);
 }
 .mobile{
     display: none;
@@ -85,6 +82,7 @@ header nav .logo p #web{
     font-family: var(--navigation-text);
     line-height: 50px;
 }
+.mobile.show ul li a:focus,
 .mobile.show ul li a:hover{
     color: var(--hover-color);
 }
@@ -101,11 +99,11 @@ header nav ul li{
 header nav ul li a{
     font-size: 1.09rem;
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--scondary-color-hover);
+    /* color: var(--primary-color); */
 }
 header nav ul li a:focus,
 header nav ul li a:hover{
-    color: var(--scondary-color-hover);
     border-bottom: 2px solid var(--scondary-color-hover);
     transition: 0.2s ease-out;
 }
@@ -124,6 +122,9 @@ header .header-container{
     flex-wrap: wrap;
     gap: 50px;
 }
+header .header-container .header-text{
+    max-width: 35em;
+}
 header .header-container h1{
     display: flex;
     flex-wrap: wrap;
@@ -131,21 +132,12 @@ header .header-container h1{
     font-size: 2.8rem;
     line-height: 60px;
 }
-header .header-container h1 .typing-effect{
-    overflow: hidden;
-    border-right: 2px solid var(--primary-color);
-    width: 0;
-    max-width: 4.8em;
-    animation: typing 3s infinite alternate steps(20, end), blink 0.5s step-end;
-}
-@keyframes typing {
-    to {
-        width: 100%;
-    }
-  }
+
 header .header-container h1 span{
     color: var(--primary-color);
     font-weight: 200;
+    font-weight: bolder;
+  line-height: 64px;
 }
 header .header-container p{
     font-size: 1rem;
@@ -160,16 +152,16 @@ header .header-container .btn{
 header .header-container .btn button{
     outline: none;
     border: none;
-    padding: 18px;
+    padding: 12px;
     width: 100%;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     text-align: center;
-    color: var(--neutral-color3);
-    background-color: var(--primary-color);
+    color: var(--background-color);
+    background-color: var(--scondary-color-hover);
     border-radius: 7px;
 }
 header .header-container .btn button:hover{
-    background-color: var(--scondary-color-hover);
+    background-color: var(--primary-color);
     transition: 0.2s ease;
     cursor: pointer;
 }
