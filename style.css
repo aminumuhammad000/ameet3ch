@@ -45,14 +45,19 @@ header nav{
     z-index: 100;
 }
 header nav .logo{
-    width: 150px;
-    color: var(--scondary-color-hover);
+    width: 50px;
+    height: 20px;
+    margin-top: -20px;
 }
-header nav .logo p{
+header nav .logo img{
+    width: 100%;
+    object-fit: cover;
+}
+/* header nav .logo p{
     font-size: 1.2rem;
-    font-family: var(--secondary-text);
+    font-family: var(--primary-color);
     
-}
+} */
 header nav .logo p #web{
     font-family: var(--cta-text);
     font-weight: bold;
@@ -100,7 +105,7 @@ header nav ul li a{
     font-size: 1.09rem;
     text-decoration: none;
     color: var(--scondary-color-hover);
-    /* color: var(--primary-color); */
+    font-weight: bold;
 }
 header nav ul li a:focus,
 header nav ul li a:hover{
