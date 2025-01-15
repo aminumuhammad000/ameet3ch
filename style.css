@@ -535,7 +535,7 @@ footer .usefull-link a{
     opacity: 0.8;
 }
 footer .usefull-link a:hover{
-    color: var(--hover-color);
+    color: var(--primary-color);
 }
 footer .social-media a{
     font-size: 1.4rem;
@@ -659,6 +659,9 @@ footer #copy-right{
     .privacy section,
     footer{
         padding: 2em;
+    }
+    header .header-container .img-container img{
+        display: none;
     }
 }
 /* end responsive mobile view here  */
