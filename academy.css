@@ -1,0 +1,97 @@
+:root{
+    --txt-color1: #2D2D2D;
+    /* --txt-color2: #6C63FF; */
+    --primary-color: #6C63FF;
+    --accesnt-color2: #FF82A9;
+    --warning-color: #FFD166;
+    --background-color: #F5F5F5;
+    --section-color: #E4DFFF;
+    --neutral-color3: #FFFFFF;
+    --scondary-color-hover: #3D55A0;
+    --scondary-color-bg: #E4DFFF;
+    --hover-color: #28E7DB;
+    --primary-text: 'Montserrat', sans-serif;
+    --secondary-text: 'Poppins', sans-serif;
+    --paragrph-text: 'Lato', sans-serif;
+    --cta-text: 'Roboto', sans-serif; 
+    --navigation-text: 'Raleway', sans-serif;
+    --service-des-text: 'Source Sans Pro', sans-serif;
+    --blog-text: 'Open Sans', sans-serif;
+}
+.banner{
+    /* display: grid;
+    place-content: center; */
+    background-color: var(--primary-color);
+    margin-top: 4em;
+    padding: 40px;
+    overflow-x: hidden;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    gap: 40px;
+}
+.banner .flex h1{
+    display: flex;
+    flex-wrap: wrap;
+    color: var(--background-color);
+    opacity: 0.8;
+    font-family: var(--primary-text);
+    font-size: 2.8rem;
+    line-height: 60px;
+}
+
+.banner .flex h1 span{
+    color: var(--txt-color1);
+    font-weight: 200;
+    font-weight: bolder;
+  line-height: 64px;
+}
+.banner .flex p{
+    font-size: 1rem;
+    font-family: var(--secondary-text);
+    width: 30em;
+    line-height: 24px;
+    color: var(--txt-color1);
+}
+.banner .flex img{
+    width: 20em;
+    
+}
+form{
+    margin-inline: auto;
+    margin-top: 4em;
+    width: 30em;
+}
+form h3{
+    font-family: var(--primary-text);
+    font-weight: 300;
+    line-height: 40px;
+}
+form input{
+    width: 26em;
+    height: 35px;
+    padding: 10px;
+    border: 1px solid var(--background-color);
+    border-radius: 10px 0px 0px 10px;
+    outline: none;
+}
+form button{
+    height: 35px;
+    border: 1px solid var(--background-color);
+    border-left: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: -10px;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border-radius: 0px 10px 10px 0px;
+    padding: 0px 10px 0px 10px;
+}
+@media (max-width: 900px) {
+    .flex{
+        flex-wrap: wrap;
+    }
+}
