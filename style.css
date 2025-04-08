@@ -189,6 +189,25 @@ main{
     margin: 0 auto;
     margin-inline: auto;
 }
+.whatsapp-container{
+    width: 3em;
+    height: 3em;
+    position: fixed;
+    right: 10px;
+    bottom: 2em;
+    z-index: 100;
+}
+.whatsapp-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+.whatsapp-container:hover,
+.whatsapp-container img:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
 /* start about page here  */
 main #about{
     display: flex;
