@@ -40,11 +40,70 @@ header nav{
     margin-inline: auto;
     background-color: transparent;
     backdrop-filter: blur(10px);
-    top: 5px;
-    margin-top: -5px;
-    padding: 25px;
+    top: 2em;
+    padding: 50px 25px 25px 25px;
     z-index: 100;
 }
+.advertisementContainer{
+    position: fixed;
+    z-index: 101;
+    top: -2em;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    background-color: var(--primary-color);
+    left: 0;
+}
+#sticky-banner {
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    font-family: sans-serif;
+    font-size: 16px;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #sticky-banner p {
+    margin: 0;
+    flex: 1;
+    text-align: left;
+  }
+
+  .btn-contact {
+    font-family: sans-serif;
+    background: #ffc107;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+
+  @media (max-width: 600px) {
+    #sticky-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .btn-contact {
+      margin-top: 10px;
+      margin-left: 0;
+    }
+  }
+    #google_translate_element {
+    right: 10px;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+  }
+
+  .goog-te-gadget-simple {
+    border: none;
+    font-family: sans-serif;
+  }
 header nav .logo{
     width: 50px;
     height: 20px;
@@ -659,8 +718,7 @@ footer #copy-right{
 @media (max-width: 1000px) {
     header nav{
         min-width: 99vw;
-        padding: 25px;
-        /* margin-left: -30px; */
+       padding: 50px 25px 25px 25px;
     }
     header nav .logo p{
         margin-left: -70px;
