@@ -252,8 +252,8 @@ main{
     width: 3em;
     height: 3em;
     position: fixed;
-    right: 10px;
-    bottom: 2em;
+    right: 2em;
+    bottom: 7em;
     z-index: 100;
 }
 .whatsapp-container img{
@@ -717,8 +717,8 @@ footer #copy-right{
 /* start responsive mobile view here  */
 @media (max-width: 1000px) {
     header nav{
-        min-width: 99vw;
-       padding: 50px 25px 25px 25px;
+        min-width: 100vw;
+        padding: 5em 25px 25px 25px;
     }
     header nav .logo p{
         margin-left: -70px;
