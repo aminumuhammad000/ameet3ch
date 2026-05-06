@@ -1,45 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Aminu Muhammad">
     <meta name="robots" content="index, follow">
-    <meta name="description" content="Ameetech specializes in innovative digital solutions, including web design, graphic design, SEO, UI/UX design, mobile app development, and video editing. Empower your business with tailored strategies for online success. Explore Ameetech for cutting-edge technology and creative excellence." />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;700&family=Poppins:wght@300;400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;700&family=Roboto:wght@400;500&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description"
+        content="Ameetech specializes in innovative digital solutions, including web design, graphic design, SEO, UI/UX design, mobile app development, and video editing. Empower your business with tailored strategies for online success. Explore Ameetech for cutting-edge technology and creative excellence." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;700&family=Poppins:wght@300;400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;700&family=Roboto:wght@400;500&family=Source+Sans+Pro:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="images/ameelogo.png" type="image/x-icon">
     <meta property="og:title" content="Ameetech | Web Design, Graphic Design, SEO, Video Editing & More">
-    <meta property="og:description" content="Ameetech specializes in innovative digital solutions, including web design, graphic design, SEO, UI/UX design, mobile app development, and video editing. Empower your business with tailored strategies for online success. Explore Ameetech for cutting-edge technology and creative excellence.">
-    <meta property="og:image" content="data:image/jpeg;base64,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">
+    <meta property="og:description"
+        content="Ameetech specializes in innovative digital solutions, including web design, graphic design, SEO, UI/UX design, mobile app development, and video editing. Empower your business with tailored strategies for online success. Explore Ameetech for cutting-edge technology and creative excellence.">
+    <meta property="og:image"
+        content="data:image/jpeg;base64,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">
     <meta property="og:url" content="https://ameetech.org.ng/">
 
     <link rel="stylesheet" href="style.css">
-   <script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'ha,ar,fr,yo,ig', // Hausa, Arabic, French, Yoruba, Igbo
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    }, 'google_translate_element');
-  }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'ha,ar,fr,yo,ig', // Hausa, Arabic, French, Yoruba, Igbo
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <title>Ameetech | Leading Website Development, SEO, and UI/UX in Nigeria.</title>
+    <title>AmeeTechnology | Leading Website Development, SEO, and UI/UX in Nigeria.</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AmeeTechnology",
+      "url": "https://ameetechnology.com",
+      "logo": "https://ameetechnology.com/images/ameelogo.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Aminu Muhammad",
+        "image": "https://ameetechnology.com/images/profile.jpeg",
+        "jobTitle": "CEO",
+        "sameAs": [
+          "https://linkedin.com/in/your-profile",
+          "https://twitter.com/your-profile"
+        ]
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+2348100015498",
+        "contactType": "customer support",
+        "email": "technologyamee@gmail.com"
+      }
+    }
+    </script>
 </head>
+
 <body>
-    
+
     <!-- star of the header element -->
     <header>
         <div class="mobile">
             <ul>
-                <li><a href="#about"  class="nav" title="About AmeeTech">About</a></li>
-                <li><a href="#contact" class="nav" title="Contact AmeeTech">Contact</a></li>
+                <li><a href="#about" class="nav" title="About AmeeTechnology">About</a></li>
                 <li><a href="#services" class="nav" title="Our Services">Services</a></li>
-                <li><a href="https://ameetech.blogspot.com/" class="nav" target="_blank" title="AmeeTech Blog">Blog</a></li>
-                <li><a href="#porpolio" class="nav" title="Our Portfolio">Portfolio</a></li>
-                <li><a href="academy.html" class="nav" title="Academy">Academy</a></li>
+                <li><a href="#portfolio" class="nav" title="Our Portfolio">Portfolio</a></li>
+                <li><a href="https://ameetech.blogspot.com/" class="nav" target="_blank"
+                        title="AmeeTechnology Blog">Blog</a></li>
                 <li><a href="#faq" class="nav" title="Frequently Asked Questions">FAQ</a></li>
             </ul>
         </div>
@@ -47,15 +81,16 @@
         <nav>
             <div class="logo">
                 <img src="images/ameelogo.png" alt="logo of ameetech" width="50" height="50">
+                <span class="logo-text">AmeeTechnology</span>
             </div>
             <ul>
-                <li><a href="#about" title="About AmeeTech">About</a></li>
-                <li><a href="#contact" title="Contact AmeeTech">Contact</a></li>
+                <li><a href="#about" title="About AmeeTechnology">About</a></li>
                 <li><a href="#services" title="Our Services">Services</a></li>
-                <li><a href="https://ameetech.blogspot.com/" target="_blank" title="AmeeTech Blog">Blog</a></li>
-                <li><a href="#porpolio" title="Our Portfolio">Portfolio</a></li>
-                <li><a href="academy.html" title="Academy">Academy</a></li>
+                <li><a href="#portfolio" title="Our Portfolio">Portfolio</a></li>
+                <li><a href="https://ameetech.blogspot.com/" target="_blank" title="AmeeTechnology Blog">Blog</a></li>
                 <li><a href="#faq" title="Frequently Asked Questions">FAQ</a></li>
+                <li class="nav-cta"><a href="https://wa.me/2348100015498?text=Hi%20AmeeTechnology%21" target="_blank"
+                        title="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a></li>
             </ul>
             <div class="menu"><i class="fa-solid fa-bars" title="Menu"></i></div>
         </nav>
@@ -64,16 +99,14 @@
         <!-- header container start here  -->
         <div class="header-container">
             <div class="header-text">
-            <h1>Digital Excellence from Kano, Nigeria <span>Ameetech</span></h1>
-            <!-- <span class="typing-effect">Solutions.</span> -->
-            <p>Your partner in Web Design, SEO, UI/UX, Mobile App Development & Video Editing.</p>
-            <div class="btn">
-                <a href="#contact"><button>Contact</button></a>
+                <h1>Digital Excellence from Kano, Nigeria <br><span>AmeeTechnology</span></h1>
+                <!-- <span class="typing-effect">Solutions.</span> -->
+                <p>Your partner in Web Design, SEO, UI/UX, Mobile App Development & Video Editing.</p>
+                <div class="btn">
+                    <a href="#contact"><button>Contact</button></a>
+                </div>
             </div>
-        </div>
-            <div class="img-container">
-            <img src="images/ameelogo.png" alt="developer coding on a computer" draggable="false" width="300" height="300">
-        </div>
+
         </div>
         <!-- header container end here  -->
     </header>
@@ -82,61 +115,73 @@
     <!-- start of the main menu element  -->
     <main>
         <div class="whatsapp-container">
-           <a href="https://wa.me/2348100015498?text=Hi%20Ameetech%20%F0%9F%91%8B%2C%20I%20found%20your%20website%20and%20I%E2%80%99m%20curious%20%E2%80%94%20can%20you%20help%20me%20build%20a%20%5Bproject%20name%5D%3F
-           "><img src="images/whatsapp.png" alt="Chat on WhatsApp" title="Chat on WhatsApp" width="30" height="30"> </a>
+            <a href="https://wa.me/2348100015498?text=Hi%20Ameetech%20%F0%9F%91%8B%2C%20I%20found%20your%20website%20and%20I%E2%80%99m%20curious%20%E2%80%94%20can%20you%20help%20me%20build%20a%20%5Bproject%20name%5D%3F
+           "><img src="images/whatsapp.png" alt="Chat on WhatsApp" title="Chat on WhatsApp" width="30" height="30">
+            </a>
         </div>
-        
+
         <section class="section hidden" id="about">
             <div class="detail-container">
-                    <h1 title="about ameetech company">About AmeeTech.</h1>
-                    <p id="details" title="decription of the ameetech comapany">At AmeeTech, we are a team of passionate professionals providing innovative digital solutions to help businesses grow and succeed online. We specialize in web design, graphic design, SEO, UI/UX design, mobile app development, and video editing.</p>
-                    
-                    <h1 id="our-mission">Our Mission.</h1>
-                    <p id="details">We aim to deliver high-quality, user-friendly digital solutions tailored to your unique business needs, ensuring your digital presence stands out.</p>
+                <h1 title="about ameetech company">About AmeeTech.</h1>
+                <p id="details" title="decription of the ameetech comapany">At AmeeTech, we are a team of passionate
+                    professionals providing innovative digital solutions to help businesses grow and succeed online. We
+                    specialize in web design, graphic design, SEO, UI/UX design, mobile app development, and video
+                    editing.</p>
 
-                    <h1 id="why-us">Why Choose Us?.</h1>
-                        <ul>
-                            <li><span>Experienced Team:</span> Industry professionals delivering top-quality service.</li>
-                            <li><span>Creative Solutions:</span> Unique, customized solutions that exceed expectations.</li>
-                            <li><span>Client-Centered:</span> We listen to your needs and bring your vision to life.</li>
-                            <li><span>Cutting-Edge Technology:</span> Staying ahead with modern technologies and trends.</li>
-                        </ul>
-                </div>
+                <h1 id="our-mission">Our Mission.</h1>
+                <p id="details">We aim to deliver high-quality, user-friendly digital solutions tailored to your unique
+                    business needs, ensuring your digital presence stands out.</p>
+
+                <h1 id="why-us">Why Choose Us?.</h1>
+                <ul>
+                    <li><span>Experienced Team:</span> Industry professionals delivering top-quality service.</li>
+                    <li><span>Creative Solutions:</span> Unique, customized solutions that exceed expectations.</li>
+                    <li><span>Client-Centered:</span> We listen to your needs and bring your vision to life.</li>
+                    <li><span>Cutting-Edge Technology:</span> Staying ahead with modern technologies and trends.</li>
+                </ul>
+            </div>
             <div class="about-img-container">
-                <img src="images/undraw_product_explainer_8jbm.svg" alt="image of the android phone illustration" draggable="false">
+                <img src="images/undraw_product_explainer_8jbm.svg" alt="image of the android phone illustration"
+                    draggable="false">
             </div>
         </section>
 
         <section class="section hidden" id="services">
             <h1>Our Services</h1>
-            <p>Ameetech is a leading digital agency based in Nigeria, dedicated to helping businesses grow through cutting-edge technology solutions. We specialize in web design and development, graphic design, SEO (Search Engine Optimization), mobile app development, UI/UX design, digital marketing, and video editing. Our goal is to empower startups, SMEs, and organizations with innovative tools to succeed online.</p>
+            <p>AmeeTechnology is a leading digital agency based in Nigeria, dedicated to helping businesses grow through
+                cutting-edge technology solutions. We specialize in web design and development, graphic design, SEO
+                (Search Engine Optimization), mobile app development, UI/UX design, digital marketing, and video
+                editing. Our goal is to empower startups, SMEs, and organizations with innovative tools to succeed
+                online.</p>
             <div class="card-container">
                 <div class="card">
-                    <img src="images/undraw_responsive_re_e1nn.svg" alt="Web Design and Development"  width="100" height="150">
+                    <img src="images/undraw_responsive_re_e1nn.svg" alt="Web Design and Development" width="100"
+                        height="150">
                     <h3>Web Design and Development</h3>
                     <p>Custom, responsive websites tailored for businesses in Nigeria</p>
                 </div>
 
                 <div class="card">
-                    <img src="images/undraw_designer-life_0xd5.svg" alt="Graphic Design"  width="100" height="150">
+                    <img src="images/undraw_designer-life_0xd5.svg" alt="Graphic Design" width="100" height="150">
                     <h3>Graphic Design</h3>
                     <p>Eye-catching visuals that represent your brand perfectly</p>
                 </div>
 
                 <div class="card">
-                    <img src="images/seo.svg" alt="Search Engine Optimization (SEO)"  width="100" height="150">
+                    <img src="images/seo.svg" alt="Search Engine Optimization (SEO)" width="100" height="150">
                     <h3>Search Engine Optimization (SEO)</h3>
                     <p>Rank higher in search engines and drive traffic to your business</p>
                 </div>
 
                 <div class="card">
-                    <img src="images/undraw_design_tools_-42-tf.svg" alt="UI/UX Design"  width="100" height="150">
+                    <img src="images/undraw_design_tools_-42-tf.svg" alt="UI/UX Design" width="100" height="150">
                     <h3>UI/UX Design</h3>
                     <p>User-focused interfaces to enhance digital experience</p>
                 </div>
 
                 <div class="card">
-                    <img src="images/undraw_mobile_development_re_wwsn.svg" alt="Mobile App Development"  width="100" height="150">
+                    <img src="images/undraw_mobile_development_re_wwsn.svg" alt="Mobile App Development" width="100"
+                        height="150">
                     <h3>Mobile App Development</h3>
                     <p>Android and iOS apps built for performance</p>
                 </div>
@@ -147,171 +192,248 @@
                 </div>
         </section>
 
+        <section class="section hidden" id="portfolio">
+            <h1>Our Portfolio</h1>
+            <p>Here are some of the amazing projects we have built. Get a glimpse of our capabilities.</p>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-img"
+                        style="background: #ffffff; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="https://ibdata.com.ng/assets/images/logo.png" alt="IBData Logo"
+                            style="object-fit: contain; max-height: 100%;">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>IBData</h3>
+                        <p>A fast, reliable Data and VTU platform.</p>
+                        <a href="https://ibdata.com.ng/" target="_blank">View Project <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-img"
+                        style="background: #ffffff; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="https://vtstack.com.ng/favicon.png" alt="VTStack Logo"
+                            style="object-fit: contain; max-height: 100%;">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>VTStack</h3>
+                        <p>Modern Telecoms service provider and VTU dashboard.</p>
+                        <a href="https://vtstack.com.ng/" target="_blank">View Project <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-img"
+                        style="background: #ffffff; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://mbsi.com.ng&size=256"
+                            alt="MBSI Logo" style="object-fit: contain; max-height: 100%;">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>MBSI Solar</h3>
+                        <p>Professional business website for a leading Solar Energy company.</p>
+                        <a href="https://mbsi.com.ng/" target="_blank">View Project <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="section hidden" id="other">
             <div class="details">
                 <h1>Our Team</h1>
-                <p>At AmeeTech, our team is our greatest asset. We bring together a diverse group of highly skilled professionals with expertise in various areas of digital technology. Each team member is committed to delivering exceptional results and providing a seamless experience for our clients.</p>
-        </div>
-            <div class="team-container">
-            <div class="img-container">
-                <img src="images/undraw_engineering_team_a7n2.svg" alt="image of the developers working together" draggable="false">
+                <p>At AmeeTechnology, our team is our greatest asset. We bring together a diverse group of highly
+                    skilled
+                    professionals with expertise in various areas of digital technology. Each team member is committed
+                    to delivering exceptional results and providing a seamless experience for our clients.</p>
             </div>
-        </div>
+            <div class="team-container">
+                <div class="img-container">
+                    <img src="images/undraw_engineering_team_a7n2.svg" alt="image of the developers working together"
+                        draggable="false">
+                </div>
+            </div>
         </section>
-    
+
         <section class="section hidden" id="contact">
             <h1>Contact Us</h1>
-            <p>Ready to take your digital presence to the next level? Let AmeeTech help you transform your ideas into reality. Contact us today for a consultation and discover how our expertise can drive your business forward.</p>
+            <p>Ready to take your digital presence to the next level? Let AmeeTechnology help you transform your ideas
+                into
+                reality. Contact us today for a consultation and discover how our expertise can drive your business
+                forward.</p>
+            <div class="contact-methods">
+                <a href="tel:+2348100015498" class="contact-btn call-btn"><i class="fa-solid fa-phone"></i> +234 810 001
+                    5498</a>
+                <a href="https://wa.me/2348100015498?text=Hi%20AmeeTechnology%21" class="contact-btn whatsapp-btn"
+                    target="_blank"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+            </div>
             <div class="contact">
                 <div class="img-container">
                     <!-- <img src="images/undraw_services_re_hu5n.svg" alt="contact us image" draggable="false"> -->
                     <img src="images/contrac.svg" alt="">
                 </div>
 
-            <form action="https://formspree.io/f/mrbpyldr" method="POST">
-                <input type="text" name="name" id="" placeholder="Name"><br><br>
-                <input type="email" name="email" placeholder="Email"><br><br>
-                <input type="tel" name="phone" placeholder="Phone Number"><br><br>
-                <textarea name="message" placeholder="Send us a message" draggable="false"></textarea><br><br>
-                <input type="submit" value="send" id="submit" >
-            </form>
-        </div>
+                <form action="https://formspree.io/f/mrbpyldr" method="POST">
+                    <input type="text" name="name" id="" placeholder="Name"><br><br>
+                    <input type="email" name="email" placeholder="Email"><br><br>
+                    <input type="tel" name="phone" placeholder="Phone Number"><br><br>
+                    <textarea name="message" placeholder="Send us a message" draggable="false"></textarea><br><br>
+                    <input type="submit" value="send" id="submit">
+                </form>
+            </div>
         </section>
 
-         
+
         <section id="faq">
             <h1>General Questions</h1>
-                <details>
-                    <summary>What services does ameeTech offer?</summary>
-                    <p>ameeTech provides a wide range of services, including:</p>
-                    <ul>
-                        <li>Web Development (frontend and backend)</li>
-                        <li>Mobile App Development (iOS, Android, and cross-platform)</li>
-                        <li>UI/UX Design (user interface and user experience design)</li>
-                        <li>Graphic Design (logos, branding, and marketing materials)</li>
-                        <li>Custom Software Development</li>
-                    </ul>
-                </details>
+            <details>
+                <summary>What services does ameeTech offer?</summary>
+                <p>ameeTech provides a wide range of services, including:</p>
+                <ul>
+                    <li>Web Development (frontend and backend)</li>
+                    <li>Mobile App Development (iOS, Android, and cross-platform)</li>
+                    <li>UI/UX Design (user interface and user experience design)</li>
+                    <li>Graphic Design (logos, branding, and marketing materials)</li>
+                    <li>Custom Software Development</li>
+                </ul>
+            </details>
 
-                <details>
-                    <summary>How do I get started with your services?</summary>
-                    <p>To get started, simply contact us via email at <a href="mailto:aminumuhammad00015@gmail.com">ameetech@example.com</a> or fill out the contact form on our website. We'll get back to you within 24 hours to discuss your project.</p>
-                </details>
+            <details>
+                <summary>How do I get started with your services?</summary>
+                <p>To get started, simply contact us via email at <a
+                        href="mailto:technologyamee@gmail.com">technologyamee@gmail.com</a> or fill out the contact form
+                    on our website. We'll get back to you within 24 hours to discuss your project.</p>
+            </details>
 
-                <details>
-                    <summary>Do you offer consultation services?</summary>
-                    <p>Yes, we offer free initial consultations to discuss your project ideas and provide advice on the best solutions for your needs.</p>
-                </details>
+            <details>
+                <summary>Do you offer consultation services?</summary>
+                <p>Yes, we offer free initial consultations to discuss your project ideas and provide advice on the best
+                    solutions for your needs.</p>
+            </details>
 
-                <h1>Web Development</h1>
-                <details>
-                    <summary>What technologies do you use for web development?</summary>
-                    <p>We use modern technologies such as:</p>
-                    <ul>
-                        <li>Frontend: React, Angular, HTML, CSS, JavaScript</li>
-                        <li>Backend: Node.js, PHP, Larave</li>
-                        <li>Databases: MySQL, MongoDB, Firebase</li>
-                    </ul>
-                </details>
+            <h1>Web Development</h1>
+            <details>
+                <summary>What technologies do you use for web development?</summary>
+                <p>We use modern technologies such as:</p>
+                <ul>
+                    <li>Frontend: React, Angular, HTML, CSS, JavaScript</li>
+                    <li>Backend: Node.js, PHP, Larave</li>
+                    <li>Databases: MySQL, MongoDB, Firebase</li>
+                </ul>
+            </details>
 
-                <details>
-                    <summary>How long does it take to develop a website?</summary>
-                    <p>The timeline depends on the complexity of your project. A simple website may take 1-2 weeks, while more complex web applications can take 4-8 weeks or more.</p>
-                </details>
+            <details>
+                <summary>How long does it take to develop a website?</summary>
+                <p>The timeline depends on the complexity of your project. A simple website may take 1-2 weeks, while
+                    more complex web applications can take 4-8 weeks or more.</p>
+            </details>
 
-                <details>
-                    <summary>Can you redesign or update an existing website?</summary>
-                    <p>Yes, we can help redesign or update your existing website to improve functionality, design, or performance.</p>
-                </details>
+            <details>
+                <summary>Can you redesign or update an existing website?</summary>
+                <p>Yes, we can help redesign or update your existing website to improve functionality, design, or
+                    performance.</p>
+            </details>
 
-                <details>
-                    <summary>Mobile App Development</summary>
-                    <p>We develop apps for</p>
-                    <ul>
-                        <li>Android</li>
-                        <li>iOS</li>
-                        <li>Cross-platform using frameworks like React Native and Flutter</li>
-                    </ul>
-                </details>
+            <details>
+                <summary>Mobile App Development</summary>
+                <p>We develop apps for</p>
+                <ul>
+                    <li>Android</li>
+                    <li>iOS</li>
+                    <li>Cross-platform using frameworks like React Native and Flutter</li>
+                </ul>
+            </details>
 
-                <details>
-                    <summary>Do you provide app maintenance and updates?</summary>
-                    <p>Yes, we offer app maintenance and update services to ensure your app runs smoothly and remains compatible with the latest OS versions.</p>
-                </details>
+            <details>
+                <summary>Do you provide app maintenance and updates?</summary>
+                <p>Yes, we offer app maintenance and update services to ensure your app runs smoothly and remains
+                    compatible with the latest OS versions.</p>
+            </details>
 
-                <h1>UI/UX Design</h1>
-                <details>
-                    <summary>What tools do you use for UI/UX design?</summary>
-                    <p>We use industry-standard tools like Figma, Adobe XD, and Sketch to create user-friendly designs that align with your brand.</p>
-                </details>
+            <h1>UI/UX Design</h1>
+            <details>
+                <summary>What tools do you use for UI/UX design?</summary>
+                <p>We use industry-standard tools like Figma, Adobe XD, and Sketch to create user-friendly designs that
+                    align with your brand.</p>
+            </details>
 
-                <details>
-                    <summary>Can you create a design based on my ideas?</summary>
-                    <p>Absolutely! We collaborate closely with you to bring your ideas to life and ensure the final design meets your expectations.</p>
-                </details>
+            <details>
+                <summary>Can you create a design based on my ideas?</summary>
+                <p>Absolutely! We collaborate closely with you to bring your ideas to life and ensure the final design
+                    meets your expectations.</p>
+            </details>
 
-                <h1>Graphic Design</h1>
-                <details>
-                    <summary>What types of graphic design services do you offer?</summary>
-                    <p>Our graphic design services include:</p>
-                    <ul>
-                        <li>Logo design</li>
-                        <li>Branding and identity</li>
-                        <li>Marketing materials (flyers, posters, brochures)</li>
-                        <li>Social media graphics</li>
-                    </ul>
-                </details>
+            <h1>Graphic Design</h1>
+            <details>
+                <summary>What types of graphic design services do you offer?</summary>
+                <p>Our graphic design services include:</p>
+                <ul>
+                    <li>Logo design</li>
+                    <li>Branding and identity</li>
+                    <li>Marketing materials (flyers, posters, brochures)</li>
+                    <li>Social media graphics</li>
+                </ul>
+            </details>
 
-                <details>
-                    <summary>Can I request custom designs?</summary>
-                    <p>Yes, we tailor all our designs to your specific requirements.</p>
-                </details>
+            <details>
+                <summary>Can I request custom designs?</summary>
+                <p>Yes, we tailor all our designs to your specific requirements.</p>
+            </details>
 
-                <h1>Payments & Pricing</h1>
-                <details>
-                    <summary>How do you price your services?</summary>
-                    <p>Our pricing is project-based and depends on the scope and complexity of the work. Contact us for a custom quote.</p>
-                </details>
+            <h1>Payments & Pricing</h1>
+            <details>
+                <summary>How do you price your services?</summary>
+                <p>Our pricing is project-based and depends on the scope and complexity of the work. Contact us for a
+                    custom quote.</p>
+            </details>
 
-                <details>
-                    <summary>What payment methods do you accept?</summary>
-                    <p>We accept bank transfers, Opay, and other popular payment methods.</p>
-                </details>
+            <details>
+                <summary>What payment methods do you accept?</summary>
+                <p>We accept bank transfers, Opay, and other popular payment methods.</p>
+            </details>
 
-                <details>
-                    <summary>Do you offer refunds?</summary>
-                    <p>Refunds are considered on a case-by-case basis. Please refer to our refund policy for more details.</p>
-                </details>
+            <details>
+                <summary>Do you offer refunds?</summary>
+                <p>Refunds are considered on a case-by-case basis. Please refer to our refund policy for more details.
+                </p>
+            </details>
 
-                <h1>Support and Maintenance</h1>
-                <details>
-                    <summary>Do you offer support after project completion?</summary>
-                    <p>Yes, we offer post-project support to help with updates, troubleshooting, and ongoing maintenance.</p>
-                </details>
+            <h1>Support and Maintenance</h1>
+            <details>
+                <summary>Do you offer support after project completion?</summary>
+                <p>Yes, we offer post-project support to help with updates, troubleshooting, and ongoing maintenance.
+                </p>
+            </details>
 
-                <details>
-                    <summary>How do I contact you for support?</summary>
-                    <p>You can reach us through our support email support@ameetech.com or call our support team at +234 810 001 5498.</p>
-                </details>
+            <details>
+                <summary>How do I contact you for support?</summary>
+                <p>You can reach us through our support email <a
+                        href="mailto:technologyamee@gmail.com">technologyamee@gmail.com</a> or call our support team at
+                    +234 810
+                    001 5498.</p>
+            </details>
 
-                <h1>Other Questions</h1>
-                <details>
-                    <summary>Can you handle urgent projects?</summary>
-                    <p>Yes, we offer expedited services for urgent projects, subject to availability and additional costs.</p>
-                </details>
+            <h1>Other Questions</h1>
+            <details>
+                <summary>Can you handle urgent projects?</summary>
+                <p>Yes, we offer expedited services for urgent projects, subject to availability and additional costs.
+                </p>
+            </details>
 
-                <details>
-                    <summary>Do you work with international clients?</summary>
-                    <p>Yes, we serve clients worldwide. All communication is handled online via email, Zoom, or WhatsApp.</p>
-                </details>
+            <details>
+                <summary>Do you work with international clients?</summary>
+                <p>Yes, we serve clients worldwide. All communication is handled online via email, Zoom, or WhatsApp.
+                </p>
+            </details>
 
-                <details>
-                    <summary>Can I see examples of your previous work?</summary>
-                    <p>Yes, you can view our portfolio on our website under the "Portfolio" section.</p>
-              </details>
+            <details>
+                <summary>Can I see examples of your previous work?</summary>
+                <p>Yes, you can view our portfolio on our website under the "Portfolio" section.</p>
+            </details>
 
-              <p id="question">Do you Still have a question? <a href="https://docs.google.com/forms/d/e/1FAIpQLScxBvtyC4sH2qdHPcxZzdXqnFS9De6sQQSznyJmaH6iE5VR_g/viewform?usp=dialog" target="_blank">Contact a Consultant</a></p>
-            </section>
+            <p id="question">Do you Still have a question? <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScxBvtyC4sH2qdHPcxZzdXqnFS9De6sQQSznyJmaH6iE5VR_g/viewform?usp=dialog"
+                    target="_blank">Contact a Consultant</a></p>
+        </section>
 
     </main>
     <!-- end of the main menu element  -->
@@ -319,43 +441,47 @@
 
     <!-- start of the footer element  -->
     <footer>
-        
+
         <!-- <h1 class="logo"><span>WEB</span><span>Zone</span></h1> -->
         <div class="footer-detail">
-        <div class="usefull-link">
-            <a href="#services">Service</a>
-            <a href="#contact">Contact</a>
-            <a href="#other">Our Team</a>
-            <a href="#">Hire Us</a>
-            <a href="privacy-policy.html">Privacy</a>
-            <a href="privacy-policy.html">Policy</a>
+            <div class="usefull-link">
+                <a href="#services">Service</a>
+                <a href="#contact">Contact</a>
+                <a href="#other">Our Team</a>
+                <a href="#">Hire Us</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="privacy-policy.html">Policy</a>
+            </div>
+            <div>
+                <div class="social-media">
+                    <a href="https://web.facebook.com/profile.php?id=61550987333969"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/amee.tech"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.tiktok.com/@amee.tech?_t=ZM-8t3mEOfPgTF&_r=1"><i
+                            class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com/@ameetech"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                </div>
+                <div class="address-container">
+                    <ul>
+                        <li><a href="tel:+2348100015498" title="phone number">+2348100015498</a></li>
+                        <li><a href="mailto:technologyamee@gmail.com" title="email address">technologyamee@gmail.com</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- <div id="root"></div> -->
         </div>
-      <div>
-        <div class="social-media">
-            <a href="https://web.facebook.com/profile.php?id=61550987333969"><i class="fa-brands fa-facebook"></i></a>
-             <a href="https://www.instagram.com/amee.tech"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-             <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-             <a href="https://www.tiktok.com/@amee.tech?_t=ZM-8t3mEOfPgTF&_r=1"><i class="fa-brands fa-tiktok"></i></a>
-             <a href="https://www.youtube.com/@ameetech"><i class="fa-brands fa-youtube"></i></a>
-            <a href="#"><i class="fa-brands fa-github"></i></a>  
-        </div>
-        <div class="address-container">
-            <ul>
-                <li><a href="tel:+2348100015498" title="phone number">+2348100015498</a></li>
-                <li><a href="mailto:aminuamee@yahoo.com" title="email address">aminuameeh@yahoo.com</a></li>
-         
-            </ul>
-        </div>
-      </div>
-       <!-- <div id="root"></div> -->
-    </div>
-        <p id="copy-right" title="copy-right">&copy; 2025 Ameetech - Kano, Nigeria. All rights reserved.</p>
+        <p id="copy-right" title="copy-right">&copy; 2025 AmeeTechnology - Kano, Nigeria. All rights reserved.</p>
     </footer>
     <!-- end of the footer element  -->
 
     <script src="script.js"></script>
-<script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2025/06/30/15/20250630152658-P6EIT7RC.js"></script>
+    <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2025/06/30/15/20250630152658-P6EIT7RC.js"></script>
 </body>
+
 </html>
