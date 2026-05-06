@@ -23,17 +23,7 @@ const navs = document.querySelectorAll('.nav')
 
 menu.addEventListener('click', (e) =>{
     menu.classList.toggle('active')
-    if(menu.classList.contains('active')){
-        mobNav.classList.add('show')
-        // menu.innerHTML = '<i class="fa-solid fa-bars"></i>';
-        menu.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-    }
-    else{
-        // menu.classList.remove('active')
-        mobNav.classList.remove('show')
-        // menu.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-        menu.innerHTML = '<i class="fa-solid fa-bars"></i>';
-    }  
+    mobNav.classList.toggle('show')
 })
 
 navs.forEach((nav) => {

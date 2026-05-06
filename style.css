@@ -27,6 +27,11 @@
   --blog-text: "Open Sans", sans-serif;
 }
 
+html {
+  scroll-padding-top: 100px;
+  overflow-x: hidden;
+}
+
 body {
   overflow-x: hidden;
   background-color: var(--background-color);
@@ -132,7 +137,7 @@ header nav .logo img {
 header nav .logo .logo-text {
   font-family: var(--cta-text);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
   color: var(--txt-color1);
 }
 
@@ -143,32 +148,40 @@ header nav .logo .logo-text {
 .mobile.show {
   position: fixed;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   inset: 0;
-  background-color: var(--primary-color);
-  z-index: 99;
-  animation: animate-mobile 0.6s alternate;
+  background-color: rgba(108, 43, 217, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  animation: animate-mobile 0.4s ease-out;
 }
 
 .mobile.show ul {
-  margin-top: 5em;
-  padding-left: 20px;
+  margin-top: 0;
+  padding-left: 0;
+  text-align: center;
 }
 
 .mobile.show ul li {
   list-style: none;
+  margin: 15px 0;
 }
 
 .mobile.show ul li a {
-  font-size: 1.09rem;
+  font-size: 1.8rem;
+  font-weight: 700;
   text-decoration: none;
-  color: var(--neutral-color3);
+  color: #ffffff;
   font-family: var(--navigation-text);
-  line-height: 50px;
+  transition: all 0.3s ease;
 }
 
 .mobile.show ul li a:focus,
 .mobile.show ul li a:hover {
   color: var(--hover-color);
+  transform: scale(1.1);
 }
 
 header nav ul {
@@ -243,10 +256,12 @@ header .header-container .header-text {
 
 header .header-container h1 {
   font-family: var(--primary-text);
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 10vw, 3.5rem);
   line-height: 1.2;
   margin-bottom: 20px;
   letter-spacing: -1px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 header .header-container h1 span {
@@ -1007,14 +1022,25 @@ footer #copy-right {
 /* end animation section  */
 
 /* start responsive mobile view here  */
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   header nav {
-    min-width: 100vw;
-    padding: 5em 25px 25px 25px;
+    padding: 15px 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  header nav {
+    padding: 10px 5%;
+    height: 70px;
   }
 
-  header nav .logo p {
-    margin-left: -70px;
+  header nav .logo img {
+    width: 40px;
+    height: 40px;
+  }
+
+  header nav .logo .logo-text {
+    font-size: 1.2rem;
   }
 
   header nav ul {
@@ -1022,22 +1048,148 @@ footer #copy-right {
   }
 
   header nav .menu {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 101;
+    margin-right: -10px;
   }
 
+  header .header-container {
+    margin-top: 8em;
+    padding-bottom: 3rem;
+    text-align: center;
+    align-items: center;
+    width: 95%;
+  }
+
+  header .header-container h1 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    text-align: center;
+  }
+
+  header .header-container h1 span {
+    display: block; /* Force brand on new line if needed */
+    width: 100%;
+  }
+
+  header .header-container p {
+    font-size: 1.1rem;
+    margin-inline: auto;
+    padding: 0 10px;
+  }
+
+  header .header-container .btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  main #about,
   main #services,
+  main #portfolio,
   main #other,
   main #contact,
-  main #about,
-  main #faq,
-  .privacy section,
-  footer {
-    padding: 2em;
+  main #faq {
+    padding: 4rem 5%;
+    margin-top: 4rem;
   }
 
-  header .header-container .img-container img {
-    display: none;
+  main #about {
+    flex-direction: column;
+    text-align: center;
   }
+
+  main #about #details,
+  main #about ul li {
+    max-width: 100%;
+  }
+
+  main #about .about-img-container {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .whatsapp-container {
+    right: 1.5em;
+    bottom: 5em;
+  }
+}
+
+@media (max-width: 480px) {
+  header .header-container h1 {
+    font-size: 1.5rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  header nav .logo .logo-text {
+    font-size: 1.1rem;
+  }
+
+  .contact-methods {
+    flex-direction: column;
+  }
+
+  .contact-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  main #contact form {
+    width: 100%;
+  }
+
+  footer {
+    padding: 3rem 5% 2rem;
+    text-align: center;
+    margin-top: 5rem;
+  }
+
+  footer .footer-detail {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  footer .usefull-link {
+    align-items: center;
+  }
+
+  footer .usefull-link a {
+    text-align: center;
+  }
+
+  footer .social-media {
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  footer .address-container li {
+    text-align: center;
+  }
+}
+
+/* CSS-based icon change for better robustness */
+header nav .menu i.fa-xmark {
+  display: none;
+}
+
+header nav .menu.active i.fa-bars {
+  display: none;
+}
+
+header nav .menu.active i.fa-xmark {
+  display: block;
 }
 
 /* end responsive mobile view here  */
