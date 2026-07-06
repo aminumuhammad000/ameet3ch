@@ -92,7 +92,7 @@ overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.cla
 function startAssessment() {
   answers = {}; currentStep = 0; cachedScores = null; cachedInsights = null;
   chatMessages.innerHTML = '';
-  reportWrap.hidden = true;
+  reportWrap.style.display = 'none';
   reportPanel.innerHTML = '';
   chatWindow.style.display = '';
   inputArea.style.display  = '';
@@ -396,7 +396,7 @@ async function generateReport() {
   // Transition from chat to report (gated)
   chatWindow.style.display = 'none';
   inputArea.style.display  = 'none';
-  reportWrap.hidden = false;
+  reportWrap.style.display = 'flex';
   reportWrap.classList.add('ab-gated');
 
   // Animate score ring after gate shows
