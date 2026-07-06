@@ -423,11 +423,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--txt);
 /* ── Email Gate Overlay ── */
 .ab-email-gate {
   position: absolute; inset: 0; z-index: 50;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; flex-direction: column;
   padding: 20px;
   background: rgba(245,240,255,0.6);
   backdrop-filter: blur(4px);
   transition: opacity 0.4s ease;
+  overflow-y: auto;
 }
 .ab-email-gate.ab-gate-hidden {
   opacity: 0; pointer-events: none;
@@ -436,8 +437,9 @@ body { font-family: var(--font); background: var(--bg); color: var(--txt);
 .ab-email-gate-card {
   background: #fff;
   border-radius: 20px;
-  padding: 32px 28px;
+  padding: 24px;
   max-width: 420px; width: 100%;
+  margin: auto; /* Centers in flex column */
   border: 1px solid var(--border);
   box-shadow: 0 20px 60px rgba(108,43,217,0.18);
   text-align: center;
@@ -449,11 +451,11 @@ body { font-family: var(--font); background: var(--bg); color: var(--txt);
 }
 
 .ab-gate-icon {
-  width: 60px; height: 60px; border-radius: 50%;
+  width: 50px; height: 50px; border-radius: 50%;
   background: linear-gradient(135deg,#6C2BD9,#a855f7);
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 16px;
-  font-size: 1.4rem; color: #fff;
+  margin: 0 auto 12px;
+  font-size: 1.25rem; color: #fff;
   box-shadow: 0 6px 20px rgba(108,43,217,0.3);
 }
 .ab-email-gate-card h3 {
@@ -461,8 +463,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--txt);
   margin-bottom: 8px; color: var(--txt);
 }
 .ab-email-gate-card > p {
-  font-size: 0.88rem; color: var(--txt-muted); line-height: 1.6;
-  margin-bottom: 22px;
+  font-size: 0.88rem; color: var(--txt-muted); line-height: 1.5;
+  margin-bottom: 16px;
 }
 
 /* Form */
