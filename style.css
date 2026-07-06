@@ -194,7 +194,7 @@ header nav .logo .logo-text {
 header nav ul {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
@@ -208,7 +208,7 @@ header nav ul li a {
   text-decoration: none;
   color: var(--txt-color1);
   font-weight: 500;
-  padding: 6px 14px;
+  padding: 6px 10px;
   border-radius: 20px;
   transition: all 0.3s ease;
 }
