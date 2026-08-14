@@ -529,7 +529,7 @@ ${roadmap.month3.map(t=>`  • ${t}`).join('\n')}`.trim();
     // Amee Technology contact details embedded in email
     amee_whatsapp:  '+234 810 001 5498',
     amee_phone:     '+234 810 001 5498',
-    amee_email:     'technologyamee@gmail.com',
+    amee_email:     'support@ameetechnology.com.ng',
     amee_website:   'https://ameetechnology.com',
     amee_form:      'https://forms.gle/zzL8UaQjkGhGcXHs5',
     report_date:    new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),
@@ -647,9 +647,9 @@ function buildReportHTML(scores, overall, insights, roadmap) {
           <div class="ab-contact-row-icon ph"><i class="fa-solid fa-phone"></i></div>
           <div class="ab-contact-row-text"><b>Call Us</b><span>+234 810 001 5498</span></div>
         </a>
-        <a href="mailto:technologyamee@gmail.com?subject=AmeeBot Assessment – ${encodeURIComponent(answers.name||'My Business')}&body=Hi Amee Technology, I completed the AmeeBot assessment and scored ${overall}/100. I'd like to discuss how you can help." class="ab-contact-row">
+        <a href="mailto:support@ameetechnology.com.ng?subject=AmeeBot Assessment – ${encodeURIComponent(answers.name||'My Business')}&body=Hi Amee Technology, I completed the AmeeBot assessment and scored ${overall}/100. I'd like to discuss how you can help." class="ab-contact-row">
           <div class="ab-contact-row-icon em"><i class="fa-solid fa-envelope"></i></div>
-          <div class="ab-contact-row-text"><b>Email Us</b><span>technologyamee@gmail.com</span></div>
+          <div class="ab-contact-row-text"><b>Email Us</b><span>support@ameetechnology.com.ng</span></div>
         </a>
         <a href="https://forms.gle/zzL8UaQjkGhGcXHs5" target="_blank" class="ab-contact-row">
           <div class="ab-contact-row-icon fm"><i class="fa-solid fa-file-signature"></i></div>
