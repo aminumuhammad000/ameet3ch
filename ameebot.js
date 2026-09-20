@@ -431,19 +431,51 @@ function setupEmailGate(scores, overall, insights, roadmap) {
 
     const emailParams = buildEmailParams(name, email, scores, overall, insights, roadmap);
 
+    // Populate Netlify hidden fields
+    const bNameEl = document.getElementById('ab-field-business-name');
+    const indEl   = document.getElementById('ab-field-industry');
+    const scoreEl = document.getElementById('ab-field-overall-score');
+    const breakEl = document.getElementById('ab-field-score-breakdown');
+    const strEl   = document.getElementById('ab-field-strengths');
+    const weakEl  = document.getElementById('ab-field-weaknesses');
+    const riskEl  = document.getElementById('ab-field-risks');
+    const recEl   = document.getElementById('ab-field-recommendations');
+    const roadEl  = document.getElementById('ab-field-roadmap');
+
+    if (bNameEl) bNameEl.value = emailParams.business_name;
+    if (indEl)   indEl.value   = emailParams.industry;
+    if (scoreEl) scoreEl.value = emailParams.overall_score;
+    if (breakEl) breakEl.value = emailParams.score_breakdown;
+    if (strEl)   strEl.value   = emailParams.strengths;
+    if (weakEl)  weakEl.value  = emailParams.weaknesses;
+    if (riskEl)  riskEl.value  = emailParams.risks;
+    if (recEl)   recEl.value   = emailParams.high_priority;
+    if (roadEl)  roadEl.value  = emailParams.roadmap;
+
     try {
-      if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams);
-      } else {
-        // Demo mode: simulate sending
-        await delay(1800);
+      // 1. Submit to Netlify Forms
+      const formData = new FormData(emailForm);
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      });
+
+      // 2. Also send via EmailJS if configured
+      if (typeof emailjs !== 'undefined' && typeof EMAILJS_PUBLIC_KEY !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+        try {
+          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams);
+        } catch (emailErr) {
+          console.warn('EmailJS delivery failed, but Netlify captured submission:', emailErr);
+        }
       }
+
       showGateSuccess(email);
     } catch(err) {
-      console.error('EmailJS error:', err);
+      console.error('Submission error:', err);
       gateSubmitBtn.disabled = false;
       gateSubmitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send My Report';
-      showGateError('Could not send email. Please try again or contact us directly on WhatsApp.');
+      showGateError('Could not send report. Please try again or contact us directly on WhatsApp.');
     }
   });
 }
