@@ -7,19 +7,33 @@
     <meta name="author" content="Aminu Muhammad">
     <meta name="robots" content="index, follow">
     <meta name="description"
-        content="Amee Technology Ltd is a leading digital solutions company. We specialize in custom software development, AI & business automation, digital business solutions, UI/UX brand design, professional videography, social media management, and IT consulting." />
+        content="Amee Technology builds custom software, AI automation, and web solutions to scale businesses across Nigeria and beyond. Contact us today." />
+    <link rel="canonical" href="https://ameetechnology.com.ng/">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@300;400;700&family=Montserrat:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="images/ameelogo.png" type="image/x-icon">
-    <meta property="og:title" content="Amee Technology Ltd | Custom Software, AI & Creative Media Solutions">
+    <link rel="icon" href="images/ameelogo.png" type="image/png">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Amee Technology Ltd">
+    <meta property="og:title" content="Amee Technology | Custom Software, AI & Digital Solutions">
     <meta property="og:description"
-        content="Amee Technology Ltd is a digital solutions company dedicated to custom software development, AI & business automation, digital solutions, UI/UX brand design, videography, and social media management in Nigeria.">
-    <meta property="og:image" content="images/ameelogo.png">
-    <meta property="og:url" content="https://ameetechnology.com">
+        content="Amee Technology builds custom software, AI automation, and web solutions to scale businesses across Nigeria and beyond.">
+    <meta property="og:image" content="https://ameetechnology.com.ng/images/ameelogo.png">
+    <meta property="og:url" content="https://ameetechnology.com.ng/">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Amee Technology | Custom Software, AI & Digital Solutions">
+    <meta name="twitter:description"
+        content="Amee Technology builds custom software, AI automation, and web solutions to scale businesses across Nigeria and beyond.">
+    <meta name="twitter:image" content="https://ameetechnology.com.ng/images/ameelogo.png">
+    <meta name="twitter:site" content="@ameetech">
+    <meta name="twitter:creator" content="@ameetech">
 
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript">
@@ -34,29 +48,58 @@
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <title>Amee Technology Ltd | Custom Software, AI & Creative Media Solutions</title>
+    <title>Amee Technology | Custom Software, AI & Digital Solutions</title>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Amee Technology Ltd",
-      "url": "https://ameetechnology.com",
-      "logo": "https://ameetechnology.com/images/ameelogo.png",
-      "founder": {
-        "@type": "Person",
-        "name": "Aminu Muhammad",
-        "image": "https://ameetechnology.com/images/Aminu_Muhammad.jpeg",
-        "jobTitle": "Founder & CEO",
-        "sameAs": [
-          "https://linkedin.com/in/aminu-muhammad-ameetech"
-        ]
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+2348100015498",
-        "contactType": "customer support",
-        "email": "support@ameetechnology.com.ng"
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://ameetechnology.com.ng/#organization",
+          "name": "Amee Technology Ltd",
+          "url": "https://ameetechnology.com.ng/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://ameetechnology.com.ng/images/ameelogo.png"
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Aminu Muhammad",
+            "image": "https://ameetechnology.com.ng/images/Aminu_Muhammad.jpeg",
+            "jobTitle": "Founder & CEO",
+            "sameAs": [
+              "https://linkedin.com/in/aminu-muhammad-ameetech",
+              "https://aminu-ameetech.netlify.app"
+            ]
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kano",
+            "addressCountry": "NG"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+2348100015498",
+            "contactType": "customer support",
+            "email": "support@ameetechnology.com.ng"
+          },
+          "sameAs": [
+            "https://web.facebook.com/profile.php?id=61550987333969",
+            "https://www.instagram.com/amee.tech",
+            "https://www.tiktok.com/@amee.tech?_t=ZM-8t3mEOfPgTF&_r=1",
+            "https://www.youtube.com/@ameetech"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://ameetechnology.com.ng/#website",
+          "url": "https://ameetechnology.com.ng/",
+          "name": "Amee Technology Ltd",
+          "publisher": {
+            "@id": "https://ameetechnology.com.ng/#organization"
+          }
+        }
+      ]
     }
     </script>
 </head>
@@ -140,7 +183,7 @@
         <section class="section hidden" id="about">
             <div class="detail-container">
                 <span class="section-tag-badge">Who We Are</span>
-                <h1 title="about amee technology company">About Amee Technology Ltd</h1>
+                <h2 title="About Amee Technology Company">About Amee Technology Ltd</h2>
                 <p id="details" title="description of amee technology">We combine technology, strategy, and creative
                     design to build secure digital products, automate back-office operations, and accelerate brand
                     growth worldwide.</p>
@@ -190,7 +233,7 @@
                 </div>
             </div>
             <div class="about-img-container">
-                <img src="images/about_tech_graphic.png" alt="Amee Technology Ltd Digital Solutions"
+                <img src="images/about_tech_graphic.png" alt="Amee Technology Ltd Digital Solutions" loading="lazy"
                     style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.05);"
                     draggable="false">
             </div>
@@ -199,7 +242,7 @@
         <section class="section hidden" id="services">
             <div class="services-header">
                 <span class="section-tag-badge">What We Do</span>
-                <h1>Services Built to Scale</h1>
+                <h2>Services Built to Scale</h2>
                 <p>We engineer high-performance digital products, automate operations, and build brand equity — all
                     under one roof.</p>
             </div>
@@ -327,7 +370,7 @@
         <section class="section hidden" id="portfolio">
             <div class="services-header">
                 <span class="section-tag-badge">Our Work</span>
-                <h1>Projects That Speak</h1>
+                <h2>Projects That Speak</h2>
                 <p>Live products used by real customers — built with precision, shipped fast, and built to scale.</p>
             </div>
 
@@ -335,7 +378,7 @@
                 <!-- IBData - Featured Large -->
                 <a href="https://ibdata.com.ng/" target="_blank" class="pf-card pf-featured">
                     <div class="pf-img-wrap">
-                        <img src="images/ibdata.png" alt="IBData VTU Platform">
+                        <img src="images/ibdata.png" alt="IBData VTU Platform" loading="lazy">
                         <div class="pf-bg-tint" style="background: linear-gradient(135deg, #6C2BD9 0%, #1e0052 100%);">
                         </div>
                     </div>
@@ -355,7 +398,7 @@
                 <!-- VTStack -->
                 <a href="https://vtstack.com.ng/" target="_blank" class="pf-card">
                     <div class="pf-img-wrap">
-                        <img src="images/vtstack.png" alt="VTStack Telecom Dashboard">
+                        <img src="images/vtstack.png" alt="VTStack Telecom Dashboard" loading="lazy">
                         <div class="pf-bg-tint" style="background: linear-gradient(135deg, #5b21b6 0%, #0f0628 100%);">
                         </div>
                     </div>
@@ -374,7 +417,7 @@
                 <!-- AmeeData -->
                 <a href="https://ameedata.com.ng/" target="_blank" class="pf-card">
                     <div class="pf-img-wrap">
-                        <img src="images/ameedata.png" alt="AmeeData Platform">
+                        <img src="images/ameedata.png" alt="AmeeData Platform" loading="lazy">
                         <div class="pf-bg-tint" style="background: linear-gradient(135deg, #7c3aed 0%, #1a0040 100%);">
                         </div>
                     </div>
@@ -393,7 +436,7 @@
                 <!-- Denish -->
                 <a href="https://denishng.com/" target="_blank" class="pf-card">
                     <div class="pf-img-wrap">
-                        <img src="images/denish.svg" alt="Denish Delivery Platform">
+                        <img src="images/denish.svg" alt="Denish Delivery Platform" loading="lazy">
                         <div class="pf-bg-tint" style="background: linear-gradient(135deg, #207951 0%, #003322 100%);">
                         </div>
                     </div>
@@ -410,9 +453,9 @@
                 </a>
 
                 <!-- Peeritrade -->
-                <a href="http://peeritrade.com/" target="_blank" class="pf-card">
+                <a href="https://peeritrade.com/" target="_blank" class="pf-card">
                     <div class="pf-img-wrap">
-                        <img src="images/peeritrade.png" alt="Peeritrade P2P Escrow Platform">
+                        <img src="images/peeritrade.png" alt="Peeritrade P2P Escrow Platform" loading="lazy">
                         <div class="pf-bg-tint" style="background: linear-gradient(135deg, #1d4ed8 0%, #0b132b 100%);">
                         </div>
                     </div>
@@ -429,9 +472,9 @@
                 </a>
 
                 <!-- Medicata -->
-                <a href="http://medicata.ng/" target="_blank" class="pf-card">
+                <a href="https://medicata.ng/" target="_blank" class="pf-card">
                     <div class="pf-img-wrap">
-                        <img src="images/medicata.png" alt="Medicata AI Healthcare Platform">
+                        <img src="images/medicata.png" alt="Medicata AI Healthcare Platform" loading="lazy">
                         <div class="pf-bg-tint" style="background: linear-gradient(135deg, #2563eb 0%, #0f172a 100%);">
                         </div>
                     </div>
@@ -450,7 +493,7 @@
                 <!-- Connecta -->
                 <a href="https://myconnecta.ng/" target="_blank" class="pf-card">
                     <div class="pf-img-wrap">
-                        <img src="images/connecta.png" alt="Connecta African Talent Marketplace">
+                        <img src="images/connecta.png" alt="Connecta African Talent Marketplace" loading="lazy">
                         <div class="pf-bg-tint" style="background: linear-gradient(135deg, #fd6730 0%, #7c2d12 100%);">
                         </div>
                     </div>
@@ -469,7 +512,7 @@
                 <!-- ASASU Realty -->
                 <a href="https://asasurealty-commission.com.ng/" target="_blank" class="pf-card">
                     <div class="pf-img-wrap">
-                        <img src="images/asasurealty.svg" alt="ASASU Realty Commission Portal">
+                        <img src="images/asasurealty.svg" alt="ASASU Realty Commission Portal" loading="lazy">
                         <div class="pf-bg-tint" style="background: linear-gradient(135deg, #1a1f3c 0%, #0b0e1b 100%);">
                         </div>
                     </div>
@@ -498,7 +541,7 @@
 
         <section class="section hidden" id="other">
             <div class="details">
-                <h1>Meet Our Expert Team</h1>
+                <h2>Meet Our Expert Team</h2>
                 <p>The minds behind Amee Technology Ltd. We bring together a diverse group of highly skilled
                     professionals committed to delivering exceptional solutions and driving sustainable growth for our
                     clients.</p>
@@ -508,7 +551,7 @@
                 <!-- 1. You (Aminu Muhammad) -->
                 <div class="team-card">
                     <div class="team-avatar-wrapper">
-                        <img src="images/Aminu_Muhammad.jpeg" alt="Aminu Muhammad">
+                        <img src="images/Aminu_Muhammad.jpeg" alt="Aminu Muhammad" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h3><a href="https://aminu-ameetech.netlify.app" target="_blank" rel="noopener noreferrer" title="Visit Aminu Muhammad's website">Aminu Muhammad</a></h3>
@@ -519,7 +562,7 @@
                 <!-- 2. Aisha -->
                 <div class="team-card">
                     <div class="team-avatar-wrapper">
-                        <img src="images/Aisha_Muhammad_Garba.jpeg" alt="Aisha Muhammad Garba">
+                        <img src="images/Aisha_Muhammad_Garba.jpeg" alt="Aisha Muhammad Garba" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h3>Aisha Muhammad Garba</h3>
@@ -530,7 +573,7 @@
                 <!-- 3. Fatima -->
                 <div class="team-card">
                     <div class="team-avatar-wrapper">
-                        <img src="images/Fatima_Sulaiman_Muhammad.jpeg" alt="Fatima Sulaiman Muhammad">
+                        <img src="images/Fatima_Sulaiman_Muhammad.jpeg" alt="Fatima Sulaiman Muhammad" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h3>Fatima Muhammad Sulaiman</h3>
@@ -541,7 +584,7 @@
                 <!-- 4. Usman -->
                 <div class="team-card">
                     <div class="team-avatar-wrapper">
-                        <img src="images/Usman_Umar.jpeg" alt="Usman Umar">
+                        <img src="images/Usman_Umar.jpeg" alt="Usman Umar" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h3>Usman Umar</h3>
@@ -552,7 +595,7 @@
                 <!-- 5. Zaks -->
                 <div class="team-card">
                     <div class="team-avatar-wrapper">
-                        <img src="images/Zakariyya_Haruna_Khalifa.jpeg" alt="Zakariyya Haruna">
+                        <img src="images/Zakariyya_Haruna_Khalifa.jpeg" alt="Zakariyya Haruna" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h3>Zakariyya Haruna</h3>
@@ -563,7 +606,7 @@
                 <!-- 6. Usman Hashim -->
                 <div class="team-card">
                     <div class="team-avatar-wrapper">
-                        <img src="images/Usman_Hashim_Umar.jpeg" alt="Usman Hashim Umar">
+                        <img src="images/Usman_Hashim_Umar.jpeg" alt="Usman Hashim Umar" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h3>Usman Hashim</h3>
@@ -574,7 +617,7 @@
                 <!-- 7. Abubakar -->
                 <div class="team-card">
                     <div class="team-avatar-wrapper">
-                        <img src="images/Abubakar_Umar_faruk.jpeg" alt="Abubakar Umar Faruk">
+                        <img src="images/Abubakar_Umar_faruk.jpeg" alt="Abubakar Umar Faruk" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h3>Abubakar Umar Faruk</h3>
@@ -585,7 +628,7 @@
                 <!-- 8. Abdullahi -->
                 <div class="team-card">
                     <div class="team-avatar-wrapper">
-                        <img src="images/Abdullahi_Aliyu_Sani.jpeg" alt="Abdullahi Aliyu Sani">
+                        <img src="images/Abdullahi_Aliyu_Sani.jpeg" alt="Abdullahi Aliyu Sani" loading="lazy">
                     </div>
                     <div class="team-info">
                         <h3>Abdullahi</h3>
@@ -610,7 +653,7 @@
         <section class="section" id="stories">
             <div class="services-header">
                 <span class="section-tag-badge">Testimonials</span>
-                <h1>Customer Stories</h1>
+                <h2>Customer Stories & Impact</h2>
                 <p>Read how Amee Technology Ltd has helped businesses build the future, automate operations, and scale
                     sustainably.</p>
             </div>
@@ -632,7 +675,7 @@
                     <div class="story-author">
                         <div class="author-avatar" style="background:#0284c7">IB</div>
                         <div class="author-details">
-                            <h4>IBData</h4>
+                            <h3>IBData</h3>
                             <span>VTU & Bill Payment Platform</span>
                         </div>
                     </div>
@@ -654,7 +697,7 @@
                     <div class="story-author">
                         <div class="author-avatar" style="background:#5b21b6">VT</div>
                         <div class="author-details">
-                            <h4>VTStack</h4>
+                            <h3>VTStack</h3>
                             <span>Telecoms Service Provider</span>
                         </div>
                     </div>
@@ -676,7 +719,7 @@
                     <div class="story-author">
                         <div class="author-avatar" style="background:#7c3aed">AD</div>
                         <div class="author-details">
-                            <h4>AmeeData</h4>
+                            <h3>AmeeData</h3>
                             <span>Mobile Billing Ecosystem</span>
                         </div>
                     </div>
@@ -687,20 +730,20 @@
         <section class="section hidden" id="contact">
             <div class="services-header">
                 <span class="section-tag-badge">Get In Touch</span>
-                <h1>Let's Build Together</h1>
+                <h2>Let's Build Together</h2>
                 <p>Ready to take your digital presence to the next level? Let Amee Technology Ltd help you transform
                     your ideas into reality.</p>
             </div>
 
             <div class="contact-grid">
                 <div class="contact-img-container">
-                    <img src="images/contact_support_graphic.png" alt="Contact Amee Technology Ltd Support"
+                    <img src="images/contact_support_graphic.png" alt="Contact Amee Technology Ltd Support" loading="lazy"
                         draggable="false">
                 </div>
 
                 <div class="contact-action-panel">
                     <div class="contact-cta-card">
-                        <h2>Start Your Project</h2>
+                        <h3>Start Your Project</h3>
                         <p>Have an idea or project you want to discuss? Send us a message and a consultant will get back to you within 24 hours.</p>
 
                         <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="site-contact-form" id="main-contact-form">
@@ -747,7 +790,7 @@
         <section class="section" id="faq">
             <div class="services-header">
                 <span class="section-tag-badge">FAQ</span>
-                <h1>Common Questions</h1>
+                <h2>Frequently Asked Questions</h2>
                 <p>Everything you need to know about our services, methodologies, and scaling process.</p>
             </div>
 
@@ -822,21 +865,21 @@
             <!-- Column 1: Brand -->
             <div class="footer-col footer-brand">
                 <div class="footer-logo">
-                    <img src="images/ameelogo.png" alt="Amee Technology Ltd">
+                    <img src="images/ameelogo.png" alt="Amee Technology Ltd" loading="lazy">
                     <span>Amee Technology</span>
                 </div>
                 <p class="footer-tagline">Building premium digital products, AI systems, and creative media solutions
                     that scale businesses across Africa and beyond.</p>
                 <div class="footer-socials">
-                    <a href="https://web.facebook.com/profile.php?id=61550987333969" target="_blank"
+                    <a href="https://web.facebook.com/profile.php?id=61550987333969" target="_blank" rel="noopener noreferrer"
                         aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/amee.tech" target="_blank" aria-label="Instagram"><i
+                    <a href="https://www.instagram.com/amee.tech" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
                             class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@amee.tech?_t=ZM-8t3mEOfPgTF&_r=1" target="_blank"
+                    <a href="https://www.tiktok.com/@amee.tech?_t=ZM-8t3mEOfPgTF&_r=1" target="_blank" rel="noopener noreferrer"
                         aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="https://www.youtube.com/@ameetech" target="_blank" aria-label="YouTube"><i
+                    <a href="https://www.youtube.com/@ameetech" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
                             class="fa-brands fa-youtube"></i></a>
-                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://linkedin.com/in/aminu-muhammad-ameetech" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
 
@@ -850,6 +893,9 @@
                     <li><a href="#services">Design & Branding</a></li>
                     <li><a href="#services">Media Production</a></li>
                     <li><a href="#services">Growth & Marketing</a></li>
+                    <li><a href="pages/best-full-stack-developer-kano.html">Full-Stack Developer Kano</a></li>
+                    <li><a href="pages/best-ai-automation-developer-kano.html">AI Automation Kano</a></li>
+                    <li><a href="pages/best-software-developer-kano.html">Software Developer Kano</a></li>
                 </ul>
             </div>
 
@@ -862,6 +908,7 @@
                     <li><a href="#stories">Customer Stories</a></li>
                     <li><a href="#other">Our Team</a></li>
                     <li><a href="#faq">FAQ</a></li>
+                    <li><a href="ameebot.html">AmeeBot AI</a></li>
                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
                 </ul>
             </div>
@@ -884,10 +931,10 @@
                     </li>
                     <li>
                         <i class="fa-brands fa-whatsapp"></i>
-                        <a href="https://wa.me/2348100015498" target="_blank">Chat on WhatsApp</a>
+                        <a href="https://wa.me/2348100015498" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
                     </li>
                 </ul>
-                <a href="https://forms.gle/zzL8UaQjkGhGcXHs5" target="_blank" class="footer-cta-btn">
+                <a href="https://forms.gle/zzL8UaQjkGhGcXHs5" target="_blank" rel="noopener noreferrer" class="footer-cta-btn">
                     Start a Project <i class="fa-solid fa-arrow-up-right"></i>
                 </a>
             </div>
