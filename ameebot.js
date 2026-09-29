@@ -562,7 +562,7 @@ ${roadmap.month3.map(t=>`  • ${t}`).join('\n')}`.trim();
     amee_whatsapp:  '+234 810 001 5498',
     amee_phone:     '+234 810 001 5498',
     amee_email:     'support@ameetechnology.com.ng',
-    amee_website:   'https://ameetechnology.com',
+    amee_website:   'https://ameetechnology.com.ng',
     amee_form:      'https://forms.gle/zzL8UaQjkGhGcXHs5',
     report_date:    new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}),
   };
@@ -687,9 +687,9 @@ function buildReportHTML(scores, overall, insights, roadmap) {
           <div class="ab-contact-row-icon fm"><i class="fa-solid fa-file-signature"></i></div>
           <div class="ab-contact-row-text"><b>Start a Project</b><span>Fill our project brief and we'll respond within 24 hours</span></div>
         </a>
-        <a href="https://ameetechnology.com" target="_blank" class="ab-contact-row">
+        <a href="https://ameetechnology.com.ng" target="_blank" class="ab-contact-row">
           <div class="ab-contact-row-icon" style="background:rgba(168,85,247,0.2);color:#a855f7"><i class="fa-solid fa-globe"></i></div>
-          <div class="ab-contact-row-text"><b>Visit Our Website</b><span>ameetechnology.com · See our full portfolio & services</span></div>
+          <div class="ab-contact-row-text"><b>Visit Our Website</b><span>ameetechnology.com.ng · See our full portfolio & services</span></div>
         </a>
       </div>
     </div>
