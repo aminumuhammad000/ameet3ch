@@ -85,9 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Track Article View
+    const pageArticleTitle = document.querySelector('h1')?.textContent.trim() || document.title;
     trackEvent('article_view', {
-        article_title: 'How Nigerian Small Businesses Can Grow with the Right Digital Solutions',
-        category: 'SME Strategy & Technology',
+        article_title: pageArticleTitle,
+        category: 'Business Growth & Marketing',
         author: 'Aminu Muhammad'
     });
 
