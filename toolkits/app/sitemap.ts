@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { TOOLS_DATA } from '@/lib/tools-data';
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://toolkits.ameetechnology.com.ng';
   const currentDate = new Date('2026-10-21T00:00:00Z');
