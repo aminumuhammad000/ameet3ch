@@ -2560,3 +2560,244 @@ header nav .menu.active i.fa-xmark {
   opacity: 0.55;
   font-weight: 400;
 }
+
+/* ==========================================================================
+   Toolkits CTA Showcase Section (Landing Page)
+   ========================================================================== */
+#toolkits.toolkits-showcase-section {
+  width: 90%;
+  max-width: 1200px;
+  margin: 8em auto 0;
+  padding: 4.5em 3.5em;
+  background: linear-gradient(135deg, #f8f5ff 0%, #ffffff 50%, #f0fdf4 100%);
+  border-radius: 28px;
+  border: 1px solid rgba(108, 43, 217, 0.12);
+  box-shadow: 0 20px 50px rgba(108, 43, 217, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+#toolkits .toolkits-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3.5em;
+}
+
+#toolkits .toolkits-header h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--txt-color1);
+  margin: 12px 0 16px;
+  line-height: 1.25;
+}
+
+#toolkits .toolkits-header p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.toolkits-grid-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.toolkits-explainer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.toolkits-explainer-card h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--txt-color1);
+  line-height: 1.3;
+}
+
+.toolkits-explainer-card p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.toolkits-perks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px 0 16px;
+}
+
+.toolkits-perk-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.toolkits-perk-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.15);
+  color: #059669;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.toolkits-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.toolkits-btn-primary {
+  background: var(--primary-color);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(108, 43, 217, 0.28);
+  transition: all 0.3s ease;
+}
+
+.toolkits-btn-primary:hover {
+  background: var(--scondary-color-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(108, 43, 217, 0.35);
+  color: #ffffff;
+}
+
+.toolkits-btn-secondary {
+  background: #ffffff;
+  color: var(--primary-color);
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(108, 43, 217, 0.25);
+  transition: all 0.3s ease;
+}
+
+.toolkits-btn-secondary:hover {
+  background: rgba(108, 43, 217, 0.06);
+  border-color: var(--primary-color);
+  color: var(--scondary-color-hover);
+  transform: translateY(-2px);
+}
+
+.toolkits-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.toolkit-feature-card {
+  background: #ffffff;
+  padding: 22px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.toolkit-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(108, 43, 217, 0.12);
+  border-color: rgba(108, 43, 217, 0.3);
+}
+
+.toolkit-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 14px;
+}
+
+.toolkit-feature-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--txt-color1);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolkit-feature-card h4 i.fa-arrow-right {
+  font-size: 0.8rem;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.2s ease;
+  color: var(--primary-color);
+}
+
+.toolkit-feature-card:hover h4 i.fa-arrow-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toolkit-feature-card p {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  #toolkits.toolkits-showcase-section {
+    padding: 3.5em 2em;
+    margin-top: 6em;
+  }
+  .toolkits-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  #toolkits.toolkits-showcase-section {
+    padding: 2.5em 1.2em;
+    border-radius: 20px;
+    margin-top: 4.5em;
+  }
+  .toolkits-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .toolkits-btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .toolkits-btn-primary,
+  .toolkits-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
