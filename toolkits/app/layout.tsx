@@ -24,8 +24,17 @@ export const metadata: Metadata = {
   creator: 'Amee Technology Ltd',
   publisher: 'Amee Technology Ltd',
   icons: {
-    icon: '/brand/ameelogo2.png',
-    apple: '/brand/ameelogo2.png',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  alternates: {
+    canonical: 'https://toolkits.ameetechnology.com.ng',
   },
   openGraph: {
     type: 'website',
@@ -38,9 +47,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/brand/ameelogo.png',
-        width: 800,
-        height: 600,
-        alt: 'Ameetech Toolkits',
+        width: 500,
+        height: 500,
+        alt: 'Ameetech Toolkits Logo',
       },
     ],
   },
@@ -57,8 +66,51 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': 'https://toolkits.ameetechnology.com.ng/#website',
+        url: 'https://toolkits.ameetechnology.com.ng',
+        name: 'Ameetech Toolkits',
+        description: 'Free Digital Tools for Nigerian Businesses',
+        publisher: {
+          '@type': 'Organization',
+          '@id': 'https://ameetechnology.com.ng/#organization',
+          name: 'Amee Technology Ltd',
+          url: 'https://ameetechnology.com.ng',
+          logo: 'https://toolkits.ameetechnology.com.ng/brand/ameelogo.png',
+        },
+      },
+      {
+        '@type': 'Organization',
+        '@id': 'https://ameetechnology.com.ng/#organization',
+        name: 'Amee Technology Ltd',
+        url: 'https://ameetechnology.com.ng',
+        logo: 'https://toolkits.ameetechnology.com.ng/brand/ameelogo.png',
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: '+2348100015498',
+          contactType: 'customer service',
+          areaServed: 'NG',
+        },
+      },
+    ],
+  };
+
   return (
     <html lang="en" className="h-full scroll-smooth">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-800 font-sans selection:bg-purple-100 selection:text-purple-900">
         <Navbar />
         <main className="flex-1">{children}</main>
