@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+toolkits/node_modules/
+
+# Next.js Build Outputs
+.next/
+toolkits/.next/
+toolkits/out/
+toolkits/build/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# System & Environment
+.DS_Store
+*.pem
+.env*
+.vercel
+toolkits/.vercel
+*.tsbuildinfo
+toolkits/next-env.d.ts
