@@ -246,7 +246,7 @@ def run_tests():
             ("/blog.css", 200, "blog.css"),
             ("/blog.js", 200, "blog.js"),
             ("/sitemap.xml", 200, "sitemap.xml"),
-            ("/images/contact_support_graphic.png", 200, "Hero image"),
+            ("/images/blog/whatsapp_business_guide_banner.png", 200, "Hero banner image"),
             ("/images/ameelogo.png", 200, "Logo image"),
             ("/images/Aminu_Muhammad.jpeg", 200, "Author avatar image")
         ]
