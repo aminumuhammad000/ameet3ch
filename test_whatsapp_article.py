@@ -233,6 +233,7 @@ def run_tests():
     # 12. Local HTTP Server & Status 200 checks
     port = 8898
     handler = http.server.SimpleHTTPRequestHandler
+    socketserver.TCPServer.allow_reuse_address = True
     httpd = socketserver.TCPServer(("", port), handler)
     server_thread = threading.Thread(target=httpd.serve_forever, daemon=True)
     server_thread.start()

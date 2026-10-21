@@ -228,8 +228,9 @@ def run_tests():
                 "Sitemap contains blog hub URL")
 
     # 11. Local HTTP Server & Status 200 checks
-    port = 8899
+    port = 8891
     handler = http.server.SimpleHTTPRequestHandler
+    socketserver.TCPServer.allow_reuse_address = True
     httpd = socketserver.TCPServer(("", port), handler)
     server_thread = threading.Thread(target=httpd.serve_forever, daemon=True)
     server_thread.start()
