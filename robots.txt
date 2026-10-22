@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /academy/business-economics/admin/
 
 Sitemap: https://ameetechnology.com.ng/sitemap.xml

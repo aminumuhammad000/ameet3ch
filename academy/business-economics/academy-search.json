@@ -1,0 +1,189 @@
+[
+  {
+    "title": "Scarcity, Trade-offs, and Opportunity Cost in Business Decisions",
+    "slug": "scarcity-and-opportunity-cost",
+    "category": "Economics Fundamentals",
+    "category_slug": "economics-fundamentals",
+    "url": "/academy/business-economics/economics-fundamentals/scarcity-and-opportunity-cost/",
+    "summary": "Every commercial choice requires choosing one alternative over another. Learn how scarcity governs allocation and how calculating true opportunity cost protects capital.",
+    "level": "Beginner",
+    "keywords": [
+      "Economics Fundamentals",
+      "Beginner",
+      "Define scarcity and recognize its role as the fundamental economic problem.",
+      "Distinguish between accounting cost (cash outflows) and economic opportunity cost.",
+      "Apply the Production Possibilities Frontier (PPF) concept to business resource allocation.",
+      "Calculate trade-offs in operational decision-making with practical African market scenarios."
+    ]
+  },
+  {
+    "title": "Supply, Demand, and Price Elasticity in Real Markets",
+    "slug": "supply-demand-market-equilibrium",
+    "category": "Economics Fundamentals",
+    "category_slug": "economics-fundamentals",
+    "url": "/academy/business-economics/economics-fundamentals/supply-demand-market-equilibrium/",
+    "summary": "How buyer willingness to pay interacts with producer cost to determine equilibrium pricing, market clearing, and revenue elasticity.",
+    "level": "Beginner to Intermediate",
+    "keywords": [
+      "Economics Fundamentals",
+      "Beginner to Intermediate",
+      "Explain the Law of Demand and the Law of Supply.",
+      "Identify market clearing equilibrium and diagnose shortages versus surpluses.",
+      "Calculate Price Elasticity of Demand (PED) using the midpoint formula.",
+      "Use elasticity to predict whether price increases will raise or lower total revenue."
+    ]
+  },
+  {
+    "title": "Demystifying Profit: Revenue, Gross, Operating, and Net Profit Margins",
+    "slug": "revenue-gross-operating-net-profit",
+    "category": "Accounting and Financial Literacy",
+    "category_slug": "accounting-financial-literacy",
+    "url": "/academy/business-economics/accounting-financial-literacy/revenue-gross-operating-net-profit/",
+    "summary": "Never confuse top-line turnover with actual wealth creation. Master the four tiers of profit, calculate operating margins, and distinguish markup from margin.",
+    "level": "Beginner to Intermediate",
+    "keywords": [
+      "Accounting and Financial Literacy",
+      "Beginner to Intermediate",
+      "Distinguish Revenue from Gross, Operating, and Net Profit.",
+      "Compute Cost of Goods Sold (COGS) and Operating Expenses (OPEX).",
+      "Calculate profit margins versus markups without mathematical error.",
+      "Analyze a multi-step Income Statement with practical African business metrics."
+    ]
+  },
+  {
+    "title": "Break-Even Analysis, Fixed vs Variable Costs, and Contribution Margin",
+    "slug": "break-even-analysis-contribution-margin",
+    "category": "Accounting and Financial Literacy",
+    "category_slug": "accounting-financial-literacy",
+    "url": "/academy/business-economics/accounting-financial-literacy/break-even-analysis-contribution-margin/",
+    "summary": "Determine the exact sales volume required to cover fixed overheads. Learn how contribution margin powers profitable pricing and scenario planning.",
+    "level": "Intermediate",
+    "keywords": [
+      "Accounting and Financial Literacy",
+      "Intermediate",
+      "Differentiate between Fixed Costs and Variable Costs.",
+      "Compute Unit Contribution Margin and Contribution Margin Ratio.",
+      "Calculate Break-Even Point in physical units and currency value.",
+      "Perform 'Margin of Safety' calculations to assess commercial risk."
+    ]
+  },
+  {
+    "title": "Cash Flow vs Profit: Working Capital and Liquidity Survival",
+    "slug": "cash-flow-working-capital-liquidity",
+    "category": "Accounting and Financial Literacy",
+    "category_slug": "accounting-financial-literacy",
+    "url": "/academy/business-economics/accounting-financial-literacy/cash-flow-working-capital-liquidity/",
+    "summary": "Why profitable businesses fail from cash insolvency. Master the cash conversion cycle, accounts receivable aging, and working capital buffers.",
+    "level": "Intermediate",
+    "keywords": [
+      "Accounting and Financial Literacy",
+      "Intermediate",
+      "Distinguish between accounting profitability and liquid cash flow.",
+      "Understand the three sections of the Cash Flow Statement.",
+      "Calculate Net Working Capital and the Cash Conversion Cycle (CCC).",
+      "Implement defensive strategies against debtor defaults and inflation erosion."
+    ]
+  },
+  {
+    "title": "Competitive Advantage and Economic Moats: Defending Market Share",
+    "slug": "competitive-advantage-economic-moats",
+    "category": "Business Models and Strategy",
+    "category_slug": "business-models-strategy",
+    "url": "/academy/business-economics/business-models-strategy/competitive-advantage-economic-moats/",
+    "summary": "How exceptional companies protect high profit margins from competitive imitation. Analyze network effects, switching costs, scale, and intangible assets.",
+    "level": "Intermediate to Advanced",
+    "keywords": [
+      "Business Models and Strategy",
+      "Intermediate to Advanced",
+      "Define economic moats and sustainable competitive advantage.",
+      "Classify the four primary types of economic moats (Network Effects, Switching Costs, Cost Advantages, Intangible Assets).",
+      "Evaluate Porter's Five Forces in African emerging markets.",
+      "Formulate defensible strategy against commoditization."
+    ]
+  },
+  {
+    "title": "Mastering CAC and LTV: The Math of Sustainable Customer Acquisition",
+    "slug": "cac-ltv-unit-economics",
+    "category": "Marketing and Consumer Behaviour",
+    "category_slug": "marketing-consumer-behaviour",
+    "url": "/academy/business-economics/marketing-consumer-behaviour/cac-ltv-unit-economics/",
+    "summary": "Customer Acquisition Cost (CAC) and Lifetime Value (LTV) govern company survival. Discover how to compute the LTV:CAC ratio and calculate payback periods.",
+    "level": "Intermediate",
+    "keywords": [
+      "Marketing and Consumer Behaviour",
+      "Intermediate",
+      "Calculate fully-loaded Customer Acquisition Cost (CAC).",
+      "Calculate Customer Lifetime Value (LTV) using retention and gross margins.",
+      "Assess business viability with the LTV:CAC ratio benchmark (3:1).",
+      "Compute the CAC Payback Period to manage marketing working capital."
+    ]
+  },
+  {
+    "title": "MVP, Idea Validation, and Product-Market Fit in Frontier Markets",
+    "slug": "mvp-idea-validation-product-market-fit",
+    "category": "Entrepreneurship and Startups",
+    "category_slug": "entrepreneurship-startups",
+    "url": "/academy/business-economics/entrepreneurship-startups/mvp-idea-validation-product-market-fit/",
+    "summary": "How to validate business hypotheses before burning capital. Build true Minimum Viable Products and identify genuine retention-driven product-market fit.",
+    "level": "Beginner to Intermediate",
+    "keywords": [
+      "Entrepreneurship and Startups",
+      "Beginner to Intermediate",
+      "Define the Minimum Viable Product (MVP) according to Lean Startup methodology.",
+      "Distinguish genuine consumer demand signals from polite feedback.",
+      "Recognize qualitative and quantitative signs of Product-Market Fit (PMF).",
+      "Adapt lean validation strategies to African infrastructure and payment habits."
+    ]
+  },
+  {
+    "title": "Time Value of Money, Discounting, and Compound Interest",
+    "slug": "time-value-of-money-compound-interest",
+    "category": "Finance, Investment and Risk",
+    "category_slug": "finance-investment-risk",
+    "url": "/academy/business-economics/finance-investment-risk/time-value-of-money-compound-interest/",
+    "summary": "Why a naira today is worth more than a naira tomorrow. Calculate Present Value, Future Value, Net Present Value (NPV), and internal hurdle rates.",
+    "level": "Intermediate",
+    "keywords": [
+      "Finance, Investment and Risk",
+      "Intermediate",
+      "Understand the core principle of the Time Value of Money (TVM).",
+      "Calculate Future Value (FV) with compound interest.",
+      "Discount future commercial cash flows to calculate Present Value (PV) and Net Present Value (NPV).",
+      "Adjust investment hurdles for high-inflation macroeconomic environments."
+    ]
+  },
+  {
+    "title": "Inventory Management: EOQ, Safety Stock, and Working Capital",
+    "slug": "inventory-management-eoq-safety-stock",
+    "category": "Operations and Business Growth",
+    "category_slug": "operations-business-growth",
+    "url": "/academy/business-economics/operations-business-growth/inventory-management-eoq-safety-stock/",
+    "summary": "Balance stockout risks against expensive storage and capital lockup. Compute Economic Order Quantity (EOQ) and Reorder Points.",
+    "level": "Intermediate",
+    "keywords": [
+      "Operations and Business Growth",
+      "Intermediate",
+      "Distinguish between ordering costs and holding/carrying costs.",
+      "Calculate Economic Order Quantity (EOQ).",
+      "Establish Reorder Points (ROP) with safety stock buffers.",
+      "Prevent dead inventory while avoiding revenue-destroying stockouts."
+    ]
+  },
+  {
+    "title": "SaaS Economics: MRR, ARR, Churn, and Net Revenue Retention (NRR)",
+    "slug": "saas-metrics-mrr-arr-churn",
+    "category": "Digital Business and Technology Economics",
+    "category_slug": "digital-business-technology-economics",
+    "url": "/academy/business-economics/digital-business-technology-economics/saas-metrics-mrr-arr-churn/",
+    "summary": "Understand subscription software metrics. Learn how compounding Monthly Recurring Revenue, customer churn, and expansion revenue drive technology company valuation.",
+    "level": "Intermediate to Advanced",
+    "keywords": [
+      "Digital Business and Technology Economics",
+      "Intermediate to Advanced",
+      "Calculate Monthly Recurring Revenue (MRR) and Annual Recurring Revenue (ARR).",
+      "Differentiate Gross Churn from Net Revenue Retention (NRR).",
+      "Understand why negative net revenue churn creates exponential software enterprise value.",
+      "Model subscription cohort decay and customer lifespan."
+    ]
+  }
+]

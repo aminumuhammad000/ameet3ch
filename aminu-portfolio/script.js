@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────
-   AmeeTech Portfolio — script.js
+   AmeeTech Portfolio | script.js
 ───────────────────────────────────────── */
 
 // ── Theme Toggle (Light Default / Dark on .dark class) ──

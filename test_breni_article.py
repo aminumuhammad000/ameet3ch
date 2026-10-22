@@ -119,7 +119,7 @@ class TestBrenArticle(unittest.TestCase):
         # Check VideoObject properties
         video_obj = next(item for item in graph if item["@type"] == "VideoObject")
         self.assertIn("TXSeG47UwYo", video_obj["embedUrl"])
-        self.assertEqual(video_obj["name"], "Abubakar Sadik Umar, BRENi founder — Fagen Hikima interview")
+        self.assertEqual(video_obj["name"], "Abubakar Sadik Umar, BRENi founder: Fagen Hikima interview")
 
     def test_hub_and_sitemap_inclusion(self):
         # Check blog hub

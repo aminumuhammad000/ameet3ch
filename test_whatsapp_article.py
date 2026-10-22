@@ -105,7 +105,7 @@ class ArticleDOMParser(HTMLParser):
 
 def run_tests():
     print("=" * 70)
-    print("AMEETECH TECHNOLOGY — WHATSAPP BUSINESS ARTICLE TEST SUITE")
+    print("AMEETECH TECHNOLOGY : WHATSAPP BUSINESS ARTICLE TEST SUITE")
     print("=" * 70)
 
     passed = 0

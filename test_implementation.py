@@ -105,7 +105,7 @@ class SimpleDOMParser(HTMLParser):
 
 def run_tests():
     print("=" * 70)
-    print("AMEETECH TECHNOLOGY — MARKETING PAGE IMPLEMENTATION TEST SUITE")
+    print("AMEETECH TECHNOLOGY : MARKETING PAGE IMPLEMENTATION TEST SUITE")
     print("=" * 70)
 
     passed = 0

@@ -1,5 +1,5 @@
 /**
- * Ameetech Technology — Blog & Marketing Lead Generation Page Script
+ * Ameetech Technology | Blog & Marketing Lead Generation Page Script
  * Handles Reading Progress, Active Table of Contents, Lead Form AJAX,
  * and Google Analytics 4 (GA4) Conversion Event Tracking.
  */

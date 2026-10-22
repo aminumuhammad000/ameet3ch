@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy Administration & Analytics | Ameetech</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/academy/business-economics/academy.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <style>
+        .admin-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 28px 0;
+        }
+        .admin-stat-card {
+            background: #FFFFFF;
+            border: 1px solid var(--academy-border);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .admin-stat-num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--academy-primary);
+            margin-top: 6px;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid var(--academy-border);
+        }
+        .admin-table th, .admin-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #F1F5F9;
+            font-size: 0.9rem;
+        }
+        .admin-table th {
+            background: #F8FAFC;
+            font-weight: 700;
+            color: #334155;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .status-delivered { background: #D1FAE5; color: #065F46; }
+        .status-queued { background: #FEF3C7; color: #92400E; }
+        .status-failed { background: #FEE2E2; color: #991B1B; }
+    </style>
+</head>
+<body class="academy-wrapper">
+    <header style="background:#0D0520;padding:16px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <img src="/images/ameelogo.png" alt="Amee Technology" width="36" height="36">
+            <span style="color:#FFF;font-weight:700;font-size:1.1rem;">Academy Admin Portal</span>
+        </div>
+        <a href="/academy/business-economics/" style="color:#A78BFA;text-decoration:none;font-size:0.88rem;"><i class="fa-solid fa-arrow-left"></i> View Live Academy</a>
+    </header>
+
+    <main class="academy-container" style="padding-top:36px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;">
+            <div>
+                <h1 style="font-size:1.8rem;margin:0 0 6px;">Academy Delivery & Lead Metrics</h1>
+                <p style="color:#64748B;margin:0;">Aggregated study guide downloads, channel split, and NDPR consent adherence.</p>
+            </div>
+            <button onclick="fetchStats()" class="study-guide-btn" style="padding:10px 18px;font-size:0.85rem;">
+                <i class="fa-solid fa-rotate-right"></i> Refresh Stats
+            </button>
+        </div>
+
+        <div class="admin-stat-grid" id="stats-grid">
+            <div class="admin-stat-card">
+                <span style="color:#64748B;font-size:0.85rem;font-weight:600;"><i class="fa-solid fa-file-arrow-down"></i> Total Guide Requests</span>
+                <div class="admin-stat-num" id="stat-total">--</div>
+            </div>
+            <div class="admin-stat-card">
+                <span style="color:#64748B;font-size:0.85rem;font-weight:600;"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp Deliveries</span>
+                <div class="admin-stat-num" id="stat-whatsapp" style="color:#25D366;">--</div>
+            </div>
+            <div class="admin-stat-card">
+                <span style="color:#64748B;font-size:0.85rem;font-weight:600;"><i class="fa-solid fa-envelope" style="color:#3B82F6;"></i> Email Deliveries</span>
+                <div class="admin-stat-num" id="stat-email" style="color:#3B82F6;">--</div>
+            </div>
+            <div class="admin-stat-card">
+                <span style="color:#64748B;font-size:0.85rem;font-weight:600;"><i class="fa-solid fa-bullhorn" style="color:#EC4899;"></i> Marketing Opt-in Rate</span>
+                <div class="admin-stat-num" id="stat-promo" style="color:#EC4899;">--</div>
+            </div>
+        </div>
+
+        <h2 style="font-size:1.3rem;margin:36px 0 16px;">Recent Study Guide Deliveries</h2>
+        <div style="overflow-x:auto;">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Learner Name</th>
+                        <th>Delivery Channel</th>
+                        <th>Study Guide Requested</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="recent-requests-tbody">
+                    <tr><td colspan="5" style="text-align:center;padding:24px;color:#94a3b8;">Loading delivery logs...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:18px;margin-top:40px;font-size:0.85rem;color:#64748B;">
+            <strong><i class="fa-solid fa-shield-halved"></i> NDPR Data Retention & Privacy Policy:</strong>
+            Learner phone numbers and email addresses are retained strictly for material delivery and optional consensual updates. Inactive contact records older than 180 days are automatically archived in accordance with Ameetech's documented data minimization policy.
+        </div>
+    </main>
+
+    <script>
+        async function fetchStats() {
+            try {
+                const res = await fetch('/api/admin/stats');
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('stat-total').textContent = data.total_requests;
+                    document.getElementById('stat-whatsapp').textContent = data.whatsapp_requests;
+                    document.getElementById('stat-email').textContent = data.email_requests;
+                    
+                    const rate = data.total_requests > 0 ? Math.round((data.promotional_opt_in_count / data.total_requests) * 100) : 0;
+                    document.getElementById('stat-promo').textContent = `${rate}%`;
+
+                    const tbody = document.getElementById('recent-requests-tbody');
+                    if (data.recent_requests.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:24px;color:#94a3b8;">No download requests logged yet.</td></tr>';
+                    } else {
+                        tbody.innerHTML = data.recent_requests.map(r => `
+                            <tr>
+                                <td>${new Date(r.created_at).toLocaleString()}</td>
+                                <td><strong>${r.name || 'Anonymous Learner'}</strong></td>
+                                <td><span style="font-weight:600;"><i class="${r.delivery_method === 'whatsapp' ? 'fa-brands fa-whatsapp' : 'fa-solid fa-envelope'}"></i> ${r.delivery_method.toUpperCase()}</span></td>
+                                <td>${r.guide_slug}</td>
+                                <td><span class="status-badge status-${r.status}">${r.status}</span></td>
+                            </tr>
+                        `).join('');
+                    }
+                } else if (res.status === 401) {
+                    alert('Authentication required to access admin metrics.');
+                }
+            } catch (e) {
+                console.log('Admin fetch error:', e);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', fetchStats);
+    </script>
+</body>
+</html>

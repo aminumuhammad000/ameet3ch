@@ -106,7 +106,7 @@ class ArticleHTMLParser(HTMLParser):
 
 def run_tests():
     print("=" * 70)
-    print("AMEETECH TECHNOLOGY — AI FOR SMALL BUSINESSES ARTICLE TEST SUITE")
+    print("AMEETECH TECHNOLOGY : AI FOR SMALL BUSINESSES ARTICLE TEST SUITE")
     print("=" * 70)
 
     # 1. File existence

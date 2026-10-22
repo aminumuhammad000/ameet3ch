@@ -1,5 +1,5 @@
 /* ───────────────────────────────────────────────
-   AmeeTech Portfolio — style.css
+   AmeeTech Portfolio | style.css
    DEFAULT: Light Mode  |  .dark class = Dark Mode
    Primary brand: AmeeTech Purple #6C2BD9
 ─────────────────────────────────────────────── */
@@ -667,7 +667,7 @@ body.dark .blob-2 { background: radial-gradient(circle, rgba(6,182,212,0.15) 0%,
 
 /* ─────────────────── CONTACT ─────────────────── */
 .contact-sub { color:var(--text-muted); font-size:1.05rem; margin-top:-28px; margin-bottom:48px; }
-/* Form removed — contact-info is full-width, 2-col grid */
+/* Form removed | contact-info is full-width, 2-col grid */
 .contact-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -737,7 +737,7 @@ footer {
 
 /* ─────────────────── RESPONSIVE ─────────────────── */
 /* ═══════════════════════════════════════════
-   RESPONSIVE — Tablet (max 900px)
+   RESPONSIVE | Tablet (max 900px)
 ═══════════════════════════════════════════ */
 @media (max-width:900px) {
   .nav-links { display:none; }
@@ -782,7 +782,7 @@ footer {
 }
 
 /* ═══════════════════════════════════════════
-   RESPONSIVE — Mobile (max 600px)
+   RESPONSIVE | Mobile (max 600px)
 ═══════════════════════════════════════════ */
 @media (max-width:600px) {
   .section { padding:60px 0; }
@@ -857,7 +857,7 @@ footer {
 }
 
 /* ═══════════════════════════════════════════
-   RESPONSIVE — Small Mobile (max 400px)
+   RESPONSIVE | Small Mobile (max 400px)
 ═══════════════════════════════════════════ */
 @media (max-width:400px) {
   .hero-title { font-size:1.75rem; }

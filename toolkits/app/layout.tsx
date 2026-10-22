@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 export const metadata: Metadata = {
   metadataBase: new URL('https://toolkits.ameetechnology.com.ng'),
   title: {
-    default: 'Ameetech Toolkits — Free Digital Tools for Nigerian Businesses',
+    default: 'Ameetech Toolkits | Free Digital Tools for Nigerian Businesses',
     template: '%s | Ameetech Toolkits',
   },
   description:
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     locale: 'en_NG',
     url: 'https://toolkits.ameetechnology.com.ng',
     siteName: 'Ameetech Toolkits',
-    title: 'Ameetech Toolkits — Free Digital Tools for Nigerian Businesses',
+    title: 'Ameetech Toolkits | Free Digital Tools for Nigerian Businesses',
     description:
       'Free business utilities to help Nigerian business owners manage invoicing, receipts, financial pricing, and customer communication directly in the browser.',
     images: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ameetech Toolkits — Free Digital Tools for Nigerian Businesses',
+    title: 'Ameetech Toolkits | Free Digital Tools for Nigerian Businesses',
     description: 'Free invoices, receipts, profit calculator, and WhatsApp link generator for Nigerian businesses.',
     images: ['/brand/ameelogo.png'],
   },

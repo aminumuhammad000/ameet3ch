@@ -275,12 +275,12 @@ function generateInsights() {
   const hasSite = !a.website?.includes('No website');
   if (hasGoodSite) { strengths.push('Professional website presence established'); }
   else if (!hasSite) {
-    weaknesses.push('No website — invisible to online customers');
+    weaknesses.push('No website: invisible to online customers');
     risks.push('Losing customers to competitors who have an online presence');
     hiRec.push('Build a professional website immediately');
     services.push({ icon:'fa-globe', name:'Website Development', why:'Your business has no website. Customers cannot find you online. A professional website builds instant credibility and opens new sales channels.', priority:'High' });
   } else {
-    weaknesses.push('Website is outdated — may damage brand credibility');
+    weaknesses.push('Website is outdated: may damage brand credibility');
     midRec.push('Redesign your website with a modern, mobile-first approach');
     services.push({ icon:'fa-globe', name:'Website Development', why:'Your current website is outdated. A modern redesign will reflect your brand quality and convert more visitors into customers.', priority:'Medium' });
   }
@@ -296,7 +296,7 @@ function generateInsights() {
   // SEO
   if (a.seo?.includes('actively')) { strengths.push('Active SEO strategy driving organic search traffic'); }
   else {
-    weaknesses.push('Little or no SEO — business is invisible on Google');
+    weaknesses.push('Little or no SEO: business is invisible on Google');
     hiRec.push('Set up Google Business Profile (free, immediate impact)');
     midRec.push('Implement a full SEO strategy for organic growth');
     services.push({ icon:'fa-magnifying-glass', name:'SEO Optimisation', why:'Without SEO, customers searching for your services on Google will find your competitors instead. We will optimise your online presence for top search rankings.', priority:'High' });
@@ -312,7 +312,7 @@ function generateInsights() {
   // CRM / Follow-Up
   if (a.followup?.includes('structured')) { strengths.push('Structured lead follow-up and sales process in place'); }
   else {
-    weaknesses.push('No consistent follow-up process — losing warm leads');
+    weaknesses.push('No consistent follow-up process: losing warm leads');
     hiRec.push('Implement a CRM system to track and follow up all leads');
     services.push({ icon:'fa-address-card', name:'CRM Implementation', why:'Without a CRM, leads fall through the cracks. We will implement a system that automatically tracks, follows up, and converts more leads into paying customers.', priority:'High' });
   }
@@ -327,7 +327,7 @@ function generateInsights() {
   // Finance
   if (a.tracking?.includes('accounting')) { strengths.push('Using accounting software for full financial visibility'); }
   else {
-    weaknesses.push('Weak financial tracking — business running blind');
+    weaknesses.push('Weak financial tracking: business running blind');
     risks.push('Unable to make informed decisions without financial data');
     hiRec.push('Set up accounting and financial tracking immediately');
   }
@@ -344,7 +344,7 @@ function generateInsights() {
   // Online Booking
   if (a.booking?.includes('automated')) { strengths.push('Online booking and ordering system in place'); }
   else if (!a.booking?.includes('applicable')) {
-    weaknesses.push('Customers cannot book or order online — losing convenience sales');
+    weaknesses.push('Customers cannot book or order online: losing convenience sales');
     risks.push('Customers choosing competitors who offer online booking');
     hiRec.push('Enable online booking or ordering on your website');
     services.push({ icon:'fa-mobile-screen', name:'Mobile App Development', why:'Customers expect to book and pay online. We will build a mobile app or booking system so customers can transact with you anytime, from anywhere.', priority:'Medium' });
@@ -376,7 +376,7 @@ function generateRoadmap() {
 // ── Report Builder ──────────────────────────────────────────────
 async function generateReport() {
   updateProgress(TOTAL);
-  addBotMessage(`Thank you, <b>${answers.name || 'there'}</b>! 🎉<br><br>Excellent — I now have everything I need. Let me <b>analyse your business</b> and generate your personalised report...`);
+  addBotMessage(`Thank you, <b>${answers.name || 'there'}</b>! 🎉<br><br>Excellent, I now have everything I need. Let me <b>analyse your business</b> and generate your personalised report...`);
   scrollChat();
   await delay(2000);
 
@@ -546,7 +546,7 @@ ${roadmap.month3.map(t=>`  • ${t}`).join('\n')}`.trim();
     to_email:     email,
     business_name: answers.name || 'Your Business',
     industry:     answers.industry || 'N/A',
-    overall_score: `${overall} / 100 — ${swLabel}`,
+    overall_score: `${overall} / 100: ${swLabel}`,
     score_breakdown: scoreLines,
     strengths:    strengthLines || 'None identified',
     weaknesses:   weaknessLines || 'None identified',
@@ -644,7 +644,7 @@ function buildReportHTML(scores, overall, insights, roadmap) {
     <div class="ab-report-block">
       <div class="ab-report-block-header recommendation"><i class="fa-solid fa-lightbulb"></i> Action Recommendations</div>
       <div class="ab-report-block-body">
-        ${hiRecs  ? `<div class="ab-rec-group"><h4>🔴 High Priority — Do These First</h4>${hiRecs}</div>` : ''}
+        ${hiRecs  ? `<div class="ab-rec-group"><h4>🔴 High Priority: Do These First</h4>${hiRecs}</div>` : ''}
         ${midRecs ? `<div class="ab-rec-group"><h4>🟡 Medium Priority</h4>${midRecs}</div>` : ''}
         ${ltRecs  ? `<div class="ab-rec-group"><h4>🔵 Long-Term Growth</h4>${ltRecs}</div>` : ''}
       </div>
@@ -667,7 +667,7 @@ function buildReportHTML(scores, overall, insights, roadmap) {
     <!-- Contact Amee Technology -->
     <div class="ab-report-contact">
       <div class="ab-report-contact-header">
-        <i class="fa-solid fa-handshake"></i> Contact Amee Technology — We're Ready to Help
+        <i class="fa-solid fa-handshake"></i> Contact Amee Technology: We're Ready to Help
       </div>
       <div class="ab-report-contact-body">
         <p style="font-size:0.82rem;color:#9ca3af;margin-bottom:4px;">Reach out right now and mention your AmeeBot assessment score for a <b style="color:#a78bfa">free 30-minute strategy consultation</b>.</p>
@@ -696,7 +696,7 @@ function buildReportHTML(scores, overall, insights, roadmap) {
 
     <div class="ab-report-cta">
       <h3>Ready to Transform Your Business?</h3>
-      <p>Amee Technology Ltd specialises in turning these recommendations into reality — fast, professionally, and at the right price for your budget.</p>
+      <p>Amee Technology Ltd specialises in turning these recommendations into reality, fast, professionally, and at the right price for your budget.</p>
       <div class="ab-report-cta-btns">
         <a href="https://wa.me/2348100015498?text=${waMsg}" target="_blank" class="ab-cta-primary"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp Now</a>
         <a href="https://forms.gle/zzL8UaQjkGhGcXHs5" target="_blank" class="ab-cta-secondary"><i class="fa-solid fa-file-signature"></i> Start a Project</a>
