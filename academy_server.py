@@ -9,19 +9,54 @@ import os
 import sys
 import json
 import base64
+import hmac
 import http.server
 import socketserver
 from urllib.parse import urlparse, parse_qs
 from academy_backend import process_guide_request, get_aggregate_stats
 
 PORT = int(os.environ.get("ACADEMY_PORT", 8080))
-ADMIN_USER = os.environ.get("ADMIN_USER", "admin")
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "ameetech2026")
 WEB_ROOT = os.path.abspath(os.path.dirname(__file__))
+
+def get_admin_credentials():
+    user = os.environ.get("ADMIN_USER", "admin").strip()
+    pwd = os.environ.get("ADMIN_PASSWORD", "").strip()
+    return user, pwd
+
+def is_admin_auth_configured() -> bool:
+    user, pwd = get_admin_credentials()
+    return bool(user and pwd)
+
+def verify_basic_auth(auth_header: str) -> bool:
+    if not is_admin_auth_configured():
+        return False
+    if not auth_header:
+        return False
+    try:
+        parts = auth_header.split(" ", 1)
+        if len(parts) != 2 or parts[0].lower() != "basic":
+            return False
+        decoded = base64.b64decode(parts[1].strip()).decode("utf-8")
+        if ":" not in decoded:
+            return False
+        req_user, req_pwd = decoded.split(":", 1)
+        configured_user, configured_pwd = get_admin_credentials()
+        user_matches = hmac.compare_digest(req_user, configured_user)
+        pwd_matches = hmac.compare_digest(req_pwd, configured_pwd)
+        return user_matches and pwd_matches
+    except Exception:
+        return False
 
 class AcademyHTTPHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=WEB_ROOT, **kwargs)
+
+    def end_headers(self):
+        # Attach security headers to all responses
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
+        super().end_headers()
 
     def do_POST(self):
         parsed = urlparse(self.path)
@@ -57,8 +92,15 @@ class AcademyHTTPHandler(http.server.SimpleHTTPRequestHandler):
         
         # Admin Stats API (Protected via Basic Auth)
         if parsed.path == "/api/admin/stats":
+            if not is_admin_auth_configured():
+                self.send_response(503)
+                self.send_header("Content-Type", "application/json")
+                self.end_headers()
+                self.wfile.write(json.dumps({"error": "Admin authentication is not configured"}).encode())
+                return
+
             auth_header = self.headers.get("Authorization")
-            if not auth_header or not self.verify_basic_auth(auth_header):
+            if not auth_header or not verify_basic_auth(auth_header):
                 self.send_response(401)
                 self.send_header("WWW-Authenticate", 'Basic realm="Academy Admin"')
                 self.send_header("Content-Type", "application/json")
@@ -91,17 +133,6 @@ class AcademyHTTPHandler(http.server.SimpleHTTPRequestHandler):
 
         # Fallback to standard static file serving
         return super().do_GET()
-
-    def verify_basic_auth(self, auth_header: str) -> bool:
-        try:
-            auth_type, encoded = auth_header.split(" ", 1)
-            if auth_type.lower() != "basic":
-                return False
-            decoded = base64.b64decode(encoded.strip()).decode("utf-8")
-            user, pwd = decoded.split(":", 1)
-            return user == ADMIN_USER and pwd == ADMIN_PASSWORD
-        except Exception:
-            return False
 
 def run_server():
     with socketserver.TCPServer(("", PORT), AcademyHTTPHandler) as httpd:

@@ -17,24 +17,25 @@ const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← replace
 })();
 
 // ── DOM References ─────────────────────────────────────────────
-const overlay       = document.getElementById('ab-overlay');
-const chatMessages  = document.getElementById('ab-chat-messages');
-const progressFill  = document.getElementById('ab-progress-fill');
-const progressText  = document.getElementById('ab-progress-text');
-const optionGroup   = document.getElementById('ab-option-group');
-const textRow       = document.getElementById('ab-text-row');
-const textInput     = document.getElementById('ab-text-input');
-const sendBtn       = document.getElementById('ab-send-btn');
-const reportWrap    = document.getElementById('ab-report-wrap');
-const reportPanel   = document.getElementById('ab-report');
-const chatWindow    = document.getElementById('ab-chat-window');
-const inputArea     = document.getElementById('ab-input-area');
-const modalClose    = document.getElementById('ab-modal-close');
-const emailGate     = document.getElementById('ab-email-gate');
-const emailForm     = document.getElementById('ab-email-form');
-const gateNameInput = document.getElementById('ab-gate-name');
-const gateEmailInput= document.getElementById('ab-gate-email');
-const gateSubmitBtn = document.getElementById('ab-gate-submit');
+const isBrowser     = typeof window !== 'undefined' && typeof document !== 'undefined';
+const overlay       = isBrowser ? document.getElementById('ab-overlay') : null;
+const chatMessages  = isBrowser ? document.getElementById('ab-chat-messages') : null;
+const progressFill  = isBrowser ? document.getElementById('ab-progress-fill') : null;
+const progressText  = isBrowser ? document.getElementById('ab-progress-text') : null;
+const optionGroup   = isBrowser ? document.getElementById('ab-option-group') : null;
+const textRow       = isBrowser ? document.getElementById('ab-text-row') : null;
+const textInput     = isBrowser ? document.getElementById('ab-text-input') : null;
+const sendBtn       = isBrowser ? document.getElementById('ab-send-btn') : null;
+const reportWrap    = isBrowser ? document.getElementById('ab-report-wrap') : null;
+const reportPanel   = isBrowser ? document.getElementById('ab-report') : null;
+const chatWindow    = isBrowser ? document.getElementById('ab-chat-window') : null;
+const inputArea     = isBrowser ? document.getElementById('ab-input-area') : null;
+const modalClose    = isBrowser ? document.getElementById('ab-modal-close') : null;
+const emailGate     = isBrowser ? document.getElementById('ab-email-gate') : null;
+const emailForm     = isBrowser ? document.getElementById('ab-email-form') : null;
+const gateNameInput = isBrowser ? document.getElementById('ab-gate-name') : null;
+const gateEmailInput= isBrowser ? document.getElementById('ab-gate-email') : null;
+const gateSubmitBtn = isBrowser ? document.getElementById('ab-gate-submit') : null;
 
 // ── State ──────────────────────────────────────────────────────
 let answers = {};
@@ -82,12 +83,14 @@ const QUESTIONS = [
 const TOTAL = QUESTIONS.length;
 
 // ── Open / Close ────────────────────────────────────────────────
-document.getElementById('start-assessment-btn').addEventListener('click', startAssessment);
-modalClose.addEventListener('click', () => {
-  overlay.classList.remove('ab-open');
-  overlay.setAttribute('aria-hidden','true');
-});
-overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('ab-open'); });
+if (isBrowser) {
+  document.getElementById('start-assessment-btn')?.addEventListener('click', startAssessment);
+  modalClose?.addEventListener('click', () => {
+    overlay?.classList.remove('ab-open');
+    overlay?.setAttribute('aria-hidden','true');
+  });
+  overlay?.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('ab-open'); });
+}
 
 function startAssessment() {
   answers = {}; currentStep = 0; cachedScores = null; cachedInsights = null;
@@ -135,7 +138,7 @@ async function askQuestion(idx) {
     label.textContent = categoryLabel(q.category);
     chatMessages.appendChild(label);
   }
-  addBotMessage(q.q.replace('{name}', answers.name || 'there'));
+  addBotMessage(q.q.replace('{name}', escHtml(answers.name || 'there')));
   scrollChat();
   renderInput(q);
 }
@@ -192,8 +195,18 @@ function addBotMessage(html) {
 function addUserMessage(text) {
   const wrap = document.createElement('div');
   wrap.className = 'ab-msg ab-msg-user';
-  const initials = (answers.name || 'You').substring(0,2).toUpperCase();
-  wrap.innerHTML = `<div class="ab-msg-bubble">${escHtml(text)}</div><div class="ab-msg-avatar user-avatar">${initials}</div>`;
+  const initials = (answers.name || 'You').substring(0, 2).toUpperCase();
+
+  const bubble = document.createElement('div');
+  bubble.className = 'ab-msg-bubble';
+  bubble.textContent = text;
+
+  const avatar = document.createElement('div');
+  avatar.className = 'ab-msg-avatar user-avatar';
+  avatar.textContent = initials;
+
+  wrap.appendChild(bubble);
+  wrap.appendChild(avatar);
   chatMessages.appendChild(wrap);
 }
 function createTypingIndicator() {
@@ -205,8 +218,8 @@ function createTypingIndicator() {
 function scrollChat() { requestAnimationFrame(() => { chatWindow.scrollTop = chatWindow.scrollHeight; }); }
 
 // ── Analysis Engine ─────────────────────────────────────────────
-function analyzeAnswers() {
-  const a = answers;
+function analyzeAnswers(customAnswers) {
+  const a = customAnswers || answers;
   const scores = {};
   let brand = 50;
   if (a.website?.includes('modern')) brand += 30;
@@ -265,8 +278,8 @@ function analyzeAnswers() {
   return { scores, overall };
 }
 
-function generateInsights() {
-  const a = answers;
+function generateInsights(customAnswers) {
+  const a = customAnswers || answers;
   const strengths=[], weaknesses=[], risks=[], services=[];
   const hiRec=[], midRec=[], ltRec=[];
 
@@ -351,7 +364,7 @@ function generateInsights() {
   }
 
   // Growth goal
-  if (a.goal) { strengths.push(`Clear vision: "${a.goal.substring(0,80)}"`); }
+  if (a.goal) { strengths.push(`Clear vision: "${escHtml(a.goal.substring(0,80))}"`); }
 
   // Always-relevant long-term recommendations
   ltRec.push('Develop a customer loyalty and referral rewards programme');
@@ -376,7 +389,7 @@ function generateRoadmap() {
 // ── Report Builder ──────────────────────────────────────────────
 async function generateReport() {
   updateProgress(TOTAL);
-  addBotMessage(`Thank you, <b>${answers.name || 'there'}</b>! 🎉<br><br>Excellent, I now have everything I need. Let me <b>analyse your business</b> and generate your personalised report...`);
+  addBotMessage(`Thank you, <b>${escHtml(answers.name || 'there')}</b>! 🎉<br><br>Excellent, I now have everything I need. Let me <b>analyse your business</b> and generate your personalised report...`);
   scrollChat();
   await delay(2000);
 
@@ -410,7 +423,7 @@ async function generateReport() {
 function setupEmailGate(scores, overall, insights, roadmap) {
   if (!emailForm) return;
 
-  emailForm.addEventListener('submit', async (e) => {
+  emailForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name  = gateNameInput.value.trim();
@@ -494,12 +507,40 @@ function showGateSuccess(email) {
   if (!sucEl) {
     sucEl = document.createElement('div');
     sucEl.className = 'ab-gate-success';
-    sucEl.innerHTML = `
-      <div class="ab-gate-success-icon"><i class="fa-solid fa-check"></i></div>
-      <h4>Report Sent! 🎉</h4>
-      <p>Your Business Assessment Report has been sent to <b>${escHtml(email)}</b>. Check your inbox!</p>
-      <button class="ab-gate-unlock-btn" id="ab-gate-unlock">View Report Now <i class="fa-solid fa-arrow-right"></i></button>`;
+
+    const iconDiv = document.createElement('div');
+    iconDiv.className = 'ab-gate-success-icon';
+    const checkIcon = document.createElement('i');
+    checkIcon.className = 'fa-solid fa-check';
+    iconDiv.appendChild(checkIcon);
+
+    const heading = document.createElement('h4');
+    heading.textContent = 'Report Sent! 🎉';
+
+    const para = document.createElement('p');
+    para.appendChild(document.createTextNode('Your Business Assessment Report has been sent to '));
+    const boldEmail = document.createElement('b');
+    boldEmail.textContent = email;
+    para.appendChild(boldEmail);
+    para.appendChild(document.createTextNode('. Check your inbox!'));
+
+    const unlockBtn = document.createElement('button');
+    unlockBtn.className = 'ab-gate-unlock-btn';
+    unlockBtn.id = 'ab-gate-unlock';
+    unlockBtn.textContent = 'View Report Now ';
+    const arrowIcon = document.createElement('i');
+    arrowIcon.className = 'fa-solid fa-arrow-right';
+    unlockBtn.appendChild(arrowIcon);
+
+    sucEl.appendChild(iconDiv);
+    sucEl.appendChild(heading);
+    sucEl.appendChild(para);
+    sucEl.appendChild(unlockBtn);
+
     emailGate.querySelector('.ab-email-gate-card').appendChild(sucEl);
+  } else {
+    const boldEmail = sucEl.querySelector('p b');
+    if (boldEmail) boldEmail.textContent = email;
   }
 
   if (formEl) formEl.style.display = 'none';
@@ -569,7 +610,8 @@ ${roadmap.month3.map(t=>`  • ${t}`).join('\n')}`.trim();
 }
 
 // ── Report HTML ─────────────────────────────────────────────────
-function buildReportHTML(scores, overall, insights, roadmap) {
+function buildReportHTML(scores, overall, insights, roadmap, customAnswers) {
+  const a = customAnswers || answers;
   const scoreBarItems = Object.entries(scores).map(([k,v]) =>
     `<div class="ab-score-bar-item">
        <span>${k}</span>
@@ -603,12 +645,12 @@ function buildReportHTML(scores, overall, insights, roadmap) {
       </div>
     </div>`).join('');
 
-  const waMsg = encodeURIComponent(`Hi Amee Technology! 👋 I just completed the AmeeBot business assessment for ${answers.name || 'my business'} and scored ${overall}/100. I'd love to discuss how you can help me improve. Can we talk?`);
+  const waMsg = encodeURIComponent(`Hi Amee Technology! 👋 I just completed the AmeeBot business assessment for ${a.name || 'my business'} and scored ${overall}/100. I'd love to discuss how you can help me improve. Can we talk?`);
 
   return `
     <div class="ab-report-header">
       <h2>Business Assessment Report</h2>
-      <p>Personalised for <b>${answers.name || 'Your Business'}</b> · ${answers.industry || ''} · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
+      <p>Personalised for <b>${escHtml(a.name || 'Your Business')}</b> · ${escHtml(a.industry || '')} · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
     </div>
 
     <div class="ab-report-score">
@@ -728,6 +770,29 @@ function scoreColor(v) {
 }
 
 // ── Utilities ───────────────────────────────────────────────────
-function delay(ms)    { return new Promise(r => setTimeout(r, ms)); }
-function escHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function escHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    escHtml,
+    analyzeAnswers,
+    generateInsights,
+    generateRoadmap,
+    buildEmailParams,
+    buildReportHTML,
+    isValidEmail,
+    QUESTIONS,
+  };
+}
