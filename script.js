@@ -88,4 +88,58 @@ if (mainContactForm) {
     });
 }
 
+// ── Smooth Scrollable Google Reviews Carousel ──
+const storiesTrack = document.getElementById('stories-track');
+const storiesPrevBtn = document.querySelector('.stories-prev');
+const storiesNextBtn = document.querySelector('.stories-next');
+
+if (storiesTrack) {
+    const getScrollStep = () => {
+        const firstCard = storiesTrack.querySelector('.story-card');
+        return firstCard ? firstCard.offsetWidth + 22 : 380;
+    };
+
+    if (storiesPrevBtn) {
+        storiesPrevBtn.addEventListener('click', () => {
+            storiesTrack.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+        });
+    }
+
+    if (storiesNextBtn) {
+        storiesNextBtn.addEventListener('click', () => {
+            storiesTrack.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+        });
+    }
+
+    // Smooth click-and-drag scrolling for desktop users
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+
+    storiesTrack.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - storiesTrack.offsetLeft;
+        scrollStart = storiesTrack.scrollLeft;
+        storiesTrack.style.scrollBehavior = 'auto';
+    });
+
+    const stopDragging = () => {
+        if (!isDown) return;
+        isDown = false;
+        storiesTrack.style.scrollBehavior = 'smooth';
+    };
+
+    storiesTrack.addEventListener('mouseleave', stopDragging);
+    storiesTrack.addEventListener('mouseup', stopDragging);
+
+    storiesTrack.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - storiesTrack.offsetLeft;
+        const walk = (x - startX) * 1.4;
+        storiesTrack.scrollLeft = scrollStart - walk;
+    });
+}
+
+
 

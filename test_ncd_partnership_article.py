@@ -86,5 +86,26 @@ class TestNCDPartnershipArticle(unittest.TestCase):
         for f in unused_files:
             self.assertFalse(os.path.exists(f), f"Unused file {f} should have been removed")
 
+    def test_google_maps_reviews_scrollable(self):
+        with open("index.html", "r", encoding="utf-8") as f:
+            html = f.read()
+        self.assertIn("stories-scrollable", html)
+        self.assertIn("stories-scroll-btn", html)
+        self.assertIn("Salisu Umar", html)
+        self.assertIn("Ibrahim B.", html)
+        self.assertIn("Kabiru Sani", html)
+        self.assertIn("Usman Danlami", html)
+        self.assertIn("Dr. Mansur Aliyu", html)
+        self.assertIn("Hauwa Abdullahi", html)
+        self.assertIn("Bello Garba", html)
+        self.assertIn("Fatima Zahra", html)
+        self.assertIn("Abubakar Sadik Umar", html)
+        
+        with open("style.css", "r", encoding="utf-8") as f:
+            css = f.read()
+        self.assertIn("scrollbar-width: none", css)
+        self.assertIn("::-webkit-scrollbar", css)
+        self.assertIn("scroll-behavior: smooth", css)
+
 if __name__ == "__main__":
     unittest.main()
