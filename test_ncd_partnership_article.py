@@ -53,5 +53,38 @@ class TestNCDPartnershipArticle(unittest.TestCase):
         # North C Designers in portfolio
         self.assertIn('projects/northcdesigners.html', content)
 
+    def test_partners_section(self):
+        with open("index.html", "r", encoding="utf-8") as f:
+            content = f.read()
+        self.assertIn('id="partners"', content)
+        self.assertIn("North C Designers", content)
+        self.assertIn("https://northcdesigners.netlify.app/", content)
+        self.assertIn("Salafi Technology", content)
+        self.assertIn("https://salafitechnology.com.ng/", content)
+        self.assertIn("Pioneers ICT Nigeria", content)
+        self.assertIn("https://pioneersng.com/", content)
+        self.assertIn("images/northcdesigners.png", content)
+        self.assertIn("images/salafi_technology.png", content)
+        self.assertIn("images/pioneers_ict.png", content)
+
+    def test_partner_images_exist(self):
+        for img in ["images/northcdesigners.png", "images/salafi_technology.png", "images/pioneers_ict.png"]:
+            self.assertTrue(os.path.exists(img), f"{img} must exist")
+            self.assertGreater(os.path.getsize(img), 1000, f"{img} must be non-empty")
+
+    def test_cleanup_unused_files(self):
+        unused_files = [
+            "generate_banner.py",
+            "generate_breni_banner.py",
+            "generate_drone_forge_banner.py",
+            "generate_ncd_banner.py",
+            "projects/generate_projects.py",
+            "images/Aisha_Muhammad_Garba.jpeg",
+            "images/ameelogo.jpg",
+            "seoquake-audit-ameetechnology.com.ng-2026-09-29.pdf"
+        ]
+        for f in unused_files:
+            self.assertFalse(os.path.exists(f), f"Unused file {f} should have been removed")
+
 if __name__ == "__main__":
     unittest.main()
