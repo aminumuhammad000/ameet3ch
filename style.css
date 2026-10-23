@@ -761,8 +761,14 @@ main #services {
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   transition: transform 0.35s cubic-bezier(0.165,0.84,0.44,1),
               box-shadow 0.35s ease;
-  cursor: default;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
   animation: svc-fade-in 0.5s ease both;
+}
+
+.svc-card:hover .svc-content h3 {
+  color: var(--primary-color);
 }
 
 .svc-card:nth-child(1){ animation-delay:0.05s }
