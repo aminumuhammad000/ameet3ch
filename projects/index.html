@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects That Speak | Live Portfolio Showcase | Amee Technology</title>
+    <meta name="description" content="Explore live enterprise digital platforms, VTU engines, AI systems, and marketplaces built and deployed by Amee Technology Ltd.">
+    <link rel="canonical" href="https://ameetechnology.com.ng/projects/">
+    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <nav class="project-nav">
+        <a href="../index.html" class="nav-logo">
+            <img src="../images/ameelogo.png" alt="Amee Technology Logo">
+            <span>Amee Technology</span>
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../services/">Services</a>
+            <a href="../index.html#portfolio" class="active">Portfolio</a>
+            <a href="../index.html#other">Team</a>
+            <a href="../blog/">Blog</a>
+            <a href="https://wa.me/2348100015498" target="_blank" class="nav-cta"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" onclick="toggleNav()"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <a href="../index.html">Home</a>
+        <a href="../services/">Services</a>
+        <a href="../index.html#portfolio">Portfolio</a>
+        <a href="../index.html#other">Team</a>
+        <a href="../blog/">Blog</a>
+        <a href="https://wa.me/2348100015498" target="_blank"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+        <a href="../index.html">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span class="current">Projects That Speak</span>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="project-hero">
+        <div class="project-hero-wrap">
+            <span class="project-tag-pill"><i class="fa-solid fa-trophy"></i> Proven Execution</span>
+            <h1>Projects That Speak: <span>Built to Scale</span></h1>
+            <p>Live, production-ready products trusted by real customers, processing millions of transactions, and driving sustainable business growth nationwide.</p>
+        </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main style="max-width:1240px; margin:60px auto; padding:0 5%;">
+        <div class="project-gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap:30px;">
+            <!-- 1. IBData -->
+            <a href="ibdata.html" class="gallery-card">
+                <div class="gallery-img-wrap" style="height:230px;">
+                    <img src="../images/ibdata.png" alt="IBData Platform" loading="lazy">
+                </div>
+                <div class="gallery-card-info" style="padding:22px;">
+                    <span style="color:var(--primary-color); font-weight:700; font-size:0.8rem; text-transform:uppercase;">Fintech / VTU</span>
+                    <h4 style="font-size:1.25rem; margin:6px 0;">IBData Platform</h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.5;">High-volume utility and telecommunications vending platform processing 50,000+ monthly recharges.</p>
+                </div>
+            </a>
+
+            <!-- 2. VTStack -->
+            <a href="vtstack.html" class="gallery-card">
+                <div class="gallery-img-wrap" style="height:230px;">
+                    <img src="../images/vtstack.png" alt="VTStack Telecoms" loading="lazy">
+                </div>
+                <div class="gallery-card-info" style="padding:22px;">
+                    <span style="color:var(--primary-color); font-weight:700; font-size:0.8rem; text-transform:uppercase;">Telecoms Provider</span>
+                    <h4 style="font-size:1.25rem; margin:6px 0;">VTStack Telecoms</h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.5;">Modern telecom API gateway and reseller management dashboard with automated AI customer support.</p>
+                </div>
+            </a>
+
+            <!-- 3. AmeeData -->
+            <a href="ameedata.html" class="gallery-card">
+                <div class="gallery-img-wrap" style="height:230px;">
+                    <img src="../images/ameedata.png" alt="AmeeData Platform" loading="lazy">
+                </div>
+                <div class="gallery-card-info" style="padding:22px;">
+                    <span style="color:var(--primary-color); font-weight:700; font-size:0.8rem; text-transform:uppercase;">Mobile Billing</span>
+                    <h4 style="font-size:1.25rem; margin:6px 0;">AmeeData Ecosystem</h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.5;">Frictionless 2-tap recharge mobile billing platform with virtual bank accounts and cashback rewards.</p>
+                </div>
+            </a>
+
+            <!-- 4. Denish -->
+            <a href="denish.html" class="gallery-card">
+                <div class="gallery-img-wrap" style="height:230px; background:#0a3a2a; padding:30px;">
+                    <img src="../images/denish.svg" alt="Denish Delivery" loading="lazy" style="object-fit:contain;">
+                </div>
+                <div class="gallery-card-info" style="padding:22px;">
+                    <span style="color:var(--primary-color); font-weight:700; font-size:0.8rem; text-transform:uppercase;">Logistics / Delivery</span>
+                    <h4 style="font-size:1.25rem; margin:6px 0;">Denish Logistics</h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.5;">Urban courier dispatch and food ordering platform with automated route optimization algorithms.</p>
+                </div>
+            </a>
+
+            <!-- 5. Peeritrade -->
+            <a href="peeritrade.html" class="gallery-card">
+                <div class="gallery-img-wrap" style="height:230px;">
+                    <img src="../images/peeritrade.png" alt="Peeritrade Escrow" loading="lazy">
+                </div>
+                <div class="gallery-card-info" style="padding:22px;">
+                    <span style="color:var(--primary-color); font-weight:700; font-size:0.8rem; text-transform:uppercase;">P2P Escrow</span>
+                    <h4 style="font-size:1.25rem; margin:6px 0;">Peeritrade Escrow</h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.5;">Fraud-protected peer-to-peer trading and multi-signature escrow protocol with encrypted trade chat.</p>
+                </div>
+            </a>
+
+            <!-- 6. Medicata -->
+            <a href="medicata.html" class="gallery-card">
+                <div class="gallery-img-wrap" style="height:230px;">
+                    <img src="../images/medicata.png" alt="Medicata AI" loading="lazy">
+                </div>
+                <div class="gallery-card-info" style="padding:22px;">
+                    <span style="color:var(--primary-color); font-weight:700; font-size:0.8rem; text-transform:uppercase;">HealthTech AI</span>
+                    <h4 style="font-size:1.25rem; margin:6px 0;">Medicata Health AI</h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.5;">Unified AI healthcare platform with 24/7 symptom triage engine, doctor calls, and digital prescriptions.</p>
+                </div>
+            </a>
+
+            <!-- 7. Connecta -->
+            <a href="connecta.html" class="gallery-card">
+                <div class="gallery-img-wrap" style="height:230px;">
+                    <img src="../images/connecta.png" alt="Connecta Talent" loading="lazy">
+                </div>
+                <div class="gallery-card-info" style="padding:22px;">
+                    <span style="color:var(--primary-color); font-weight:700; font-size:0.8rem; text-transform:uppercase;">Marketplace</span>
+                    <h4 style="font-size:1.25rem; margin:6px 0;">Connecta Talent</h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.5;">Pan-African freelance talent marketplace linking creators to global enterprises via AI matchmaking.</p>
+                </div>
+            </a>
+
+            <!-- 8. ASASU Realty -->
+            <a href="asasurealty.html" class="gallery-card">
+                <div class="gallery-img-wrap" style="height:230px; background:#0f172a; padding:35px;">
+                    <img src="../images/asasurealty.svg" alt="ASASU Realty" loading="lazy" style="object-fit:contain;">
+                </div>
+                <div class="gallery-card-info" style="padding:22px;">
+                    <span style="color:var(--primary-color); font-weight:700; font-size:0.8rem; text-transform:uppercase;">PropTech</span>
+                    <h4 style="font-size:1.25rem; margin:6px 0;">ASASU Realty Portal</h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.5;">Multi-tier real estate commission tracking, sales audits, and automated agent payout portal.</p>
+                </div>
+            </a>
+
+            <!-- 9. North C Designers -->
+            <a href="northcdesigners.html" class="gallery-card">
+                <div class="gallery-img-wrap" style="height:230px; background:#071135; padding:25px;">
+                    <img src="../images/northcdesigners.png" alt="North C Designers Summit" loading="lazy" style="object-fit:contain;">
+                </div>
+                <div class="gallery-card-info" style="padding:22px;">
+                    <span style="color:var(--primary-color); font-weight:700; font-size:0.8rem; text-transform:uppercase;">Creative Tech Summit</span>
+                    <h4 style="font-size:1.25rem; margin:6px 0;">North C Designers</h4>
+                    <p style="color:var(--text-muted); font-size:0.92rem; line-height:1.5;">Northern Creative Designers Summit 2.0 (Roots & Vectors) connecting creators across Northern Nigeria.</p>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+        <div class="footer-bottom-bar" style="border-top:none; text-align:center; display:block;">
+            <span>&copy; 2026 Amee Technology Ltd. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const drawer = document.getElementById('mobileNavDrawer');
+            drawer.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
