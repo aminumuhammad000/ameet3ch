@@ -31,7 +31,7 @@
 .academy-hero {
   background: linear-gradient(135deg, #0D0520 0%, #1E0E4A 50%, #0D0520 100%);
   color: #FFFFFF;
-  padding: 64px 6% 48px;
+  padding: 130px 0 64px;
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -42,15 +42,30 @@
   position: absolute;
   top: -100px;
   right: -50px;
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(108, 43, 217, 0.25) 0%, transparent 70%);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(108, 43, 217, 0.28) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .academy-hero-inner {
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* 2-Column Hero Grid on Desktop */
+.academy-hero-grid {
+  display: grid;
+  grid-template-columns: 1.22fr 0.88fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.academy-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .academy-pill {
@@ -58,22 +73,27 @@
   align-items: center;
   gap: 8px;
   background: rgba(108, 43, 217, 0.3);
-  border: 1px solid rgba(167, 139, 250, 0.4);
-  color: #C4B5FD;
+  border: 1px solid rgba(167, 139, 250, 0.45);
+  color: #DDD6FE;
   padding: 6px 14px;
   border-radius: 9999px;
-  font-size: 0.85rem;
+  font-size: 0.83rem;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  max-width: 100%;
+  word-break: break-word;
+  line-height: 1.4;
 }
 
 .academy-hero h1 {
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.18;
   letter-spacing: -0.02em;
   margin-bottom: 16px;
   color: #FFFFFF;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .academy-hero h1 span {
@@ -83,18 +103,19 @@
 }
 
 .academy-hero p {
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(0.98rem, 1.35vw, 1.12rem);
   color: #CBD5E1;
-  max-width: 780px;
-  line-height: 1.6;
-  margin-bottom: 32px;
+  max-width: 640px;
+  line-height: 1.65;
+  margin-bottom: 26px;
 }
 
 /* Academy Search Field */
 .academy-search-box {
-  max-width: 650px;
+  width: 100%;
+  max-width: 580px;
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .academy-search-input {
@@ -103,9 +124,9 @@
   background: #FFFFFF;
   border: 2px solid transparent;
   border-radius: 12px;
-  font-size: 1rem;
+  font-size: 0.96rem;
   color: #0F172A;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   outline: none;
   transition: all 0.2s ease;
   box-sizing: border-box;
@@ -113,7 +134,7 @@
 
 .academy-search-input:focus {
   border-color: var(--academy-primary-light);
-  box-shadow: 0 0 0 4px rgba(108, 43, 217, 0.2);
+  box-shadow: 0 0 0 4px rgba(108, 43, 217, 0.25);
 }
 
 .academy-search-icon {
@@ -123,20 +144,24 @@
   transform: translateY(-50%);
   color: #94A3B8;
   font-size: 1.1rem;
+  pointer-events: none;
 }
 
 /* Search Results Container */
 #search-results {
   background: #FFFFFF;
   border-radius: 12px;
-  margin-top: 10px;
+  margin-top: 8px;
   max-height: 380px;
   overflow-y: auto;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
   display: none;
   position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 1000;
   border: 1px solid var(--academy-border);
 }
 
@@ -174,33 +199,161 @@
 /* Quick Learning Paths */
 .learning-paths-row {
   display: flex;
-  gap: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.learning-paths-label {
+  font-size: 0.82rem;
+  color: #94A3B8;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.learning-paths-pills {
+  display: flex;
+  gap: 8px;
   flex-wrap: wrap;
   align-items: center;
 }
 
 .path-badge {
-  background: rgba(255, 255, 255, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 6px 14px;
+  padding: 6px 13px;
   border-radius: 8px;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: #E2E8F0;
   text-decoration: none;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .path-badge:hover {
   background: var(--academy-primary);
   border-color: var(--academy-primary);
   color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* Academy Hero Highlights Card */
+.academy-hero-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 26px 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #A78BFA;
+}
+
+.hero-card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #34D399;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.hero-stat-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.stat-number {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #94A3B8;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.hero-card-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.83rem;
+  color: #E2E8F0;
+  line-height: 1.45;
+}
+
+.hero-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.hero-feature-item i {
+  color: #34D399;
+  font-size: 0.92rem;
+  margin-top: 2px;
+  flex-shrink: 0;
 }
 
 /* Main Container */
 .academy-container {
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 6%;
+  padding: 56px 0;
+}
+
+.lesson-main-container {
+  padding-top: 130px !important;
+  padding-bottom: 64px;
 }
 
 .section-heading-wrap {
@@ -224,7 +377,7 @@
 /* Category Cards Grid */
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
   gap: 24px;
   margin-bottom: 56px;
 }
@@ -287,7 +440,7 @@
 /* Lessons Grid */
 .lessons-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   gap: 24px;
   margin-bottom: 56px;
 }
@@ -883,6 +1036,17 @@
 }
 
 /* Mobile Responsiveness */
+@media (max-width: 992px) {
+  .academy-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .academy-hero-card {
+    max-width: 600px;
+    width: 100%;
+  }
+}
+
 @media (max-width: 900px) {
   .lesson-layout {
     grid-template-columns: 1fr;
@@ -900,12 +1064,25 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .academy-hero {
-    padding: 44px 5% 36px;
+    padding: 110px 0 48px;
   }
   .academy-container {
-    padding: 36px 5%;
+    padding: 40px 0;
+  }
+  .lesson-main-container {
+    padding-top: 105px !important;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .academy-hero {
+    padding: 96px 0 36px;
+  }
+  .academy-container {
+    padding: 32px 0;
   }
   .lesson-article {
     padding: 24px 18px;
@@ -915,5 +1092,17 @@
   }
   .lessons-grid {
     grid-template-columns: 1fr;
+  }
+  .academy-pill {
+    font-size: 0.78rem;
+    padding: 5px 12px;
+    margin-bottom: 14px;
+  }
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .academy-hero-card {
+    padding: 18px 14px;
   }
 }
