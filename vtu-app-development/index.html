@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7T17W9SPKB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7T17W9SPKB');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTU Application Development in Nigeria | Telecom Software & Reseller Platforms | Amee Technology</title>
+    <meta name="description" content="Custom VTU application development in Nigeria by Amee Technology Ltd. Build automated airtime, data vending, and bill payment platforms with API integrations.">
+    <link rel="canonical" href="https://ameetechnology.com.ng/vtu-app-development/">
+    <link rel="icon" href="/images/ameelogo.png" type="image/png">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Amee Technology Ltd">
+    <meta property="og:title" content="VTU Application Development in Nigeria | Telecom Software & Reseller Platforms">
+    <meta property="og:description" content="Custom VTU application development in Nigeria by Amee Technology Ltd. Build automated airtime, data vending, electricity bill payment, and multi-tier reseller platforms.">
+    <meta property="og:url" content="https://ameetechnology.com.ng/vtu-app-development/">
+    <meta property="og:image" content="https://ameetechnology.com.ng/images/vtstack.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VTU Application Development in Nigeria | Amee Technology">
+    <meta name="twitter:description" content="Build reliable automated VTU software, data vending portals, and bill payment platforms with direct Nigerian payment gateway integration.">
+    <meta name="twitter:image" content="https://ameetechnology.com.ng/images/vtstack.png">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="/seo-landing.css">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://ameetechnology.com.ng/#organization",
+          "name": "Amee Technology Ltd",
+          "url": "https://ameetechnology.com.ng",
+          "logo": "https://ameetechnology.com.ng/images/ameelogo.png",
+          "telephone": "+2348100015498",
+          "email": "support@ameetechnology.com.ng",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Zoo Road",
+            "addressLocality": "Kano",
+            "addressRegion": "Kano State",
+            "addressCountry": "NG"
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://ameetechnology.com.ng/vtu-app-development/#service",
+          "name": "VTU Application Development",
+          "provider": {
+            "@id": "https://ameetechnology.com.ng/#organization"
+          },
+          "serviceType": "Fintech & Telecommunications Software Engineering",
+          "areaServed": "Nigeria",
+          "description": "Custom VTU software engineering in Nigeria including automated airtime and SME data vending, DISCO electricity tokens, cable TV billing, wallet funding, and reseller API integration.",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "NGN",
+            "description": "Project pricing depends on custom technical scope, gateway integrations, and mobile vs web architecture."
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://ameetechnology.com.ng/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Services",
+              "item": "https://ameetechnology.com.ng/services/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "VTU Application Development",
+              "item": "https://ameetechnology.com.ng/vtu-app-development/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How much does it cost to build a custom VTU website or application in Nigeria?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The cost of building a custom VTU platform depends on technical scope, including whether you need a web portal, native mobile apps, custom reseller tiers, or third-party developer API endpoints. Standard costs encompass domain registration, cloud VPS hosting, SMS/WhatsApp notification gateways, payment gateway integration, and software engineering. We provide transparent, itemized milestone quotations based on your specific operational requirements."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who owns the source code and database when our VTU platform is completed?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You retain 100% intellectual property ownership of your source code, database, and system assets upon final milestone completion. Amee Technology delivers all repository files, database schemas, and administrative credentials directly to you."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which automated payment gateways and virtual bank accounts can be integrated?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We integrate verified Nigerian payment gateways including Monnify, Paystack, and Flutterwave. These integrations enable automated dedicated virtual accounts (Wema, Sterling, PalmPay, Moniepoint) so your customers can fund their digital wallets 24/7 via bank transfers with instant automated credit."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does the system handle failed network transactions and reversals?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our systems use strict double-entry ledger logic and automated callback verification. If a telecom aggregator's network times out or fails, the transaction is flagged, the user's wallet is protected from double-debiting, and automated status polling or instant reversals are executed."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I add multiple third-party VTU APIs or switch suppliers later?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. We engineer modular provider adapters. If your primary data or airtime aggregator experiences downtime or alters pricing, you can route transactions to alternate API switches from your super-admin dashboard without rewriting the codebase."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need special licensing from the NCC or CBN to run a VTU website?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Most VTU platform owners operate as digital value-added service (VAS) resellers through licensed telecom aggregators and regulated payment gateways (Monnify, Paystack) that handle CBN-compliant settlement. If you expand into proprietary micro-lending or public deposits, specific regulatory licenses apply."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does it take from project kickoff to public launch?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A standard responsive VTU web application typically takes 3 to 5 weeks from architecture modeling to sandbox testing and production launch. Platforms requiring companion cross-platform mobile apps usually require 5 to 7 weeks."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What ongoing maintenance and technical support does Amee Technology provide?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We provide initial deployment stabilization, comprehensive administrator training, server uptime monitoring, and flexible ongoing SLA support retainers for software updates, aggregator API migrations, and database optimization."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <nav class="landing-nav">
+        <div class="landing-nav-inner">
+            <a href="/" class="nav-logo">
+                <img src="/images/ameelogo.png" alt="Amee Technology Logo" width="40" height="40">
+                <span>Amee Technology</span>
+            </a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/services/">Services</a>
+                <a href="/#portfolio">Portfolio</a>
+                <a href="/academy/business-economics/">Academy</a>
+                <a href="/blog/">Blog</a>
+                <a href="#enquiry" class="nav-cta"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" onclick="toggleNav()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <a href="/">Home</a>
+        <a href="/services/">All Services</a>
+        <a href="/#portfolio">Portfolio</a>
+        <a href="/academy/business-economics/">Academy</a>
+        <a href="/blog/">Blog</a>
+        <a href="#enquiry">Request Quote</a>
+        <a href="https://wa.me/2348100015498?text=Hello%20Amee%20Technology,%20I%20am%20interested%20in%20VTU%20Application%20Development." target="_blank" rel="noopener noreferrer" style="color:#25D366;font-weight:700;"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+    </div>
+
+    <!-- Breadcrumb Bar -->
+    <div class="breadcrumb-bar">
+        <div class="breadcrumb-inner">
+            <a href="/">Home</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <a href="/services/">Services</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span class="current">VTU Application Development</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="landing-hero">
+        <div class="landing-hero-grid">
+            <div class="landing-hero-content">
+                <div class="hero-pill-badge">
+                    <i class="fa-solid fa-tower-broadcast"></i> Telecommunications Software Engineering
+                </div>
+                <h1>Scalable <span>VTU Application Development</span> in Nigeria</h1>
+                <p>
+                    We engineer secure, high-throughput Virtual Top-Up (VTU) web and mobile platforms for Nigerian entrepreneurs, corporate resellers, and fintech startups. Automate airtime vending, SME data bundles, electricity tokens, cable TV billing, and multi-tier reseller commissions with zero reconciliation headaches.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#enquiry" class="btn-primary-lead"><i class="fa-solid fa-file-invoice"></i> Request Project Quote</a>
+                    <a href="https://wa.me/2348100015498?text=Hello%20Amee%20Technology,%20I%20want%20to%20discuss%20building%20a%20VTU%20platform." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-hero"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+                </div>
+                <div class="hero-trust-indicators">
+                    <span><i class="fa-solid fa-shield-halved"></i> 100% Client Code Ownership</span>
+                    <span><i class="fa-solid fa-bolt"></i> Monnify &amp; Paystack Ready</span>
+                    <span><i class="fa-solid fa-clock-rotate-left"></i> Multi-Switch Failover</span>
+                </div>
+            </div>
+
+            <!-- Hero Artifact Visual Card -->
+            <div class="hero-visual-card">
+                <div class="hero-card-media">
+                    <img src="/images/vtstack.png" alt="VTStack Telecoms Reseller Hub developed by Amee Technology" loading="eager" width="480" height="280">
+                </div>
+                <div class="hero-card-caption">
+                    <span class="hero-caption-title">Live Deployment: VTStack Telecoms</span>
+                    <span class="hero-caption-status"><i class="fa-solid fa-circle-check"></i> High Concurrency</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Proof Metrics Ribbon -->
+    <section class="landing-metrics-ribbon">
+        <div class="metrics-ribbon-grid">
+            <div class="ribbon-metric-item">
+                <div class="ribbon-num">99.98%</div>
+                <div class="ribbon-label">Transaction Uptime Track Record</div>
+            </div>
+            <div class="ribbon-metric-item">
+                <div class="ribbon-num">&lt;400ms</div>
+                <div class="ribbon-label">Average API Request Processing</div>
+            </div>
+            <div class="ribbon-metric-item">
+                <div class="ribbon-num">4 Networks</div>
+                <div class="ribbon-label">MTN, Airtel, Glo &amp; 9mobile Supported</div>
+            </div>
+            <div class="ribbon-metric-item">
+                <div class="ribbon-num">100%</div>
+                <div class="ribbon-label">Source Code &amp; Database Ownership</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Understanding VTU Software Engineering -->
+    <section class="landing-section">
+        <div class="narrative-split-grid">
+            <div class="narrative-text">
+                <span class="section-pill-tag">Market Reality</span>
+                <h2>Why Serious VTU Businesses Outgrow Generic Reseller Scripts</h2>
+                <p>
+                    The Nigerian digital recharge market moves billions of Naira monthly. However, most aspiring VTU operators launch on cheap, shared WordPress plugins or pirated scripts that suffer database deadlocks, failed transaction loops, negative wallet balances, and zero security against fraud.
+                </p>
+                <p>
+                    At Amee Technology, we treat VTU software as high-frequency transactional fintech. We build custom platforms on robust application architectures featuring ACID-compliant database ledgers, automated webhook listeners, encrypted transaction PINs, and automated virtual account wallet funding.
+                </p>
+                <ul class="narrative-points">
+                    <li><i class="fa-solid fa-circle-check"></i> <strong>Automated Ledger Balance Checks:</strong> Prevents race conditions and double-spending when multiple users vend concurrently.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> <strong>Multi-Tier Reseller Hierarchy:</strong> Empowers corporate distributors to create their own sub-resellers and set custom wholesale profit margins.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> <strong>Real-Time Provider Health Polling:</strong> Automatically switches telecom providers if a specific carrier route experiences network latency.</li>
+                </ul>
+            </div>
+
+            <div class="narrative-box-callout">
+                <h4><i class="fa-solid fa-users-gear"></i> Who We Build VTU Platforms For:</h4>
+                <p><strong>Independent Telecom Entrepreneurs:</strong> Launching branded retail and wholesale data vending portals across Nigeria.</p>
+                <p><strong>Student &amp; Youth Resellers:</strong> Offering campus-wide discounted data bundles with automated WhatsApp bot integration.</p>
+                <p><strong>Corporate Cooperatives &amp; SMEs:</strong> Providing automated utility billing, staff airtime allowances, and bill payment services.</p>
+                <p><strong>Fintech &amp; Logistics Companies:</strong> Integrating digital top-up and utility payments as value-added services inside existing applications.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Features & Capabilities -->
+    <section class="landing-section bg-white">
+        <div class="section-inner">
+            <div class="section-head-center">
+                <span class="section-pill-tag">System Capabilities</span>
+                <h2>Comprehensive Features Built Into Every VTU Deployment</h2>
+                <p>
+                    Every capability is engineered to protect your capital, streamline user onboarding, and run 24 hours a day with minimal manual intervention.
+                </p>
+            </div>
+
+            <div class="features-cards-grid">
+                <!-- 1. Airtime & Data -->
+                <div class="feature-service-card">
+                    <div class="feature-card-icon"><i class="fa-solid fa-wifi"></i></div>
+                    <h3>Automated Airtime &amp; Data Vending</h3>
+                    <p>
+                        Instant vending of MTN (SME, Corporate Gifting, Direct), Airtel (Corporate, Gifting), Glo, and 9mobile data. Supports instant airtime recharge with customizable discount rates.
+                    </p>
+                    <div class="feature-card-tags">
+                        <span class="feature-tag-chip">MTN SME</span>
+                        <span class="feature-tag-chip">Corporate Gifting</span>
+                        <span class="feature-tag-chip">Airtime Top-Up</span>
+                    </div>
+                </div>
+
+                <!-- 2. Electricity & Cable Bills -->
+                <div class="feature-service-card">
+                    <div class="feature-card-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Electricity &amp; Utility Bill Payments</h3>
+                    <p>
+                        Real-time meter validation and prepaid token generation for Nigerian DISCOs (KEDCO, IKEDC, EKEDC, AEDC, IBEDC, PHED, EEDC) and postpaid bill clearances.
+                    </p>
+                    <div class="feature-card-tags">
+                        <span class="feature-tag-chip">KEDCO / Kano</span>
+                        <span class="feature-tag-chip">IKEDC / Lagos</span>
+                        <span class="feature-tag-chip">Token Delivery</span>
+                    </div>
+                </div>
+
+                <!-- 3. Cable TV Subscriptions -->
+                <div class="feature-service-card">
+                    <div class="feature-card-icon"><i class="fa-solid fa-tv"></i></div>
+                    <h3>Cable TV &amp; Entertainment Billing</h3>
+                    <p>
+                        Automated smartcard verification and instant subscription renewal for DStv, GOtv, and StarTimes packages with zero manual input required from operators.
+                    </p>
+                    <div class="feature-card-tags">
+                        <span class="feature-tag-chip">DStv &amp; GOtv</span>
+                        <span class="feature-tag-chip">StarTimes</span>
+                        <span class="feature-tag-chip">Instant Activation</span>
+                    </div>
+                </div>
+
+                <!-- 4. Virtual Bank Accounts & Wallet Funding -->
+                <div class="feature-service-card">
+                    <div class="feature-card-icon"><i class="fa-solid fa-wallet"></i></div>
+                    <h3>Automated Virtual Accounts (Monnify / Paystack)</h3>
+                    <p>
+                        Every registered user receives dedicated virtual account numbers (Wema, Sterling, PalmPay, Moniepoint). Bank transfers fund user wallets within seconds automatically.
+                    </p>
+                    <div class="feature-card-tags">
+                        <span class="feature-tag-chip">Monnify</span>
+                        <span class="feature-tag-chip">Paystack</span>
+                        <span class="feature-tag-chip">Auto-Credit</span>
+                    </div>
+                </div>
+
+                <!-- 5. Reseller & Wholesale Pricing Tiers -->
+                <div class="feature-service-card">
+                    <div class="feature-card-icon"><i class="fa-solid fa-sitemap"></i></div>
+                    <h3>Multi-Tier Reseller System &amp; Developer API</h3>
+                    <p>
+                        Create customer groups (Smart Earner, Reseller, API Partner) with custom price margins per network. Developer API documentation allows partners to vend via your platform.
+                    </p>
+                    <div class="feature-card-tags">
+                        <span class="feature-tag-chip">Reseller Tiers</span>
+                        <span class="feature-tag-chip">Custom Margins</span>
+                        <span class="feature-tag-chip">REST API Endpoints</span>
+                    </div>
+                </div>
+
+                <!-- 6. Strict Security & Fraud Mitigation -->
+                <div class="feature-service-card">
+                    <div class="feature-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Security, PIN Authorization &amp; Reconciliation</h3>
+                    <p>
+                        4-digit transaction PIN encryption, rate-limiting, brute-force protection, audit logs for every ledger movement, and automated daily profit-and-loss summaries.
+                    </p>
+                    <div class="feature-card-tags">
+                        <span class="feature-tag-chip">Transaction PIN</span>
+                        <span class="feature-tag-chip">Audit Trails</span>
+                        <span class="feature-tag-chip">Zero Double-Debits</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Verified Live Project Proofs -->
+    <section class="landing-section" id="proofs">
+        <div class="section-head-center">
+            <span class="section-pill-tag">Live Work Proofs</span>
+            <h2>Proven Platforms Engineered by Amee Technology</h2>
+            <p>
+                We do not deal in hypothetical concepts. Review real, verified telecommunications and fintech systems built by our engineering team.
+            </p>
+        </div>
+
+        <div class="proofs-portfolio-grid">
+            <!-- Project 1: VTStack Telecoms -->
+            <div class="portfolio-proof-card">
+                <div class="proof-card-thumb">
+                    <img src="/images/vtstack.png" alt="VTStack Telecoms Reseller Hub" loading="lazy" width="400" height="220">
+                    <span class="proof-verified-badge"><i class="fa-solid fa-check-circle"></i> Live Platform</span>
+                </div>
+                <div class="proof-card-info">
+                    <div class="proof-tag-row">
+                        <span class="proof-tag-badge">Telecoms</span>
+                        <span class="proof-tag-badge">Reseller Hierarchy</span>
+                        <span class="proof-tag-badge">FastAPI &amp; React</span>
+                    </div>
+                    <h3>VTStack Telecoms</h3>
+                    <p>
+                        Comprehensive telecommunications distribution platform with automated reseller tiering, automated AI dispute support bot, and real-time revenue telemetry.
+                    </p>
+                    <div class="proof-meta-box">
+                        <strong>Delivered Scope:</strong>
+                        Multi-switch API failover, reseller volume discounting, and sub-second transaction routing.
+                    </div>
+                    <div class="proof-card-actions">
+                        <a href="https://vtstack.com.ng/" target="_blank" rel="noopener noreferrer" class="live-site-link">
+                            vtstack.com.ng <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                        <a href="/projects/vtstack.html" class="case-study-link">
+                            Read Case Study <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: IBData Platform -->
+            <div class="portfolio-proof-card">
+                <div class="proof-card-thumb">
+                    <img src="/images/ibdata.png" alt="IBData Platform" loading="lazy" width="400" height="220">
+                    <span class="proof-verified-badge"><i class="fa-solid fa-check-circle"></i> High Concurrency</span>
+                </div>
+                <div class="proof-card-info">
+                    <div class="proof-tag-row">
+                        <span class="proof-tag-badge">Fintech / VTU</span>
+                        <span class="proof-tag-badge">Monnify Auto-Funding</span>
+                        <span class="proof-tag-badge">Utility Bills</span>
+                    </div>
+                    <h3>IBData Platform</h3>
+                    <p>
+                        High-volume data, airtime, and utility bill portal equipped with automated virtual accounts, DISCO electricity tokens, and real-time transaction ledger.
+                    </p>
+                    <div class="proof-meta-box">
+                        <strong>Delivered Scope:</strong>
+                        Automated virtual bank accounts, instant SMS/email receipts, and bulk transaction processing.
+                    </div>
+                    <div class="proof-card-actions">
+                        <span class="live-site-link" style="color:#64748B;">Client Production System</span>
+                        <a href="/projects/ibdata.html" class="case-study-link">
+                            Read Case Study <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: AmeeData Ecosystem -->
+            <div class="portfolio-proof-card">
+                <div class="proof-card-thumb">
+                    <img src="/images/ameedata.png" alt="AmeeData Ecosystem" loading="lazy" width="400" height="220">
+                    <span class="proof-verified-badge"><i class="fa-solid fa-check-circle"></i> Consumer Billing</span>
+                </div>
+                <div class="proof-card-info">
+                    <div class="proof-tag-row">
+                        <span class="proof-tag-badge">Mobile Billing</span>
+                        <span class="proof-tag-badge">Instant Delivery</span>
+                        <span class="proof-tag-badge">Self-Service</span>
+                    </div>
+                    <h3>AmeeData Ecosystem</h3>
+                    <p>
+                        Consumer-centric mobile web platform designed for lightning-fast airtime and data recharging with frictionless walletless checkout options.
+                    </p>
+                    <div class="proof-meta-box">
+                        <strong>Delivered Scope:</strong>
+                        Mobile-optimized responsive UI, multi-gateway fallback, and automated reconciliation reports.
+                    </div>
+                    <div class="proof-card-actions">
+                        <span class="live-site-link" style="color:#64748B;">Consumer Platform</span>
+                        <a href="/projects/ameedata.html" class="case-study-link">
+                            Read Case Study <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Development Process Timeline -->
+    <section class="landing-section bg-white">
+        <div class="section-inner">
+            <div class="section-head-center">
+                <span class="section-pill-tag">Engineering Methodology</span>
+                <h2>From Initial Architecture to Secure Public Launch</h2>
+                <p>
+                    We follow a structured 5-stage engineering pipeline that ensures zero fund loss, resilient uptime, and seamless launch.
+                </p>
+            </div>
+
+            <div class="process-steps-grid">
+                <div class="process-step-item">
+                    <span class="step-badge-number">01</span>
+                    <h4>Requirements &amp; Logic Specification</h4>
+                    <p>We document your target networks, package rate cards, profit margin tiers, provider API options, and admin operational requirements.</p>
+                </div>
+
+                <div class="process-step-item">
+                    <span class="step-badge-number">02</span>
+                    <h4>Ledger &amp; Database Architecture</h4>
+                    <p>We model double-entry financial ledgers, user role permissions, wallet locking mechanisms, and secure webhook receiver endpoints.</p>
+                </div>
+
+                <div class="process-step-item">
+                    <span class="step-badge-number">03</span>
+                    <h4>Frontend Design &amp; Integration</h4>
+                    <p>Clean, mobile-first responsive interfaces for end-users, resellers, and admins, coupled with Monnify or Paystack virtual account integration.</p>
+                </div>
+
+                <div class="process-step-item">
+                    <span class="step-badge-number">04</span>
+                    <h4>Sandbox Stress &amp; Concurrency Testing</h4>
+                    <p>We simulate rapid concurrent recharges, network dropouts, and aggregator failures to guarantee ledger integrity before handling real money.</p>
+                </div>
+
+                <div class="process-step-item">
+                    <span class="step-badge-number">05</span>
+                    <h4>Production Deployment &amp; Training</h4>
+                    <p>Deployment on hardened Linux cloud VPS with SSL, database backup cronjobs, domain configuration, and complete admin operations training.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Verified Technology Stack -->
+    <section class="landing-section">
+        <div class="section-head-center">
+            <span class="section-pill-tag">Tech Stack</span>
+            <h2>Proven Technologies Powering Our VTU Systems</h2>
+            <p>Built with enterprise-grade open technologies that scale efficiently without proprietary lock-in.</p>
+        </div>
+
+        <div class="tech-pills-row">
+            <span class="tech-badge-chip"><i class="fa-brands fa-python"></i> Python &amp; FastAPI</span>
+            <span class="tech-badge-chip"><i class="fa-brands fa-react"></i> React &amp; Next.js</span>
+            <span class="tech-badge-chip"><i class="fa-brands fa-node-js"></i> Node.js &amp; Express</span>
+            <span class="tech-badge-chip"><i class="fa-solid fa-database"></i> PostgreSQL &amp; MySQL</span>
+            <span class="tech-badge-chip"><i class="fa-solid fa-bolt"></i> Redis (Cache &amp; Locks)</span>
+            <span class="tech-badge-chip"><i class="fa-brands fa-linux"></i> Linux VPS / Ubuntu</span>
+            <span class="tech-badge-chip"><i class="fa-brands fa-docker"></i> Docker Containerization</span>
+            <span class="tech-badge-chip"><i class="fa-solid fa-shield"></i> Cloudflare CDN &amp; WAF</span>
+            <span class="tech-badge-chip"><i class="fa-solid fa-credit-card"></i> Monnify &amp; Paystack APIs</span>
+        </div>
+    </section>
+
+    <!-- Section: Frequently Asked Questions -->
+    <section class="landing-section bg-white" id="faq">
+        <div class="section-inner">
+            <div class="section-head-center">
+                <span class="section-pill-tag">Buying Guide</span>
+                <h2>Frequently Asked Questions on VTU Application Development</h2>
+                <p>Clear, honest answers to the practical questions entrepreneurs ask before investing in a VTU system.</p>
+            </div>
+
+            <div class="faq-accordion-container">
+                <details class="faq-detail-card" open>
+                    <summary>How much does it cost to build a custom VTU website or application in Nigeria?</summary>
+                    <div class="faq-answer-body">
+                        The total cost depends on your functional scope: whether you require a lightweight retail web portal, an advanced multi-tier reseller system with developer APIs, or cross-platform mobile apps for Android and iOS. Essential components include cloud VPS hosting, domain registration, automated SMS/WhatsApp gateways, and custom development. We do not use low-quality cookie-cutter scripts with hidden recurring license fees; we provide itemized, transparent quotations based on your specific requirements.
+                    </div>
+                </details>
+
+                <details class="faq-detail-card">
+                    <summary>Who owns the source code and database when our platform is completed?</summary>
+                    <div class="faq-answer-body">
+                        You own 100% of your source code, database, and intellectual property. Once final milestone payment is completed, all repositories, server credentials, and database dumps are handed over directly to you. You are never held hostage by proprietary monthly software subscriptions.
+                    </div>
+                </details>
+
+                <details class="faq-detail-card">
+                    <summary>Which automated payment gateways and virtual bank accounts can be integrated?</summary>
+                    <div class="faq-answer-body">
+                        We natively integrate Nigerian payment service providers including Monnify, Paystack, and Flutterwave. Through automated reserved account services, your users get personal dedicated bank accounts (Wema, Sterling, PalmPay, Moniepoint) so they can transfer funds via any banking app and receive instant wallet credit 24/7.
+                    </div>
+                </details>
+
+                <details class="faq-detail-card">
+                    <summary>How does the system handle failed network transactions and reversals?</summary>
+                    <div class="faq-answer-body">
+                        Our platforms utilize double-entry accounting and automated webhook verification. When a carrier network or aggregator times out, the transaction is flagged as pending, and background status workers poll for the final carrier status. If confirmed failed, the exact amount is automatically credited back to the user's wallet with an audit trail, preventing user disputes and capital loss.
+                    </div>
+                </details>
+
+                <details class="faq-detail-card">
+                    <summary>Can I add multiple third-party VTU APIs or switch suppliers later?</summary>
+                    <div class="faq-answer-body">
+                        Yes. We build modular API adapter classes. If your primary telecom aggregator raises prices or suffers an extended outage, you can effortlessly activate or reroute traffic to an alternative provider directly from your administrative dashboard without modifying application code.
+                    </div>
+                </details>
+
+                <details class="faq-detail-card">
+                    <summary>Do I need special licensing from the NCC or CBN to run a VTU website?</summary>
+                    <div class="faq-answer-body">
+                        Digital recharge and bill payment resellers in Nigeria typically operate under the value-added service (VAS) umbrella of licensed telecom aggregators and regulated payment switches (such as Monnify or Paystack). If your business operates strictly as a retail/wholesale digital reseller, you do not need individual carrier licenses. We ensure your system adheres to standard Nigerian data protection (NDPR) practices.
+                    </div>
+                </details>
+
+                <details class="faq-detail-card">
+                    <summary>How long does it take from project kickoff to public launch?</summary>
+                    <div class="faq-answer-body">
+                        A custom responsive web portal generally takes 3 to 5 weeks from initial specification to testing and live production deployment. Deployments that include native or cross-platform Android mobile applications typically take between 5 and 7 weeks to ensure thorough Google Play store testing.
+                    </div>
+                </details>
+
+                <details class="faq-detail-card">
+                    <summary>What ongoing maintenance and technical support does Amee Technology provide?</summary>
+                    <div class="faq-answer-body">
+                        We provide full post-launch stabilization, admin training sessions, and optional monthly SLA maintenance contracts covering server operating system updates, aggregator API version upgrades, daily encrypted database backups, and emergency troubleshooting.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Lead Enquiry & Consultation Form -->
+    <section class="lead-enquiry-section" id="enquiry">
+        <div class="lead-enquiry-grid">
+            <div class="lead-info-col">
+                <span class="section-pill-tag" style="background:rgba(108,43,217,0.3);color:#DDD6FE;">Get Started</span>
+                <h2>Ready to Build a High-Throughput <span>VTU Platform</span>?</h2>
+                <p>
+                    Tell us about your business goals. We will analyze your specifications, recommend optimal API aggregators, and prepare an itemized technical proposal and delivery timeline.
+                </p>
+
+                <div class="direct-contact-badges">
+                    <div class="contact-badge-item">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <div>
+                            <strong>Direct WhatsApp Consultation</strong><br>
+                            <a href="https://wa.me/2348100015498?text=Hello%20Amee%20Technology,%20I%20am%20ready%20to%20discuss%20my%20VTU%20platform%20project." target="_blank" rel="noopener noreferrer" style="color:#34D399;font-weight:600;">+234 810 001 5498</a>
+                        </div>
+                    </div>
+                    <div class="contact-badge-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <strong>Engineering Enquiries</strong><br>
+                            <a href="mailto:support@ameetechnology.com.ng" style="color:#A78BFA;">support@ameetechnology.com.ng</a>
+                        </div>
+                    </div>
+                    <div class="contact-badge-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <strong>Physical Office</strong><br>
+                            <span>Zoo Road, Kano, Kano State, Nigeria</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lead Form Card -->
+            <div class="lead-form-card">
+                <h3>Request a VTU Project Quote</h3>
+                <p>Fill out this brief form and our technical lead will reach out within 24 hours.</p>
+
+                <div class="form-status-alert"></div>
+
+                <form name="vtu-lead-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="lead-form-element">
+                    <input type="hidden" name="form-name" value="vtu-lead-enquiry">
+                    <p style="display:none">
+                        <label>Don't fill this out: <input name="bot-field"></label>
+                    </p>
+
+                    <div class="form-row-dual">
+                        <div class="form-group-field">
+                            <label for="vtu-name">Full Name *</label>
+                            <input type="text" id="vtu-name" name="name" placeholder="e.g. Aliyu Ibrahim" required>
+                        </div>
+                        <div class="form-group-field">
+                            <label for="vtu-phone">WhatsApp / Phone Number *</label>
+                            <input type="tel" id="vtu-phone" name="phone" placeholder="e.g. +234 810 000 0000" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group-field">
+                        <label for="vtu-email">Email Address *</label>
+                        <input type="email" id="vtu-email" name="email" placeholder="name@business.com" required>
+                    </div>
+
+                    <div class="form-group-field">
+                        <label for="vtu-scope">Platform Scope Needed *</label>
+                        <select id="vtu-scope" name="scope" required>
+                            <option value="" disabled selected>Select project scope...</option>
+                            <option value="Standard Web VTU Portal">Standard Web VTU Portal (Retail Airtime &amp; Data)</option>
+                            <option value="Advanced Reseller Platform + API">Advanced Reseller Platform + Wholesale Developer API</option>
+                            <option value="Web Portal + Android Mobile App">Web Portal + Android Mobile Application</option>
+                            <option value="Full Cross-Platform (Web + Android + iOS)">Full Cross-Platform Suite (Web + Android + iOS)</option>
+                            <option value="Custom API Switch or Migration">Migration / Custom Telecom Switch Integration</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-field">
+                        <label for="vtu-details">Project Details or Special Requirements</label>
+                        <textarea id="vtu-details" name="details" rows="3" placeholder="Tell us about your target launch date, preferred payment gateway (Monnify / Paystack), or specific features..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary-lead" style="width:100%;justify-content:center;margin-top:6px;">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Project Enquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Services Navigation -->
+    <section class="related-services-bar">
+        <div style="max-width:1240px;margin:0 auto 20px;text-align:center;">
+            <span style="font-size:0.8rem;text-transform:uppercase;font-weight:700;color:var(--primary-color);letter-spacing:0.05em;">More Services</span>
+            <h3 style="font-size:1.4rem;font-weight:800;color:var(--text-main);margin-top:4px;">Explore Related Engineering Disciplines</h3>
+        </div>
+        <div class="related-services-grid">
+            <a href="/website-design-kano/" class="related-svc-card">
+                <i class="fa-solid fa-globe"></i>
+                <span>Website Design Kano</span>
+            </a>
+            <a href="/mobile-app-development-kano/" class="related-svc-card">
+                <i class="fa-solid fa-mobile-screen"></i>
+                <span>Mobile App Development</span>
+            </a>
+            <a href="/custom-web-application-development/" class="related-svc-card">
+                <i class="fa-solid fa-laptop-code"></i>
+                <span>Custom Web Applications</span>
+            </a>
+            <a href="/services/business-portals.html" class="related-svc-card">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>Business &amp; ERP Portals</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Site Footer -->
+    <footer class="landing-footer">
+        <div class="footer-inner-wrap">
+            <div class="footer-top-columns">
+                <!-- Col 1: Brand -->
+                <div class="footer-col-brand">
+                    <div class="footer-brand-logo">
+                        <img src="/images/ameelogo.png" alt="Amee Technology Logo" width="42" height="42">
+                        <span>Amee Technology</span>
+                    </div>
+                    <p>
+                        Amee Technology Ltd is a premier software engineering firm building scalable custom software, high-throughput VTU platforms, mobile products, and AI automation systems across Nigeria.
+                    </p>
+                    <div class="footer-social-row">
+                        <a href="https://web.facebook.com/profile.php?id=61550987333969" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/amee.tech" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@amee.tech?_t=ZM-8t3mEOfPgTF&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.youtube.com/@ameetech" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://linkedin.com/in/aminu-muhammad-ameetech" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Services -->
+                <div class="footer-col-nav">
+                    <h4>Core Services</h4>
+                    <ul>
+                        <li><a href="/vtu-app-development/">VTU App Development</a></li>
+                        <li><a href="/website-design-kano/">Website Design Kano</a></li>
+                        <li><a href="/mobile-app-development-kano/">Mobile App Development</a></li>
+                        <li><a href="/custom-web-application-development/">Custom Web Applications</a></li>
+                        <li><a href="/services/ai-automation.html">AI Automation Systems</a></li>
+                        <li><a href="/services/business-portals.html">Enterprise Portals</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Company -->
+                <div class="footer-col-nav">
+                    <h4>Company &amp; Resources</h4>
+                    <ul>
+                        <li><a href="/#about">About Amee Technology</a></li>
+                        <li><a href="/#portfolio">Portfolio &amp; Case Studies</a></li>
+                        <li><a href="/academy/business-economics/">Business Academy</a></li>
+                        <li><a href="/blog/">Blog &amp; Tech Insights</a></li>
+                        <li><a href="/ameebot.html">AmeeBot AI Assessment</a></li>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact -->
+                <div class="footer-col-nav">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Zoo Road, Kano, Kano State, Nigeria</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:+2348100015498">+234 810 001 5498</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:support@ameetechnology.com.ng">support@ameetechnology.com.ng</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom-row">
+                <p>&copy; 2026 Amee Technology Ltd. All Rights Reserved.</p>
+                <div class="footer-legal-links">
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/#faq">FAQ</a>
+                    <a href="#enquiry">Request Quote</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Client Script -->
+    <script src="/landing.js"></script>
+</body>
+</html>
