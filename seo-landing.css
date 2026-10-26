@@ -1176,7 +1176,8 @@ a {
 .landing-footer {
   background: #0F172A;
   color: #94A3B8;
-  padding: 70px 5% 30px;
+  padding: 70px 5% 0;
+  margin-bottom: 0;
 }
 
 .footer-inner-wrap {
@@ -1285,11 +1286,17 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 28px;
+  padding: 24px 0 20px;
+  margin-bottom: 0;
   font-size: 0.84rem;
   color: #64748B;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.footer-bottom-row p {
+  margin: 0;
+  margin-bottom: 0;
 }
 
 .footer-legal-links {
