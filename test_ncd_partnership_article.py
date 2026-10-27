@@ -56,7 +56,7 @@ class TestNCDPartnershipArticle(unittest.TestCase):
     def test_partners_section(self):
         with open("index.html", "r", encoding="utf-8") as f:
             content = f.read()
-        self.assertIn("<!-- Strategic Partners Section (Hidden for now as requested)", content)
+        self.assertNotIn('id="partners"', content)
         self.assertNotIn('<a href="#partners"', content)
         self.assertIn("North C Designers", content)
 
