@@ -2957,6 +2957,11 @@ header:not(.article-hero) nav .menu.active i.fa-xmark {
 }
 
 .gmb-number {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
   font-size: 1.25rem;
   font-weight: 800;
   color: #0f172a;
@@ -2964,6 +2969,12 @@ header:not(.article-hero) nav .menu.active i.fa-xmark {
 }
 
 .gmb-stars {
+  color: #f59e0b;
+  font-size: 0.65rem; /* reduced size */
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+}
   color: #f59e0b;
   font-size: 0.85rem;
   display: inline-flex;
