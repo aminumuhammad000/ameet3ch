@@ -1235,12 +1235,20 @@ header.article-hero nav.article-breadcrumbs .current,
 
 .blog-card-meta {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  font-size: 0.85rem;
+  gap: 6px 12px;
+  font-size: 0.78rem;
   color: #6b7280;
   padding-top: 14px;
   border-top: 1px solid #f3f4f6;
+}
+
+.blog-card-meta span {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 /* Responsive Media Queries */
