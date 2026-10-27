@@ -56,12 +56,10 @@ class TestNCDPartnershipArticle(unittest.TestCase):
     def test_partners_section(self):
         with open("index.html", "r", encoding="utf-8") as f:
             content = f.read()
-        # Verify partners section is commented out / hidden as requested
-        self.assertIn("<!-- Strategic Partners Section (Hidden for now as requested)", content)
-        self.assertNotIn('<a href="#partners"', content)
+        self.assertIn('id="partners"', content)
+        self.assertIn('<a href="#partners"', content)
         self.assertIn("North C Designers", content)
-        self.assertIn("Salafi Technology", content)
-        self.assertIn("Pioneers ICT Nigeria", content)
+        self.assertIn("https://northcdesigners.netlify.app/", content)
 
     def test_partner_images_exist(self):
         for img in ["images/northcdesigners.png", "images/salafi_technology.png", "images/pioneers_ict.png"]:

@@ -28,11 +28,8 @@ menu.addEventListener('click', (e) =>{
 
 navs.forEach((nav) => {
     nav.addEventListener('click', (e) => {
-        // if (menu.classList.contains('active')) {
-            menu.classList.remove('active')
-            mobNav.classList.remove('show')
-            menu.innerHTML = '<i class="fa-solid fa-bars"></i>';
-        // } 
+        menu.classList.remove('active')
+        mobNav.classList.remove('show')
     })
 });
 
