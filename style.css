@@ -1951,7 +1951,7 @@ main .team-members .card a {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
-  padding: 16px 6% 0;
+  padding: 24px 6% 32px;
   border-top: 1px solid rgba(255,255,255,0.07);
   position: relative;
   z-index: 1;
@@ -2263,7 +2263,7 @@ main .team-members .card a {
     justify-content: center;
     text-align: center;
     gap: 10px;
-    padding: 16px 5% 0;
+    padding: 20px 5% 28px;
     margin-bottom: 0;
   }
 
@@ -2473,7 +2473,7 @@ main .team-members .card a {
     justify-content: center;
     text-align: center;
     gap: 8px;
-    padding: 14px 18px 0;
+    padding: 18px 18px 24px;
     margin-bottom: 0;
   }
 
