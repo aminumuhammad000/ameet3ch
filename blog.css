@@ -2434,8 +2434,7 @@ nav a.nav:hover {
 
 /* Consultation & Lead Capture Forms */
 .consultation-section,
-.article-lead-capture,
-.conversion-section {
+.article-lead-capture {
   background: #faf7ff;
   border: 1px solid #e9d5ff;
   border-radius: 16px;
