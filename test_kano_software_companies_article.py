@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Test Suite for 8 Software Development Companies in Kano, Nigeria (2026 Guide)
+Test Suite for 10 Software Development Companies in Kano, Nigeria (2026 Guide)
 Verifies SEO, metadata, document structure, accessibility, word count,
-all 8 companies, JSON-LD schemas, sitemap, blog hub inclusion, and asset HTTP delivery.
+all 10 companies, JSON-LD schemas, sitemap, blog hub inclusion, and asset HTTP delivery.
 """
 
 import os
@@ -107,7 +107,7 @@ class ArticleHTMLParser(HTMLParser):
 
 def run_tests():
     print("=" * 70)
-    print("AMEE TECHNOLOGY : KANO SOFTWARE COMPANIES GUIDE TEST SUITE")
+    print("AMEE TECHNOLOGY : KANO 10 SOFTWARE COMPANIES GUIDE TEST SUITE")
     print("=" * 70)
 
     # 1. File existence
@@ -124,8 +124,8 @@ def run_tests():
     parser.feed(html_content)
 
     # 2. SEO Title & Meta
-    assert_test("8 Software Development Companies in Kano, Nigeria (2026)" in parser.title_text, "Title tag matches SEO title")
-    assert_test("description" in parser.meta_tags and "Looking for a software development company in Kano" in parser.meta_tags["description"], "Meta description is descriptive and contains primary query")
+    assert_test("10 Software Development Companies in Kano, Nigeria (2026)" in parser.title_text, "Title tag matches SEO title")
+    assert_test("description" in parser.meta_tags and "Explore 10 technology companies" in parser.meta_tags["description"], "Meta description is descriptive and mentions 10 companies")
     
     canonical_links = [href for rel, href in parser.links if rel == "canonical"]
     assert_test(
@@ -149,14 +149,14 @@ def run_tests():
     h1_matches = re.findall(r'<h1[^>]*>(.*?)</h1>', html_content, re.DOTALL)
     assert_test(len(h1_matches) == 1, f"Exactly one <h1> tag found (Found {len(h1_matches)})")
     if h1_matches:
-        assert_test("8 Software Development Companies in Kano, Nigeria" in h1_matches[0], "H1 contains main target keyword")
+        assert_test("10 Software Development Companies in Kano, Nigeria" in h1_matches[0], "H1 contains main target keyword")
 
     # Word count
     full_text = " ".join(parser.all_text)
     word_count = len(full_text.split())
-    assert_test(word_count >= 1000, f"Guide has comprehensive depth. Word count: {word_count} words")
+    assert_test(word_count >= 1200, f"Guide has comprehensive depth. Word count: {word_count} words")
 
-    # 6. Verification of the 8 Companies
+    # 6. Verification of the 10 Companies
     companies = [
         ("Amee Technology", "https://ameetechnology.com.ng/"),
         ("Brilliant Esystems", "https://brilliant.ng/"),
@@ -164,6 +164,8 @@ def run_tests():
         ("iCode Technology", "https://www.icode.com.ng/"),
         ("Mubarak Digital", "https://www.mubarakdigital.com/"),
         ("Code Green Technologies", "https://www.codegreentechnologies.ng/"),
+        ("Pioneers ICT", "https://pioneersng.com/"),
+        ("Salafi Technology", "https://salafitechnology.com.ng/"),
         ("FlexiSAF", "https://flexisaf.com/"),
         ("eHealth Africa", "https://ehealthafrica.org/")
     ]
@@ -175,15 +177,17 @@ def run_tests():
     required_sections = [
         ("introduction-section", "Introduction"),
         ("what-to-know-before-hiring", "What to Know Before Hiring"),
-        ("companies-list", "8 Companies Section"),
+        ("companies-list", "10 Companies Section"),
         ("amee-technology", "Company 1: Ameetech"),
         ("brilliant-esystems", "Company 2: Brilliant Esystems"),
         ("kali-developers", "Company 3: Kali Developers"),
         ("icode-technology", "Company 4: iCode"),
         ("mubarak-digital", "Company 5: Mubarak Digital"),
         ("code-green-technologies", "Company 6: Code Green Tech"),
-        ("flexisaf-edusoft", "Company 7: FlexiSAF"),
-        ("ehealth-africa", "Company 8: eHealth Africa"),
+        ("pioneers-ict", "Company 7: Pioneers ICT"),
+        ("salafi-technology", "Company 8: Salafi Technology"),
+        ("flexisaf-edusoft", "Company 9: FlexiSAF"),
+        ("ehealth-africa", "Company 10: eHealth Africa"),
         ("software-development-costs", "Custom Software Development Costs"),
         ("how-to-choose", "How to Choose the Right Company"),
         ("why-amee-technology", "Why Choose Amee Technology"),
@@ -217,6 +221,11 @@ def run_tests():
             assert_test("ItemList" in types, "JSON-LD contains ItemList schema")
             assert_test("FAQPage" in types, "JSON-LD contains FAQPage schema")
 
+            item_list = next((item for item in graph if item.get("@type") == "ItemList"), None)
+            if item_list:
+                items = item_list.get("itemListElement", [])
+                assert_test(len(items) == 10, f"ItemList schema contains all 10 companies. Found: {len(items)}")
+
             faq_schema = next((item for item in graph if item.get("@type") == "FAQPage"), None)
             if faq_schema:
                 main_entity = faq_schema.get("mainEntity", [])
@@ -239,13 +248,17 @@ def run_tests():
         "/software-development-companies-in-kano/" in hub_content,
         "Blog hub index contains link to new Kano software development companies guide"
     )
+    assert_test(
+        "10 Software Development Companies in Kano" in hub_content,
+        "Blog hub index mentions 10 software companies in card title"
+    )
 
     # 14. Local Server HTTP Verification
     class QuietHandler(http.server.SimpleHTTPRequestHandler):
         def log_message(self, format, *args):
             pass
 
-    port = 8894
+    port = 8896
     socketserver.TCPServer.allow_reuse_address = True
     httpd = socketserver.TCPServer(("127.0.0.1", port), QuietHandler)
     server_thread = threading.Thread(target=httpd.serve_forever)
