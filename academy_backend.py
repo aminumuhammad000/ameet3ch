@@ -13,6 +13,23 @@ import sqlite3
 import json
 from datetime import datetime, timezone
 
+def _load_env_if_present():
+    env_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), ".env")
+    if os.path.isfile(env_file):
+        try:
+            with open(env_file, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith("#") and "=" in line:
+                        k, v = line.split("=", 1)
+                        k, v = k.strip(), v.strip()
+                        if k not in os.environ:
+                            os.environ[k] = v
+        except Exception:
+            pass
+
+_load_env_if_present()
+
 DB_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "academy_database.sqlite")
 SECRET_KEY = os.environ.get("ACADEMY_SECRET_KEY", "ameetech-academy-secure-secret-2026")
 
