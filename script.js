@@ -138,5 +138,16 @@ if (storiesTrack) {
     });
 }
 
+// ── Cookie Consent & Privacy Preference Loader ──
+(function() {
+    if (!window.openAmeeCookieSettings && !document.querySelector('script[src*="cookie-consent.js"]')) {
+        const cs = document.createElement('script');
+        cs.src = '/cookie-consent.js';
+        cs.defer = true;
+        document.head.appendChild(cs);
+    }
+})();
+
+
 
 

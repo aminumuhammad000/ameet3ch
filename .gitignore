@@ -16,6 +16,7 @@ __pycache__/
 .DS_Store
 *.pem
 .env*
+!.env.example
 *.sqlite
 *.sqlite3
 .vercel

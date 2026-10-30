@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ameetech Flyer Review & Approval Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C2BD9;
+            --primary-dark: #581CBA;
+            --tint: #F3E8FF;
+            --white: #ffffff;
+            --bg: #F8FAFC;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        header {
+            background: var(--white);
+            border-bottom: 2px solid var(--border);
+            padding: 24px 32px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+        }
+
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .brand-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .brand-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-chip {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-chip .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .dot-all { background: var(--text-dark); }
+        .dot-generated { background: var(--primary); }
+        .dot-approved { background: var(--success); }
+        .dot-pending { background: var(--warning); }
+        .dot-failed { background: var(--danger); }
+
+        /* Controls Section */
+        .controls-wrapper {
+            max-width: 1440px;
+            margin: 24px auto 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filters-group {
+            display: flex;
+            gap: 8px;
+            background: var(--white);
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--tint);
+            color: var(--primary);
+        }
+
+        .search-input {
+            flex: 1;
+            max-width: 360px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            outline: none;
+            background: var(--white);
+            font-family: inherit;
+        }
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 43, 217, 0.15);
+        }
+
+        .btn-bulk-approve {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+        .btn-bulk-approve:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Grid */
+        .gallery-grid {
+            max-width: 1440px;
+            margin: 28px auto 0 auto;
+            padding: 0 32px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .flyer-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .flyer-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(108, 43, 217, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .card-header {
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            background: #FAFAFA;
+        }
+
+        .id-category {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--primary);
+            background: var(--tint);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .card-category {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .status-pill {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.04em;
+        }
+        .status-pending { background: #FEF3C7; color: #92400E; }
+        .status-generated { background: var(--tint); color: var(--primary); }
+        .status-approved { background: #D1FAE5; color: #065F46; }
+        .status-failed { background: #FEE2E2; color: #991B1B; }
+
+        .card-img-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #f1f5f9;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .card-img-wrap:hover img {
+            transform: scale(1.03);
+        }
+
+        .preview-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.75);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .card-img-wrap:hover .preview-badge {
+            opacity: 1;
+        }
+
+        .card-img-placeholder {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #F8FAFC;
+            border-bottom: 1px dashed var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-muted);
+        }
+        .placeholder-icon { font-size: 2.2rem; opacity: 0.6; }
+        .placeholder-sub { font-size: 0.75rem; }
+
+        .card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: var(--text-dark);
+        }
+
+        .filename-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #F1F5F9;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+        .filename-code {
+            font-family: 'JetBrains Mono', monospace;
+            color: #334155;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 210px;
+        }
+        .btn-copy {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.75rem;
+            cursor: pointer;
+            padding: 2px 6px;
+        }
+        .btn-copy:hover { text-decoration: underline; }
+
+        .prompt-details {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 8px;
+        }
+        .prompt-details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            user-select: none;
+        }
+        .prompt-text {
+            margin-top: 6px;
+            line-height: 1.45;
+            color: #475569;
+            background: #f8fafc;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+        }
+
+        .contact-verification {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 8px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 8px;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        .btn-approve {
+            background: #F0FDF4;
+            color: #166534;
+            border-color: #BBF7D0;
+        }
+        .btn-approve:hover:not([disabled]) {
+            background: #166534;
+            color: #ffffff;
+        }
+        .btn-approve[disabled] {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-cli {
+            flex: 0 0 54px;
+            background: #F8FAFC;
+            color: #475569;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+        .btn-cli:hover {
+            background: #E2E8F0;
+        }
+
+        /* Fullscreen Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.88);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            background: var(--white);
+            max-width: 960px;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-height: 90vh;
+        }
+        .modal-header {
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+        .modal-body {
+            padding: 24px;
+            display: flex;
+            gap: 24px;
+            overflow-y: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .modal-img {
+            max-width: 520px;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .modal-info {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .modal-cmd-box {
+            background: #0F172A;
+            color: #38BDF8;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0F172A;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: none;
+            z-index: 200;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="brand-block">
+                <img src="images/ameelogo.png" alt="Ameetech" class="brand-logo-img" onerror="this.style.display='none'">
+                <div>
+                    <h1 class="brand-title">Ameetech Bulk Flyer Review</h1>
+                    <p class="brand-subtitle">Amee Technology Ltd • 1080×1080 Square Promotional Flyers</p>
+                </div>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat-chip"><span class="dot dot-all"></span> Total: <strong id="stat-total">30</strong></div>
+                <div class="stat-chip"><span class="dot dot-generated"></span> Generated: <strong id="stat-gen">28</strong></div>
+                <div class="stat-chip"><span class="dot dot-approved"></span> Approved: <strong id="stat-app">2</strong></div>
+                <div class="stat-chip"><span class="dot dot-pending"></span> Pending: <strong id="stat-pen">0</strong></div>
+                <div class="stat-chip"><span class="dot dot-failed"></span> Failed: <strong id="stat-fail">0</strong></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="filters-group">
+            <button class="filter-btn active" onclick="filterGallery('all', this)">All (30)</button>
+            <button class="filter-btn" onclick="filterGallery('generated', this)">Generated (28)</button>
+            <button class="filter-btn" onclick="filterGallery('approved', this)">Approved (2)</button>
+            <button class="filter-btn" onclick="filterGallery('pending', this)">Pending (0)</button>
+        </div>
+
+        <input type="text" id="searchInput" class="search-input" placeholder="Search title, ID, category..." onkeyup="searchGallery()">
+
+        <button class="btn-bulk-approve" onclick="showApproveAllModal()">
+            <i class="fa-solid fa-stamp"></i> Approval Center
+        </button>
+    </div>
+
+    <main class="gallery-grid" id="galleryGrid">
+        
+        <div class="flyer-card" data-status="approved" data-id="FLYER-001" data-category="software engineering" data-search="custom enterprise web application development flyer-001 software engineering ameetech-01-enterprise-web-apps.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-001</span>
+                    <span class="card-category">Software Engineering</span>
+                </div>
+                <span class="status-pill status-approved">APPROVED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-001', 'approved/ameetech-01-enterprise-web-apps.png', 'Custom Enterprise Web Application Development', 'ameetech-01-enterprise-web-apps.png', 'Software Engineering')">
+                    <img src="approved/ameetech-01-enterprise-web-apps.png" alt="Custom Enterprise Web Application Development" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Custom Enterprise Web Application Development</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-01-enterprise-web-apps.png">ameetech-01-enterprise-web-apps.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-01-enterprise-web-apps.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Modern, premium square 1080x1080 promotional social media flyer for Ameetech, a leading Nigerian technology company. Pristine clean white background with bold vibrant purple accents (#6C2BD9) and elegant soft violet gradients. Center visual shows a sleek 3D glassmorphic web dashboard with responsive data widgets, server architecture nodes, and code elements. Minimalist corporate aesthetic, polished shadows, strong visual hierarchy. Ameetech logo space top left, bold typography 'Custom Enterprise Web Applications', clean footer bar containing 'ameetechnology.com.ng' and WhatsApp icon with '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-001', 'ameetech-01-enterprise-web-apps.png')" disabled>
+                        <i class="fa-solid fa-check"></i> Approved
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-001')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="approved" data-id="FLYER-002" data-category="mobile apps" data-search="native & cross-platform mobile app development flyer-002 mobile apps ameetech-02-mobile-app-development.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-002</span>
+                    <span class="card-category">Mobile Apps</span>
+                </div>
+                <span class="status-pill status-approved">APPROVED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-002', 'approved/ameetech-02-mobile-app-development.png', 'Native & Cross-Platform Mobile App Development', 'ameetech-02-mobile-app-development.png', 'Mobile Apps')">
+                    <img src="approved/ameetech-02-mobile-app-development.png" alt="Native & Cross-Platform Mobile App Development" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Native & Cross-Platform Mobile App Development</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-02-mobile-app-development.png">ameetech-02-mobile-app-development.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-02-mobile-app-development.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">High-end square social media flyer for Ameetech mobile app engineering. Studio white background with striking Ameetech purple (#6C2BD9) curved accents. Centerpiece features two floating isometric smartphones displaying sleek mobile banking and productivity apps with silky UI interactions. Modern African tech innovation vibe, clean typography, badge reading 'iOS & Android Solutions', Ameetech branding, footer with website 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-002', 'ameetech-02-mobile-app-development.png')" disabled>
+                        <i class="fa-solid fa-check"></i> Approved
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-002')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-003" data-category="fintech & telecom" data-search="vtu & bill payments portal engineering flyer-003 fintech & telecom ameetech-03-vtu-telecom-portals.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-003</span>
+                    <span class="card-category">Fintech & Telecom</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-003', 'generated/ameetech-03-vtu-telecom-portals.png', 'VTU & Bill Payments Portal Engineering', 'ameetech-03-vtu-telecom-portals.png', 'Fintech & Telecom')">
+                    <img src="generated/ameetech-03-vtu-telecom-portals.png" alt="VTU & Bill Payments Portal Engineering" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">VTU & Bill Payments Portal Engineering</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-03-vtu-telecom-portals.png">ameetech-03-vtu-telecom-portals.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-03-vtu-telecom-portals.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Professional promotional square flyer for Ameetech VTU platform development. Clean white backdrop, bold royal purple (#6C2BD9) graphic highlights, restrained lilac ambient glow. Center isometric 3D illustration of digital airtime, data bundle transactions, lightning-fast payment nodes, and secure fintech API rails. Premium modern design, mobile-optimized typography, Ameetech logo in corner, footer featuring 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-003', 'ameetech-03-vtu-telecom-portals.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-003')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-004" data-category="ai & automation" data-search="ameebot ai customer service automation flyer-004 ai & automation ameetech-04-ameebot-ai-automation.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-004</span>
+                    <span class="card-category">AI & Automation</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-004', 'generated/ameetech-04-ameebot-ai-automation.png', 'Ameebot AI Customer Service Automation', 'ameetech-04-ameebot-ai-automation.png', 'AI & Automation')">
+                    <img src="generated/ameetech-04-ameebot-ai-automation.png" alt="Ameebot AI Customer Service Automation" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Ameebot AI Customer Service Automation</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-04-ameebot-ai-automation.png">ameetech-04-ameebot-ai-automation.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-04-ameebot-ai-automation.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Sleek square promotional social media flyer for Ameetech AI automation. Pure white studio environment with energetic Ameetech purple (#6C2BD9) accent waves. Center visual of an intelligent, friendly 3D geometric AI assistant sphere connected to multi-channel chat bubbles and automated CRM workflows. Crisp layout, readable headers, Ameetech logo emblem, bottom banner with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-004', 'ameetech-04-ameebot-ai-automation.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-004')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-005" data-category="enterprise solutions" data-search="custom erp & business operations portals flyer-005 enterprise solutions ameetech-05-erp-business-portals.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-005</span>
+                    <span class="card-category">Enterprise Solutions</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-005', 'generated/ameetech-05-erp-business-portals.png', 'Custom ERP & Business Operations Portals', 'ameetech-05-erp-business-portals.png', 'Enterprise Solutions')">
+                    <img src="generated/ameetech-05-erp-business-portals.png" alt="Custom ERP & Business Operations Portals" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Custom ERP & Business Operations Portals</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-05-erp-business-portals.png">ameetech-05-erp-business-portals.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-05-erp-business-portals.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Corporate square social flyer for Ameetech Business Portals & ERP systems. Elegant white setting with deep purple (#6C2BD9) modular frames. 3D isometric representation of integrated enterprise software: finance, supply chain, human resources, and real-time executive analytics in synchronized harmony. High contrast, authoritative executive tech branding, official Ameetech identity, 'ameetechnology.com.ng', WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-005', 'ameetech-05-erp-business-portals.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-005')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-006" data-category="ui/ux & design" data-search="high-fidelity ui/ux product design & prototyping flyer-006 ui/ux & design ameetech-06-uiux-product-design.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-006</span>
+                    <span class="card-category">UI/UX & Design</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-006', 'generated/ameetech-06-uiux-product-design.png', 'High-Fidelity UI/UX Product Design & Prototyping', 'ameetech-06-uiux-product-design.png', 'UI/UX & Design')">
+                    <img src="generated/ameetech-06-uiux-product-design.png" alt="High-Fidelity UI/UX Product Design & Prototyping" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">High-Fidelity UI/UX Product Design & Prototyping</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-06-uiux-product-design.png">ameetech-06-uiux-product-design.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-06-uiux-product-design.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Inspiring square design-focused promotional graphic for Ameetech UI/UX services. Minimalist white canvas with vibrant purple (#6C2BD9) design rulers, artboards, and wireframe overlays. Center shows layered Figma-style design components floating with modern typography, micro-interactions, and design token hierarchies. Top-tier creative tech presentation, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-006', 'ameetech-06-uiux-product-design.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-006')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-007" data-category="e-commerce" data-search="e-commerce platforms & payment integrations flyer-007 e-commerce ameetech-07-ecommerce-platforms.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-007</span>
+                    <span class="card-category">E-Commerce</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-007', 'generated/ameetech-07-ecommerce-platforms.png', 'E-Commerce Platforms & Payment Integrations', 'ameetech-07-ecommerce-platforms.png', 'E-Commerce')">
+                    <img src="generated/ameetech-07-ecommerce-platforms.png" alt="E-Commerce Platforms & Payment Integrations" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">E-Commerce Platforms & Payment Integrations</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-07-ecommerce-platforms.png">ameetech-07-ecommerce-platforms.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-07-ecommerce-platforms.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Contemporary square social media flyer for Ameetech E-commerce development. Clean white backdrop with bold purple (#6C2BD9) checkout accent ribbons. 3D isometric digital shopping cart integrated with secure Nigerian and international payment gateways, card tokens, and instant order delivery status indicators. High visual clarity, Ameetech branding, clear contact bar with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-007', 'ameetech-07-ecommerce-platforms.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-007')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-008" data-category="branding" data-search="corporate tech brand identity & design systems flyer-008 branding ameetech-08-brand-identity-systems.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-008</span>
+                    <span class="card-category">Branding</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-008', 'generated/ameetech-08-brand-identity-systems.png', 'Corporate Tech Brand Identity & Design Systems', 'ameetech-08-brand-identity-systems.png', 'Branding')">
+                    <img src="generated/ameetech-08-brand-identity-systems.png" alt="Corporate Tech Brand Identity & Design Systems" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Corporate Tech Brand Identity & Design Systems</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-08-brand-identity-systems.png">ameetech-08-brand-identity-systems.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-08-brand-identity-systems.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Sophisticated square promotional flyer for Ameetech Brand Identity services. Crisp white background with vivid purple (#6C2BD9) brand guidelines swatch book and geometric grid patterns. Central 3D mockups of corporate stationery, vector logos, responsive typography scales, and cohesive digital assets. Premium Nigerian tech studio feel, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-008', 'ameetech-08-brand-identity-systems.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-008')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-009" data-category="cloud & devops" data-search="cloud infrastructure, docker & devops optimization flyer-009 cloud & devops ameetech-09-cloud-devops-optimization.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-009</span>
+                    <span class="card-category">Cloud & DevOps</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-009', 'generated/ameetech-09-cloud-devops-optimization.png', 'Cloud Infrastructure, Docker & DevOps Optimization', 'ameetech-09-cloud-devops-optimization.png', 'Cloud & DevOps')">
+                    <img src="generated/ameetech-09-cloud-devops-optimization.png" alt="Cloud Infrastructure, Docker & DevOps Optimization" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Cloud Infrastructure, Docker & DevOps Optimization</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-09-cloud-devops-optimization.png">ameetech-09-cloud-devops-optimization.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-09-cloud-devops-optimization.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Tech-forward square social media flyer for Ameetech Cloud & DevOps solutions. Pure white environment with energetic deep purple (#6C2BD9) server rack illumination and cloud pipelines. 3D isometric cloud cluster with interconnected Docker containers, CI/CD pipeline gears, and high-availability load balancers. Clean tech layout, Ameetech branding, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-009', 'ameetech-09-cloud-devops-optimization.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-009')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-010" data-category="backend engineering" data-search="secure rest & graphql api engineering flyer-010 backend engineering ameetech-10-secure-api-engineering.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-010</span>
+                    <span class="card-category">Backend Engineering</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-010', 'generated/ameetech-10-secure-api-engineering.png', 'Secure REST & GraphQL API Engineering', 'ameetech-10-secure-api-engineering.png', 'Backend Engineering')">
+                    <img src="generated/ameetech-10-secure-api-engineering.png" alt="Secure REST & GraphQL API Engineering" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Secure REST & GraphQL API Engineering</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-10-secure-api-engineering.png">ameetech-10-secure-api-engineering.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-10-secure-api-engineering.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Precision-engineered square social media flyer for Ameetech API architecture services. White modern background with bold purple (#6C2BD9) interconnected data pathways and security shield glyphs. Center visual of modular API gateways, encrypted endpoints, fast response telemetry graphs, and JSON data structures. Highly professional layout, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-010', 'ameetech-10-secure-api-engineering.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-010')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-011" data-category="edtech" data-search="edtech systems & online learning platforms flyer-011 edtech ameetech-11-edtech-learning-platforms.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-011</span>
+                    <span class="card-category">EdTech</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-011', 'generated/ameetech-11-edtech-learning-platforms.png', 'EdTech Systems & Online Learning Platforms', 'ameetech-11-edtech-learning-platforms.png', 'EdTech')">
+                    <img src="generated/ameetech-11-edtech-learning-platforms.png" alt="EdTech Systems & Online Learning Platforms" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">EdTech Systems & Online Learning Platforms</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-11-edtech-learning-platforms.png">ameetech-11-edtech-learning-platforms.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-11-edtech-learning-platforms.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Clean square social media flyer for Ameetech EdTech & LMS solutions. White open background with vibrant purple (#6C2BD9) interactive study elements. Central 3D illustration of an interactive digital classroom tablet, graduation cap icon, live video lecture modules, and course progress tracking badges. Modern educational tech look, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-011', 'ameetech-11-edtech-learning-platforms.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-011')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-012" data-category="academy & education" data-search="ameetech business & economics academy cohorts flyer-012 academy & education ameetech-12-business-economics-academy.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-012</span>
+                    <span class="card-category">Academy & Education</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-012', 'generated/ameetech-12-business-economics-academy.png', 'Ameetech Business & Economics Academy Cohorts', 'ameetech-12-business-economics-academy.png', 'Academy & Education')">
+                    <img src="generated/ameetech-12-business-economics-academy.png" alt="Ameetech Business & Economics Academy Cohorts" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Ameetech Business & Economics Academy Cohorts</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-12-business-economics-academy.png">ameetech-12-business-economics-academy.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-12-business-economics-academy.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Prestigious square promotional flyer for Ameetech Business & Economics Academy. Pristine white background with luxurious Ameetech purple (#6C2BD9) accents and restrained gradient borders. Center showcases 3D business growth barometer, financial modeling graphs, executive certificates, and strategic roadmaps. Authoritative leadership aesthetic, official Ameetech Academy branding, 'ameetechnology.com.ng', WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-012', 'ameetech-12-business-economics-academy.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-012')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-013" data-category="automation" data-search="whatsapp business cloud automation & lead bots flyer-013 automation ameetech-13-whatsapp-business-automation.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-013</span>
+                    <span class="card-category">Automation</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-013', 'generated/ameetech-13-whatsapp-business-automation.png', 'WhatsApp Business Cloud Automation & Lead Bots', 'ameetech-13-whatsapp-business-automation.png', 'Automation')">
+                    <img src="generated/ameetech-13-whatsapp-business-automation.png" alt="WhatsApp Business Cloud Automation & Lead Bots" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">WhatsApp Business Cloud Automation & Lead Bots</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-13-whatsapp-business-automation.png">ameetech-13-whatsapp-business-automation.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-13-whatsapp-business-automation.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Vibrant, professional square social flyer for Ameetech WhatsApp Business Cloud API integration. Clean white backdrop with signature Ameetech purple (#6C2BD9) accents and subtle green notification touches. Center shows a smartphone with automated customer journey triggers, instant catalog checkout, and 24/7 smart auto-reply bubbles. Mobile-first hierarchy, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-013', 'ameetech-13-whatsapp-business-automation.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-013')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-014" data-category="healthtech" data-search="clinic & hospital healthtech management software flyer-014 healthtech ameetech-14-healthtech-clinic-management.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-014</span>
+                    <span class="card-category">HealthTech</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-014', 'generated/ameetech-14-healthtech-clinic-management.png', 'Clinic & Hospital HealthTech Management Software', 'ameetech-14-healthtech-clinic-management.png', 'HealthTech')">
+                    <img src="generated/ameetech-14-healthtech-clinic-management.png" alt="Clinic & Hospital HealthTech Management Software" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Clinic & Hospital HealthTech Management Software</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-14-healthtech-clinic-management.png">ameetech-14-healthtech-clinic-management.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-14-healthtech-clinic-management.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Reassuring and modern square social media flyer for Ameetech HealthTech systems. Crisp white backdrop with bold purple (#6C2BD9) healthcare accents and subtle medical cross patterns. 3D isometric hospital tablet displaying electronic health records (EHR), patient appointment scheduling, pharmacy inventory, and lab results. Clean medical-tech polish, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-014', 'ameetech-14-healthtech-clinic-management.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-014')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-015" data-category="proptech" data-search="commercial real estate & property listing portals flyer-015 proptech ameetech-15-real-estate-property-portals.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-015</span>
+                    <span class="card-category">PropTech</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-015', 'generated/ameetech-15-real-estate-property-portals.png', 'Commercial Real Estate & Property Listing Portals', 'ameetech-15-real-estate-property-portals.png', 'PropTech')">
+                    <img src="generated/ameetech-15-real-estate-property-portals.png" alt="Commercial Real Estate & Property Listing Portals" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Commercial Real Estate & Property Listing Portals</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-15-real-estate-property-portals.png">ameetech-15-real-estate-property-portals.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-15-real-estate-property-portals.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">High-impact square social media flyer for Ameetech Real Estate Portals. White architectural setting with rich purple (#6C2BD9) framing. Center visual of a modern isometric architectural building surrounded by interactive map location pins, virtual tour badges, and verified property listing cards. Sophisticated Nigerian PropTech feel, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-015', 'ameetech-15-real-estate-property-portals.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-015')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-016" data-category="logistics tech" data-search="logistics, dispatch & fleet tracking systems flyer-016 logistics tech ameetech-16-logistics-fleet-tracking.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-016</span>
+                    <span class="card-category">Logistics Tech</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-016', 'generated/ameetech-16-logistics-fleet-tracking.png', 'Logistics, Dispatch & Fleet Tracking Systems', 'ameetech-16-logistics-fleet-tracking.png', 'Logistics Tech')">
+                    <img src="generated/ameetech-16-logistics-fleet-tracking.png" alt="Logistics, Dispatch & Fleet Tracking Systems" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Logistics, Dispatch & Fleet Tracking Systems</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-16-logistics-fleet-tracking.png">ameetech-16-logistics-fleet-tracking.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-16-logistics-fleet-tracking.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Dynamic square social flyer for Ameetech Logistics & Fleet Management platforms. Clean white ground with bold Ameetech purple (#6C2BD9) transit lines and route milestones. Center 3D isometric delivery van, GPS satellite tracking compass, package scanning barcode radar, and real-time transit telemetry. High-tech logistics precision, Ameetech branding, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-016', 'ameetech-16-logistics-fleet-tracking.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-016')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-017" data-category="edtech" data-search="school management & student information systems flyer-017 edtech ameetech-17-school-management-systems.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-017</span>
+                    <span class="card-category">EdTech</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-017', 'generated/ameetech-17-school-management-systems.png', 'School Management & Student Information Systems', 'ameetech-17-school-management-systems.png', 'EdTech')">
+                    <img src="generated/ameetech-17-school-management-systems.png" alt="School Management & Student Information Systems" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">School Management & Student Information Systems</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-17-school-management-systems.png">ameetech-17-school-management-systems.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-17-school-management-systems.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Polished square promotional flyer for Ameetech School & University Information Systems. Bright white canvas with royal purple (#6C2BD9) badges. 3D isometric composition with digital student report cards, automated attendance scanners, school fee payment ledger, and parent communication portal screens. Educational excellence, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-017', 'ameetech-17-school-management-systems.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-017')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-018" data-category="fintech" data-search="microfinance, sacco & cooperative lending software flyer-018 fintech ameetech-18-microfinance-cooperative-software.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-018</span>
+                    <span class="card-category">Fintech</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-018', 'generated/ameetech-18-microfinance-cooperative-software.png', 'Microfinance, SACCO & Cooperative Lending Software', 'ameetech-18-microfinance-cooperative-software.png', 'Fintech')">
+                    <img src="generated/ameetech-18-microfinance-cooperative-software.png" alt="Microfinance, SACCO & Cooperative Lending Software" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Microfinance, SACCO & Cooperative Lending Software</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-18-microfinance-cooperative-software.png">ameetech-18-microfinance-cooperative-software.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-18-microfinance-cooperative-software.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Trustworthy square social media flyer for Ameetech Cooperative & Microfinance platforms. Crisp white background with secure purple (#6C2BD9) vault and ledger accents. Center 3D isometric illustration of loan disbursement workflows, member savings ledgers, repayment schedules, and automated interest calculators. Bank-grade fintech aesthetic, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-018', 'ameetech-18-microfinance-cooperative-software.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-018')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-019" data-category="retail tech" data-search="cloud point-of-sale (pos) & multi-store inventory flyer-019 retail tech ameetech-19-cloud-pos-inventory-systems.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-019</span>
+                    <span class="card-category">Retail Tech</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-019', 'generated/ameetech-19-cloud-pos-inventory-systems.png', 'Cloud Point-of-Sale (POS) & Multi-Store Inventory', 'ameetech-19-cloud-pos-inventory-systems.png', 'Retail Tech')">
+                    <img src="generated/ameetech-19-cloud-pos-inventory-systems.png" alt="Cloud Point-of-Sale (POS) & Multi-Store Inventory" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Cloud Point-of-Sale (POS) & Multi-Store Inventory</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-19-cloud-pos-inventory-systems.png">ameetech-19-cloud-pos-inventory-systems.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-19-cloud-pos-inventory-systems.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Modern square social graphic for Ameetech Cloud POS and Retail systems. White background with bold Ameetech purple (#6C2BD9) checkout terminal accents. Center visual showcases an elegant touchscreen POS terminal, receipt printer, cloud inventory sync arrows, and multi-branch stock reconciliation metrics. Retail innovation, Ameetech branding, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-019', 'ameetech-19-cloud-pos-inventory-systems.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-019')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-020" data-category="cybersecurity" data-search="web application cybersecurity hardening & audits flyer-020 cybersecurity ameetech-20-cybersecurity-hardening-audits.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-020</span>
+                    <span class="card-category">Cybersecurity</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-020', 'generated/ameetech-20-cybersecurity-hardening-audits.png', 'Web Application Cybersecurity Hardening & Audits', 'ameetech-20-cybersecurity-hardening-audits.png', 'Cybersecurity')">
+                    <img src="generated/ameetech-20-cybersecurity-hardening-audits.png" alt="Web Application Cybersecurity Hardening & Audits" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Web Application Cybersecurity Hardening & Audits</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-20-cybersecurity-hardening-audits.png">ameetech-20-cybersecurity-hardening-audits.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-20-cybersecurity-hardening-audits.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Authoritative square promotional flyer for Ameetech Cybersecurity & Application Hardening. Minimal white backdrop with luminous deep purple (#6C2BD9) security grid lines. 3D holographic security shield with cryptographic padlock, vulnerability scanner readout, zero-trust authentication badges, and SSL encryption lockets. Confident Nigerian cybersecurity agency feel, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-020', 'ameetech-20-cybersecurity-hardening-audits.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-020')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-021" data-category="growth marketing" data-search="enterprise performance seo & search growth flyer-021 growth marketing ameetech-21-performance-seo-growth.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-021</span>
+                    <span class="card-category">Growth Marketing</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-021', 'generated/ameetech-21-performance-seo-growth.png', 'Enterprise Performance SEO & Search Growth', 'ameetech-21-performance-seo-growth.png', 'Growth Marketing')">
+                    <img src="generated/ameetech-21-performance-seo-growth.png" alt="Enterprise Performance SEO & Search Growth" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Enterprise Performance SEO & Search Growth</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-21-performance-seo-growth.png">ameetech-21-performance-seo-growth.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-21-performance-seo-growth.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Results-driven square social media flyer for Ameetech Performance SEO & Search Visibility. White clean aesthetic with vibrant purple (#6C2BD9) rank growth charts. Center features a 3D upward trending search engine rankings curve, SERP snippet preview, keyword target radar, and organic traffic acceleration rockets. Clean typography, Ameetech branding, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-021', 'ameetech-21-performance-seo-growth.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-021')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-022" data-category="media production" data-search="corporate 3d motion graphics & tech media production flyer-022 media production ameetech-22-motion-graphics-media-tech.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-022</span>
+                    <span class="card-category">Media Production</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-022', 'generated/ameetech-22-motion-graphics-media-tech.png', 'Corporate 3D Motion Graphics & Tech Media Production', 'ameetech-22-motion-graphics-media-tech.png', 'Media Production')">
+                    <img src="generated/ameetech-22-motion-graphics-media-tech.png" alt="Corporate 3D Motion Graphics & Tech Media Production" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Corporate 3D Motion Graphics & Tech Media Production</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-22-motion-graphics-media-tech.png">ameetech-22-motion-graphics-media-tech.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-22-motion-graphics-media-tech.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Creative square social media flyer for Ameetech Tech Media Production & Motion Graphics. Clean white environment with dynamic purple (#6C2BD9) rendering timelines and cinematic camera lenses. Center 3D isometric video editing workstation with keyframe timelines, 4K render monitors, and fluid motion particles. Artistic tech precision, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-022', 'ameetech-22-motion-graphics-media-tech.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-022')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-023" data-category="talent & training" data-search="corporate software training & digital upskilling flyer-023 talent & training ameetech-23-corporate-tech-upskilling.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-023</span>
+                    <span class="card-category">Talent & Training</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-023', 'generated/ameetech-23-corporate-tech-upskilling.png', 'Corporate Software Training & Digital Upskilling', 'ameetech-23-corporate-tech-upskilling.png', 'Talent & Training')">
+                    <img src="generated/ameetech-23-corporate-tech-upskilling.png" alt="Corporate Software Training & Digital Upskilling" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Corporate Software Training & Digital Upskilling</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-23-corporate-tech-upskilling.png">ameetech-23-corporate-tech-upskilling.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-23-corporate-tech-upskilling.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Inspiring square social flyer for Ameetech Corporate Software Training programs. Bright white backdrop with bold purple (#6C2BD9) tech badge accents. Center visual portrays an executive tech workshop hub with laptop workstations, collaborative code screens, skill level progress rings, and career graduation laurels. Professional human-centered feel, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-023', 'ameetech-23-corporate-tech-upskilling.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-023')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-024" data-category="data & bi" data-search="business intelligence & executive analytics dashboards flyer-024 data & bi ameetech-24-business-intelligence-dashboards.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-024</span>
+                    <span class="card-category">Data & BI</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-024', 'generated/ameetech-24-business-intelligence-dashboards.png', 'Business Intelligence & Executive Analytics Dashboards', 'ameetech-24-business-intelligence-dashboards.png', 'Data & BI')">
+                    <img src="generated/ameetech-24-business-intelligence-dashboards.png" alt="Business Intelligence & Executive Analytics Dashboards" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Business Intelligence & Executive Analytics Dashboards</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-24-business-intelligence-dashboards.png">ameetech-24-business-intelligence-dashboards.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-24-business-intelligence-dashboards.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Executive-grade square social media flyer for Ameetech Business Intelligence & Analytics. White minimal background with refined purple (#6C2BD9) analytics dials. Centerpiece 3D multi-layered analytics dashboard with interactive revenue heatmaps, cohort retention graphs, predictive KPI forecast gauges, and real-time data feeds. Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-024', 'ameetech-24-business-intelligence-dashboards.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-024')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-025" data-category="agritech" data-search="agritech marketplaces & smart commodity distribution flyer-025 agritech ameetech-25-agritech-marketplaces.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-025</span>
+                    <span class="card-category">AgriTech</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-025', 'generated/ameetech-25-agritech-marketplaces.png', 'AgriTech Marketplaces & Smart Commodity Distribution', 'ameetech-25-agritech-marketplaces.png', 'AgriTech')">
+                    <img src="generated/ameetech-25-agritech-marketplaces.png" alt="AgriTech Marketplaces & Smart Commodity Distribution" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">AgriTech Marketplaces & Smart Commodity Distribution</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-25-agritech-marketplaces.png">ameetech-25-agritech-marketplaces.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-25-agritech-marketplaces.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Forward-looking square social flyer for Ameetech AgriTech platforms. White clean background with rich purple (#6C2BD9) digital supply chain graphics and subtle natural green leaf accents. Center 3D tablet displaying farm-to-market trade exchanges, grain commodity pricing, cold-chain transport tracking, and direct farmer payout gates. Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-025', 'ameetech-25-agritech-marketplaces.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-025')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-026" data-category="hospitality tech" data-search="hotel booking engines & hospitality guest portals flyer-026 hospitality tech ameetech-26-hotel-booking-engines.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-026</span>
+                    <span class="card-category">Hospitality Tech</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-026', 'generated/ameetech-26-hotel-booking-engines.png', 'Hotel Booking Engines & Hospitality Guest Portals', 'ameetech-26-hotel-booking-engines.png', 'Hospitality Tech')">
+                    <img src="generated/ameetech-26-hotel-booking-engines.png" alt="Hotel Booking Engines & Hospitality Guest Portals" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Hotel Booking Engines & Hospitality Guest Portals</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-26-hotel-booking-engines.png">ameetech-26-hotel-booking-engines.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-26-hotel-booking-engines.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Refined square social media flyer for Ameetech Hospitality Management Systems. Clean white setting with rich purple (#6C2BD9) luxury motifs. Center 3D isometric hospitality kiosk showing instant room reservation calendars, contactless QR guest check-in, housekeeping management, and POS billing integrations. Ameetech branding, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-026', 'ameetech-26-hotel-booking-engines.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-026')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-027" data-category="event tech" data-search="digital event ticketing & qr access verification flyer-027 event tech ameetech-27-digital-ticketing-qr-access.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-027</span>
+                    <span class="card-category">Event Tech</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-027', 'generated/ameetech-27-digital-ticketing-qr-access.png', 'Digital Event Ticketing & QR Access Verification', 'ameetech-27-digital-ticketing-qr-access.png', 'Event Tech')">
+                    <img src="generated/ameetech-27-digital-ticketing-qr-access.png" alt="Digital Event Ticketing & QR Access Verification" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Digital Event Ticketing & QR Access Verification</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-27-digital-ticketing-qr-access.png">ameetech-27-digital-ticketing-qr-access.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-27-digital-ticketing-qr-access.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Modern square social graphic for Ameetech Event Ticketing Solutions. Pristine white background with bold purple (#6C2BD9) event wristband and VIP pass motifs. Center 3D floating digital ticket stub with encrypted QR code, high-speed gate scanner beam, and real-time attendee admissions analytics. Sleek tech agency finish, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-027', 'ameetech-27-digital-ticketing-qr-access.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-027')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-028" data-category="modernization" data-search="legacy system modernization & cloud migration flyer-028 modernization ameetech-28-legacy-cloud-migration.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-028</span>
+                    <span class="card-category">Modernization</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-028', 'generated/ameetech-28-legacy-cloud-migration.png', 'Legacy System Modernization & Cloud Migration', 'ameetech-28-legacy-cloud-migration.png', 'Modernization')">
+                    <img src="generated/ameetech-28-legacy-cloud-migration.png" alt="Legacy System Modernization & Cloud Migration" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Legacy System Modernization & Cloud Migration</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-28-legacy-cloud-migration.png">ameetech-28-legacy-cloud-migration.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-28-legacy-cloud-migration.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Strategic square social media flyer for Ameetech Legacy Modernization services. White studio background with vibrant purple (#6C2BD9) architectural evolution arrows. Center 3D transformation visual: monolithic legacy server blocks seamlessly refactoring into sleek microservices and lightning-fast cloud containers. Clean enterprise hierarchy, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-028', 'ameetech-28-legacy-cloud-migration.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-028')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-029" data-category="startups & mvps" data-search="startup fast-track mvp engineering program flyer-029 startups & mvps ameetech-29-startup-fasttrack-mvp.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-029</span>
+                    <span class="card-category">Startups & MVPs</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-029', 'generated/ameetech-29-startup-fasttrack-mvp.png', 'Startup Fast-Track MVP Engineering Program', 'ameetech-29-startup-fasttrack-mvp.png', 'Startups & MVPs')">
+                    <img src="generated/ameetech-29-startup-fasttrack-mvp.png" alt="Startup Fast-Track MVP Engineering Program" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Startup Fast-Track MVP Engineering Program</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-29-startup-fasttrack-mvp.png">ameetech-29-startup-fasttrack-mvp.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-29-startup-fasttrack-mvp.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">High-energy square social flyer for Ameetech Startup MVP Fast-Track. Clean white canvas with bold Ameetech purple (#6C2BD9) rocket trajectory arcs. Center 3D isometric startup product launchpad with modular product features, agile sprint milestone charts, and investor-ready prototype mobile screens. Modern tech founder appeal, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-029', 'ameetech-29-startup-fasttrack-mvp.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-029')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="generated" data-id="FLYER-030" data-category="dedicated teams" data-search="dedicated nigerian engineering teams for global scale flyer-030 dedicated teams ameetech-30-dedicated-engineering-teams.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLYER-030</span>
+                    <span class="card-category">Dedicated Teams</span>
+                </div>
+                <span class="status-pill status-generated">GENERATED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLYER-030', 'generated/ameetech-30-dedicated-engineering-teams.png', 'Dedicated Nigerian Engineering Teams for Global Scale', 'ameetech-30-dedicated-engineering-teams.png', 'Dedicated Teams')">
+                    <img src="generated/ameetech-30-dedicated-engineering-teams.png" alt="Dedicated Nigerian Engineering Teams for Global Scale" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Dedicated Nigerian Engineering Teams for Global Scale</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="ameetech-30-dedicated-engineering-teams.png">ameetech-30-dedicated-engineering-teams.png</code>
+                    <button class="btn-copy" onclick="copyText('ameetech-30-dedicated-engineering-teams.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Empowering square social media flyer for Ameetech Dedicated Engineering Teams. Pure white environment with bold purple (#6C2BD9) global connectivity lines extending from Nigeria across the globe. Center visual of a high-tech collaborative engineering workspace, dual monitors with full-stack code repositories, agile scrum boards, and global time-zone clock synchronizers. Global standards, Ameetech logo, footer with 'ameetechnology.com.ng' and WhatsApp '+234 810 001 5498'.</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLYER-030', 'ameetech-30-dedicated-engineering-teams.png')" >
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLYER-030')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="previewModal" onclick="closeModalOnBg(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">Flyer Preview</span>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImg" class="modal-img" src="" alt="Flyer Preview">
+                <div class="modal-info">
+                    <div>
+                        <small style="color: var(--text-muted); font-weight:700;" id="modalId">ID</small>
+                        <h2 style="font-size: 1.3rem; margin-top: 4px;" id="modalHeading">Title</h2>
+                    </div>
+
+                    <div>
+                        <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">IMAGE FILENAME:</label>
+                        <div class="modal-cmd-box" style="margin-top:4px;">
+                            <span id="modalFilename">filename.png</span>
+                            <button class="btn-copy" style="color:#38BDF8;" onclick="copyText(document.getElementById('modalFilename').innerText, this)">Copy</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">APPROVAL CLI COMMAND:</label>
+                        <div class="modal-cmd-box" style="margin-top:4px;">
+                            <span id="modalCliCmd">python flyer_tool.py approve FLYER-001</span>
+                            <button class="btn-copy" style="color:#38BDF8;" onclick="copyText(document.getElementById('modalCliCmd').innerText, this)">Copy</button>
+                        </div>
+                    </div>
+
+                    <div style="background:var(--tint); padding:12px; border-radius:8px; font-size:0.82rem; color:var(--primary);">
+                        <strong>Brand Requirement Compliance:</strong>
+                        <p style="margin-top:4px;">Square 1080×1080 format. Authentic Ameetech purple palette (#6C2BD9). ameetechnology.com.ng & +234 810 001 5498 contact footer included.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script>
+        function filterGallery(status, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            
+            const cards = document.querySelectorAll('.flyer-card');
+            cards.forEach(card => {
+                if (status === 'all' || card.dataset.status === status) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function searchGallery() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.flyer-card');
+            cards.forEach(card => {
+                const text = card.dataset.search;
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(id, imgSrc, title, filename, category) {
+            document.getElementById('modalId').innerText = id + ' • ' + category;
+            document.getElementById('modalHeading').innerText = title;
+            document.getElementById('modalFilename').innerText = filename;
+            document.getElementById('modalCliCmd').innerText = `python flyer_tool.py approve ${id}`;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('previewModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        function closeModalOnBg(e) {
+            if (e.target.id === 'previewModal') closeModal();
+        }
+
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(`Copied: ${text}`);
+                if (btn) {
+                    const orig = btn.innerText;
+                    btn.innerText = 'Copied!';
+                    setTimeout(() => btn.innerText = orig, 1500);
+                }
+            });
+        }
+
+        function copyCliCmd(id) {
+            const cmd = `python flyer_tool.py approve ${id}`;
+            copyText(cmd);
+        }
+
+        function showApproveCmd(id, filename) {
+            openModal(id, `generated/${filename}`, `Approval for ${id}`, filename, 'Action');
+        }
+
+        function showApproveAllModal() {
+            const cmd = 'python flyer_tool.py approve --all';
+            copyText(cmd);
+            alert(`Approval Command Copied:\n\n${cmd}\n\nRun this command in your terminal to approve all generated flyers into the approved/ folder.`);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 2500);
+        }
+    </script>
+</body>
+</html>

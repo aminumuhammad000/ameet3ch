@@ -136,7 +136,7 @@ export default function Footer() {
           {/* Legal & Company */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-4">
-              Company & Legal
+              Company &amp; Legal
             </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
@@ -156,12 +156,35 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/terms" className="hover:text-purple-400 transition">
-                  Terms of Use & Disclaimers
+                  Terms of Use &amp; Disclaimers
                 </Link>
               </li>
               <li>
+                <Link href="/cookies" className="hover:text-purple-400 transition">
+                  Cookie Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/data-deletion" className="hover:text-purple-400 transition">
+                  Data Deletion
+                </Link>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      window.dispatchEvent(new Event('openAmeeCookieSettings'));
+                    }
+                  }}
+                  className="hover:text-purple-400 transition text-left text-sm text-slate-300 flex items-center gap-1.5"
+                >
+                  Cookie Settings
+                </button>
+              </li>
+              <li>
                 <Link href="/contact" className="hover:text-purple-400 transition">
-                  Contact & Support
+                  Contact &amp; Support
                 </Link>
               </li>
             </ul>

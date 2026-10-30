@@ -88,9 +88,27 @@
   </url>
   <url>
     <loc>https://ameetechnology.com.ng/privacy-policy.html</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://ameetechnology.com.ng/terms.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://ameetechnology.com.ng/cookie-policy.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://ameetechnology.com.ng/data-deletion.html</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
   </url>
   <url>
     <loc>https://ameetechnology.com.ng/aminu-portfolio/</loc>

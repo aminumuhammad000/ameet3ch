@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ameetech Flyer Review & Approval Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C2BD9;
+            --primary-dark: #581CBA;
+            --tint: #F3E8FF;
+            --white: #ffffff;
+            --bg: #F8FAFC;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        header {
+            background: var(--white);
+            border-bottom: 2px solid var(--border);
+            padding: 24px 32px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+        }
+
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .brand-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .brand-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-chip {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-chip .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .dot-all { background: var(--text-dark); }
+        .dot-generated { background: var(--primary); }
+        .dot-approved { background: var(--success); }
+        .dot-pending { background: var(--warning); }
+        .dot-failed { background: var(--danger); }
+
+        /* Controls Section */
+        .controls-wrapper {
+            max-width: 1440px;
+            margin: 24px auto 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filters-group {
+            display: flex;
+            gap: 8px;
+            background: var(--white);
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--tint);
+            color: var(--primary);
+        }
+
+        .search-input {
+            flex: 1;
+            max-width: 360px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            outline: none;
+            background: var(--white);
+            font-family: inherit;
+        }
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 43, 217, 0.15);
+        }
+
+        .btn-bulk-approve {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+        .btn-bulk-approve:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Grid */
+        .gallery-grid {
+            max-width: 1440px;
+            margin: 28px auto 0 auto;
+            padding: 0 32px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .flyer-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .flyer-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(108, 43, 217, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .card-header {
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            background: #FAFAFA;
+        }
+
+        .id-category {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-id {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--primary);
+            background: var(--tint);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .card-category {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .status-pill {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.04em;
+        }
+        .status-pending { background: #FEF3C7; color: #92400E; }
+        .status-generated { background: var(--tint); color: var(--primary); }
+        .status-approved { background: #D1FAE5; color: #065F46; }
+        .status-failed { background: #FEE2E2; color: #991B1B; }
+
+        .card-img-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #f1f5f9;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .card-img-wrap:hover img {
+            transform: scale(1.03);
+        }
+
+        .preview-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.75);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .card-img-wrap:hover .preview-badge {
+            opacity: 1;
+        }
+
+        .card-img-placeholder {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #F8FAFC;
+            border-bottom: 1px dashed var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-muted);
+        }
+        .placeholder-icon { font-size: 2.2rem; opacity: 0.6; }
+        .placeholder-sub { font-size: 0.75rem; }
+
+        .card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: var(--text-dark);
+        }
+
+        .filename-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #F1F5F9;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+        .filename-code {
+            font-family: 'JetBrains Mono', monospace;
+            color: #334155;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 210px;
+        }
+        .btn-copy {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.75rem;
+            cursor: pointer;
+            padding: 2px 6px;
+        }
+        .btn-copy:hover { text-decoration: underline; }
+
+        .prompt-details {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 8px;
+        }
+        .prompt-details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            user-select: none;
+        }
+        .prompt-text {
+            margin-top: 6px;
+            line-height: 1.45;
+            color: #475569;
+            background: #f8fafc;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+        }
+
+        .contact-verification {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 8px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 8px;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        .btn-approve {
+            background: #F0FDF4;
+            color: #166534;
+            border-color: #BBF7D0;
+        }
+        .btn-approve:hover:not([disabled]) {
+            background: #166534;
+            color: #ffffff;
+        }
+        .btn-approve[disabled] {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-cli {
+            flex: 0 0 54px;
+            background: #F8FAFC;
+            color: #475569;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+        .btn-cli:hover {
+            background: #E2E8F0;
+        }
+
+        /* Fullscreen Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.88);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            background: var(--white);
+            max-width: 960px;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-height: 90vh;
+        }
+        .modal-header {
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+        .modal-body {
+            padding: 24px;
+            display: flex;
+            gap: 24px;
+            overflow-y: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .modal-img {
+            max-width: 520px;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .modal-info {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .modal-cmd-box {
+            background: #0F172A;
+            color: #38BDF8;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0F172A;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: none;
+            z-index: 200;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="brand-block">
+                <img src="images/ameelogo.png" alt="Ameetech" class="brand-logo-img" onerror="this.style.display='none'">
+                <div>
+                    <h1 class="brand-title">Ameetech Bulk Flyer Review</h1>
+                    <p class="brand-subtitle">Amee Technology Ltd • 1080×1080 Square Promotional Flyers</p>
+                </div>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat-chip"><span class="dot dot-all"></span> Total: <strong id="stat-total">2</strong></div>
+                <div class="stat-chip"><span class="dot dot-generated"></span> Generated: <strong id="stat-gen">0</strong></div>
+                <div class="stat-chip"><span class="dot dot-approved"></span> Approved: <strong id="stat-app">1</strong></div>
+                <div class="stat-chip"><span class="dot dot-pending"></span> Pending: <strong id="stat-pen">1</strong></div>
+                <div class="stat-chip"><span class="dot dot-failed"></span> Failed: <strong id="stat-fail">0</strong></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="controls-wrapper">
+        <div class="filters-group">
+            <button class="filter-btn active" onclick="filterGallery('all', this)">All (2)</button>
+            <button class="filter-btn" onclick="filterGallery('generated', this)">Generated (0)</button>
+            <button class="filter-btn" onclick="filterGallery('approved', this)">Approved (1)</button>
+            <button class="filter-btn" onclick="filterGallery('pending', this)">Pending (1)</button>
+        </div>
+
+        <input type="text" id="searchInput" class="search-input" placeholder="Search title, ID, category..." onkeyup="searchGallery()">
+
+        <button class="btn-bulk-approve" onclick="showApproveAllModal()">
+            <i class="fa-solid fa-stamp"></i> Approval Center
+        </button>
+    </div>
+
+    <main class="gallery-grid" id="galleryGrid">
+        
+        <div class="flyer-card" data-status="approved" data-id="FLY-TEST-1" data-category="fintech" data-search="fintech engine fly-test-1 fintech fly-test-1.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLY-TEST-1</span>
+                    <span class="card-category">Fintech</span>
+                </div>
+                <span class="status-pill status-approved">APPROVED</span>
+            </div>
+            
+            
+                <div class="card-img-wrap" onclick="openModal('FLY-TEST-1', 'approved/fly-test-1.png', 'Fintech Engine', 'fly-test-1.png', 'Fintech')">
+                    <img src="approved/fly-test-1.png" alt="Fintech Engine" loading="lazy" />
+                    <span class="preview-badge"><i class="fa-solid fa-expand"></i> Click to Zoom</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">Fintech Engine</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="fly-test-1.png">fly-test-1.png</code>
+                    <button class="btn-copy" onclick="copyText('fly-test-1.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Ameetech modern fintech flyer</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLY-TEST-1', 'fly-test-1.png')" disabled>
+                        <i class="fa-solid fa-check"></i> Approved
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLY-TEST-1')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="flyer-card" data-status="pending" data-id="FLY-TEST-2" data-category="ai" data-search="ai portal fly-test-2 ai fly-test-2.png">
+            <div class="card-header">
+                <div class="id-category">
+                    <span class="card-id">FLY-TEST-2</span>
+                    <span class="card-category">AI</span>
+                </div>
+                <span class="status-pill status-pending">PENDING</span>
+            </div>
+            
+            
+                <div class="card-img-placeholder">
+                    <div class="placeholder-icon">📐</div>
+                    <p>Square 1080×1080 Canvas</p>
+                    <span class="placeholder-sub">Not yet generated</span>
+                </div>
+            
+            
+            <div class="card-body">
+                <h3 class="card-title">AI Portal</h3>
+                
+                <div class="filename-row">
+                    <code class="filename-code" title="fly-test-2.png">fly-test-2.png</code>
+                    <button class="btn-copy" onclick="copyText('fly-test-2.png', this)">Copy</button>
+                </div>
+
+                <details class="prompt-details">
+                    <summary>View Prompt Specification</summary>
+                    <p class="prompt-text">Ameetech modern AI flyer</p>
+                </details>
+
+                <div class="contact-verification">
+                    <small><span>🌐 ameetechnology.com.ng</span> • <span>💬 +234 810 001 5498</span></small>
+                </div>
+
+                <div class="card-actions">
+                    <button class="btn-action btn-approve" onclick="showApproveCmd('FLY-TEST-2', 'fly-test-2.png')" disabled>
+                        <i class="fa-solid fa-check"></i> Approve Flyer
+                    </button>
+                    <button class="btn-action btn-cli" onclick="copyCliCmd('FLY-TEST-2')">
+                        CLI
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="previewModal" onclick="closeModalOnBg(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">Flyer Preview</span>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImg" class="modal-img" src="" alt="Flyer Preview">
+                <div class="modal-info">
+                    <div>
+                        <small style="color: var(--text-muted); font-weight:700;" id="modalId">ID</small>
+                        <h2 style="font-size: 1.3rem; margin-top: 4px;" id="modalHeading">Title</h2>
+                    </div>
+
+                    <div>
+                        <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">IMAGE FILENAME:</label>
+                        <div class="modal-cmd-box" style="margin-top:4px;">
+                            <span id="modalFilename">filename.png</span>
+                            <button class="btn-copy" style="color:#38BDF8;" onclick="copyText(document.getElementById('modalFilename').innerText, this)">Copy</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">APPROVAL CLI COMMAND:</label>
+                        <div class="modal-cmd-box" style="margin-top:4px;">
+                            <span id="modalCliCmd">python flyer_tool.py approve FLYER-001</span>
+                            <button class="btn-copy" style="color:#38BDF8;" onclick="copyText(document.getElementById('modalCliCmd').innerText, this)">Copy</button>
+                        </div>
+                    </div>
+
+                    <div style="background:var(--tint); padding:12px; border-radius:8px; font-size:0.82rem; color:var(--primary);">
+                        <strong>Brand Requirement Compliance:</strong>
+                        <p style="margin-top:4px;">Square 1080×1080 format. Authentic Ameetech purple palette (#6C2BD9). ameetechnology.com.ng & +234 810 001 5498 contact footer included.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script>
+        function filterGallery(status, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            
+            const cards = document.querySelectorAll('.flyer-card');
+            cards.forEach(card => {
+                if (status === 'all' || card.dataset.status === status) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function searchGallery() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.flyer-card');
+            cards.forEach(card => {
+                const text = card.dataset.search;
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(id, imgSrc, title, filename, category) {
+            document.getElementById('modalId').innerText = id + ' • ' + category;
+            document.getElementById('modalHeading').innerText = title;
+            document.getElementById('modalFilename').innerText = filename;
+            document.getElementById('modalCliCmd').innerText = `python flyer_tool.py approve ${id}`;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('previewModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        function closeModalOnBg(e) {
+            if (e.target.id === 'previewModal') closeModal();
+        }
+
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(`Copied: ${text}`);
+                if (btn) {
+                    const orig = btn.innerText;
+                    btn.innerText = 'Copied!';
+                    setTimeout(() => btn.innerText = orig, 1500);
+                }
+            });
+        }
+
+        function copyCliCmd(id) {
+            const cmd = `python flyer_tool.py approve ${id}`;
+            copyText(cmd);
+        }
+
+        function showApproveCmd(id, filename) {
+            openModal(id, `generated/${filename}`, `Approval for ${id}`, filename, 'Action');
+        }
+
+        function showApproveAllModal() {
+            const cmd = 'python flyer_tool.py approve --all';
+            copyText(cmd);
+            alert(`Approval Command Copied:\n\n${cmd}\n\nRun this command in your terminal to approve all generated flyers into the approved/ folder.`);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 2500);
+        }
+    </script>
+</body>
+</html>
