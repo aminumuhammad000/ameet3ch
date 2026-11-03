@@ -1241,6 +1241,84 @@
         </section>
 
 
+        <!-- Public Email Subscription Section (NDPA 2023 Compliant) -->
+        <section class="section subscription-section" id="newsletter">
+            <div class="services-header">
+                <span class="section-tag-badge"><i class="fa-solid fa-envelope-open-text"></i> Technology Insights</span>
+                <h2>Get Practical Technology Insights for Your Business</h2>
+                <p>Receive useful business technology insights, website growth strategies, digital marketing tips and updates from Amee Technology.</p>
+            </div>
+
+            <div class="sub-card">
+                <form id="public-newsletter-form">
+                    <div class="sub-grid-2">
+                        <div class="sub-field">
+                            <label for="sub-first-name"><i class="fa-regular fa-user"></i> First Name *</label>
+                            <input type="text" id="sub-first-name" name="first_name" placeholder="e.g. Aminu" required />
+                        </div>
+                        <div class="sub-field">
+                            <label for="sub-email"><i class="fa-regular fa-envelope"></i> Business Email Address *</label>
+                            <input type="email" id="sub-email" name="email" placeholder="e.g. contact@yourbusiness.ng" required />
+                        </div>
+                    </div>
+
+                    <div class="sub-grid-2">
+                        <div class="sub-field">
+                            <label for="sub-business-name"><i class="fa-solid fa-briefcase"></i> Business Name (Optional)</label>
+                            <input type="text" id="sub-business-name" name="business_name" placeholder="e.g. Royal Suites Kano" />
+                        </div>
+                        <div class="sub-field">
+                            <label for="sub-industry"><i class="fa-solid fa-industry"></i> Industry (Optional)</label>
+                            <select id="sub-industry" name="industry">
+                                <option value="">Select your sector...</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Retail & E-Commerce">Retail & E-Commerce</option>
+                                <option value="Hospitality & Tourism">Hospitality & Tourism</option>
+                                <option value="Education & Schools">Education & Schools</option>
+                                <option value="Healthcare & Medical">Healthcare & Medical</option>
+                                <option value="Real Estate">Real Estate</option>
+                                <option value="Agriculture & Logistics">Agriculture & Logistics</option>
+                                <option value="Finance & Professional Services">Finance & Professional Services</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="topics-title"><i class="fa-solid fa-layer-group"></i> Topics of Interest:</div>
+                    <div class="topics-chips">
+                        <label class="topic-chip">
+                            <input type="checkbox" name="topics" value="Web Development" checked />
+                            <span>Web Architecture & Corporate Portals</span>
+                        </label>
+                        <label class="topic-chip">
+                            <input type="checkbox" name="topics" value="AI Automation" checked />
+                            <span>AI & WhatsApp Business Automation</span>
+                        </label>
+                        <label class="topic-chip">
+                            <input type="checkbox" name="topics" value="SEO & Growth Marketing" />
+                            <span>SEO & Inbound Customer Acquisition</span>
+                        </label>
+                        <label class="topic-chip">
+                            <input type="checkbox" name="topics" value="Mobile Applications" />
+                            <span>Mobile App Development & VTU/Fintech</span>
+                        </label>
+                    </div>
+
+                    <div class="sub-consent-row">
+                        <input type="checkbox" id="sub-consent" name="consent" required />
+                        <label for="sub-consent" class="sub-consent-text">
+                            I explicitly consent to receiving business technology insights, website growth strategies, and service updates from Amee Technology Ltd under the <strong>Nigeria Data Protection Act 2023</strong>. You can change your preferences or unsubscribe at any time via the link in any email. Read our <a href="/privacy-policy.html" target="_blank">Privacy Policy</a>.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="sub-submit-btn" id="sub-submit-btn">
+                        <i class="fa-solid fa-paper-plane"></i> Subscribe to Practical Tech Insights
+                    </button>
+
+                    <div id="sub-alert" class="sub-alert"></div>
+                </form>
+            </div>
+        </section>
+
         <section class="section" id="faq">
             <div class="services-header">
                 <span class="section-tag-badge">FAQ</span>

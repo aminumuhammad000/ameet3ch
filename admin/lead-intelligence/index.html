@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Intelligence & Outreach CRM | Amee Technology Ltd</title>
+    <link rel="icon" href="/images/ameelogo.png" type="image/png">
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6C2BD9;
+            --primary-dark: #581CBA;
+            --primary-light: #F3E8FF;
+            --primary-border: #E9D5FF;
+            --bg-sidebar: #0F172A;
+            --bg-sidebar-hover: #1E293B;
+            --bg-body: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --border-hover: #CBD5E1;
+            --success: #10B981;
+            --success-bg: #ECFDF5;
+            --warning: #F59E0B;
+            --warning-bg: #FEF3C7;
+            --danger: #EF4444;
+            --danger-bg: #FEF2F2;
+            --info: #3B82F6;
+            --info-bg: #EFF6FF;
+            --sidebar-width: 260px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        /* ─── SIDEBAR ─── */
+        aside.sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--bg-sidebar);
+            color: #F8FAFC;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0; bottom: 0; left: 0;
+            z-index: 100;
+            border-right: 1px solid #1E293B;
+            transition: transform 0.25s ease;
+        }
+
+        .sidebar-brand {
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #1E293B;
+        }
+        .sidebar-brand img { width: 34px; height: 34px; object-fit: contain; }
+        .sidebar-brand-text h2 { font-size: 15px; font-weight: 800; letter-spacing: -0.3px; color: #FFFFFF; }
+        .sidebar-brand-text span { font-size: 11px; font-weight: 600; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        .nav-item i { width: 18px; text-align: center; font-size: 14px; color: #64748B; transition: color 0.15s; }
+        .nav-item:hover { color: #FFFFFF; background-color: var(--bg-sidebar-hover); }
+        .nav-item:hover i { color: #A78BFA; }
+        .nav-item.active {
+            color: #FFFFFF;
+            background: linear-gradient(135deg, rgba(108, 43, 217, 0.4) 0%, rgba(108, 43, 217, 0.15) 100%);
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+        .nav-item.active i { color: #A78BFA; }
+        .nav-badge {
+            margin-left: auto;
+            background: #1E293B;
+            color: #94A3B8;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 12px;
+        }
+        .nav-item.active .nav-badge { background: #6C2BD9; color: #FFFFFF; }
+
+        .sidebar-user {
+            padding: 16px;
+            border-top: 1px solid #1E293B;
+            background: #0B0F19;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .user-meta { display: flex; align-items: center; gap: 10px; }
+        .user-avatar {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: #6C2BD9; color: #FFFFFF;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 13px;
+        }
+        .user-details h4 { font-size: 12.5px; font-weight: 700; color: #FFFFFF; }
+        .user-details span { font-size: 11px; color: #94A3B8; }
+        .btn-logout {
+            background: none; border: none; color: #94A3B8;
+            cursor: pointer; padding: 6px; border-radius: 6px;
+        }
+        .btn-logout:hover { color: #EF4444; background: rgba(239, 68, 68, 0.1); }
+
+        /* ─── MAIN CONTENT ─── */
+        main.content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 32px 40px;
+            max-width: 1600px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .topbar-title h1 { font-size: 24px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
+        .topbar-title p { font-size: 13.5px; color: var(--text-muted); margin-top: 2px; }
+        .topbar-actions { display: flex; align-items: center; gap: 12px; }
+
+        /* ─── BUTTONS ─── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            font-size: 13.5px;
+            font-weight: 700;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #FFFFFF;
+        }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-outline {
+            background: #FFFFFF;
+            border-color: var(--border);
+            color: var(--text-main);
+        }
+        .btn-outline:hover { background: #F1F5F9; border-color: var(--border-hover); }
+        .btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 6px; }
+        .btn-danger { background: var(--danger); color: #fff; }
+        .btn-danger:hover { background: #DC2626; }
+
+        /* ─── STAT CARDS GRID ─── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .stat-card:hover { border-color: var(--primary-border); box-shadow: 0 4px 12px rgba(108, 43, 217, 0.05); }
+        .stat-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .stat-label { font-size: 12.5px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; }
+        .stat-icon {
+            width: 34px; height: 34px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px;
+        }
+        .stat-val { font-size: 26px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
+        .stat-footer { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 11.5px; color: var(--text-muted); }
+
+        /* Icon Variants */
+        .icon-purple { background: var(--primary-light); color: var(--primary); }
+        .icon-green { background: var(--success-bg); color: var(--success); }
+        .icon-amber { background: var(--warning-bg); color: var(--warning); }
+        .icon-blue { background: var(--info-bg); color: var(--info); }
+        .icon-red { background: var(--danger-bg); color: var(--danger); }
+
+        /* ─── CARDS & TABLES ─── */
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 28px;
+        }
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .panel-title h3 { font-size: 16px; font-weight: 800; color: var(--text-main); }
+        .panel-title p { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+        th {
+            background: #F8FAFC;
+            padding: 12px 16px;
+            font-weight: 700;
+            color: #475569;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+        td {
+            padding: 13px 16px;
+            border-bottom: 1px solid var(--border);
+            color: #1E293B;
+            vertical-align: middle;
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background-color: #F8FAFC; }
+
+        /* ─── PILLS & BADGES ─── */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .status-new { background: var(--info-bg); color: var(--info); }
+        .status-qualified { background: var(--success-bg); color: var(--success); }
+        .status-needs-review { background: var(--warning-bg); color: var(--warning); }
+        .status-converted { background: #FAF5FF; color: var(--primary); border: 1px solid var(--primary-border); }
+        .status-archived { background: #F1F5F9; color: #64748B; }
+
+        .score-pill {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+        .score-high { background: #ECFDF5; color: #047857; }
+        .score-med { background: #FEF3C7; color: #B45309; }
+        .score-low { background: #F1F5F9; color: #475569; }
+
+        /* ─── VIEWS DISPLAY ─── */
+        .app-view { display: none; }
+        .app-view.active { display: block; }
+
+        /* ─── FORMS & INPUTS ─── */
+        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 6px; }
+        .form-control {
+            width: 100%;
+            padding: 9px 12px;
+            font-size: 13px;
+            font-family: inherit;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #FFFFFF;
+            color: #0F172A;
+            transition: border-color 0.15s;
+        }
+        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(108, 43, 217, 0.1); }
+        textarea.form-control { min-height: 80px; resize: vertical; }
+
+        /* ─── MODALS ─── */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #FFFFFF;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 640px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .modal-header h3 { font-size: 17px; font-weight: 800; }
+        .modal-close { background: none; border: none; font-size: 18px; color: #94A3B8; cursor: pointer; }
+        .modal-close:hover { color: #0F172A; }
+        .modal-body { padding: 24px; }
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            background: #F8FAFC;
+            border-radius: 0 0 16px 16px;
+        }
+
+        /* ─── LOGIN OVERLAY ─── */
+        #login-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #0F172A;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            max-width: 440px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+        .login-card img { width: 52px; height: 52px; margin-bottom: 16px; }
+        .login-card h2 { font-size: 20px; font-weight: 800; color: #0F172A; margin-bottom: 6px; }
+        .login-card p { font-size: 13px; color: #64748B; margin-bottom: 24px; }
+        .login-error {
+            display: none;
+            padding: 10px 14px;
+            background: #FEF2F2;
+            color: #991B1B;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        /* ─── TOAST NOTIFICATIONS ─── */
+        #toast {
+            position: fixed;
+            bottom: 24px; right: 24px;
+            background: #0F172A;
+            color: #FFFFFF;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ─── MOBILE TOGGLE ─── */
+        .mobile-nav-toggle {
+            display: none;
+            background: none; border: none; font-size: 20px; color: var(--text-main); cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            aside.sidebar { transform: translateX(-100%); }
+            aside.sidebar.open { transform: translateX(0); }
+            main.content { margin-left: 0; width: 100%; padding: 20px; }
+            .mobile-nav-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── LOGIN GUARD OVERLAY ── -->
+    <div id="login-overlay">
+        <div class="login-card">
+            <img src="/images/ameelogo.png" alt="Amee Technology">
+            <h2>Lead Intelligence Portal</h2>
+            <p>Enter administrator credentials to access real CRM records, discovery engine, and Brevo outreach.</p>
+            <div id="login-error-box" class="login-error"></div>
+            <form id="admin-login-form">
+                <div class="form-group" style="text-align: left; margin-bottom: 14px;">
+                    <label for="login-username"><i class="fa-solid fa-user"></i> Username</label>
+                    <input type="text" id="login-username" class="form-control" placeholder="admin" required />
+                </div>
+                <div class="form-group" style="text-align: left; margin-bottom: 20px;">
+                    <label for="login-password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="login-password" class="form-control" placeholder="••••••••••••" required />
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In to Dashboard
+                </button>
+            </form>
+            <div style="margin-top: 20px; font-size: 11.5px; color: #94A3B8;">
+                <i class="fa-solid fa-shield-halved"></i> Protected by PBKDF2 Cryptographic Session Tokens
+            </div>
+        </div>
+    </div>
+
+    <!-- ── SIDEBAR NAVIGATION ── -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <img src="/images/ameelogo.png" alt="Amee Technology">
+            <div class="sidebar-brand-text">
+                <h2>Amee Technology</h2>
+                <span>Lead Intelligence</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-item active" data-view="overview"><i class="fa-solid fa-gauge-high"></i> Overview</a>
+            <a class="nav-item" data-view="discover"><i class="fa-solid fa-magnifying-glass-chart"></i> Discover Businesses</a>
+            <a class="nav-item" data-view="prospects"><i class="fa-solid fa-address-book"></i> Prospects <span class="nav-badge" id="badge-prospects">0</span></a>
+            <a class="nav-item" data-view="opportunities"><i class="fa-solid fa-lightbulb"></i> Opportunities</a>
+            <a class="nav-item" data-view="subscribers"><i class="fa-solid fa-users-viewfinder"></i> Subscribers <span class="nav-badge" id="badge-subscribers">0</span></a>
+            <a class="nav-item" data-view="campaigns"><i class="fa-solid fa-paper-plane"></i> Email Campaigns</a>
+            <a class="nav-item" data-view="templates"><i class="fa-solid fa-envelope-open-text"></i> Templates</a>
+            <a class="nav-item" data-view="automations"><i class="fa-solid fa-wand-magic-sparkles"></i> Automations</a>
+            <a class="nav-item" data-view="analytics"><i class="fa-solid fa-chart-pie"></i> Analytics</a>
+            <a class="nav-item" data-view="integrations"><i class="fa-solid fa-plug-circle-bolt"></i> Integrations</a>
+            <a class="nav-item" data-view="settings"><i class="fa-solid fa-sliders"></i> Settings</a>
+        </nav>
+
+        <div class="sidebar-user">
+            <div class="user-meta">
+                <div class="user-avatar" id="user-avatar-char">A</div>
+                <div class="user-details">
+                    <h4 id="user-display-name">Admin</h4>
+                    <span id="user-display-role">Super Admin</span>
+                </div>
+            </div>
+            <button class="btn-logout" id="btn-logout" title="Log Out"><i class="fa-solid fa-power-off"></i></button>
+        </div>
+    </aside>
+
+    <!-- ── MAIN CONTENT WORKSPACE ── -->
+    <main class="content">
+
+        <!-- Topbar Mobile Toggle & Title -->
+        <div class="topbar">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <button class="mobile-nav-toggle" id="mobile-toggle"><i class="fa-solid fa-bars"></i></button>
+                <div class="topbar-title">
+                    <h1 id="view-title">Dashboard Overview</h1>
+                    <p id="view-subtitle">Live database statistics, qualified prospects, and Brevo outreach metrics.</p>
+                </div>
+            </div>
+            <div class="topbar-actions" id="topbar-actions">
+                <button class="btn btn-outline" onclick="app.refreshCurrentView()"><i class="fa-solid fa-rotate"></i> Refresh</button>
+                <button class="btn btn-primary" onclick="app.navigate('discover')"><i class="fa-solid fa-plus"></i> Discover Businesses</button>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 1: OVERVIEW                                          -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view active" id="view-overview">
+            <!-- 10 Real Database Metric Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Discovered Businesses</span>
+                        <div class="stat-icon icon-purple"><i class="fa-solid fa-building"></i></div>
+                    </div>
+                    <div class="stat-val" id="stat-discovered">0</div>
+                    <div class="stat-footer"><i class="fa-solid fa-database"></i> Verified directory records</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Qualified Prospects</span>
+                        <div class="stat-icon icon-green"><i class="fa-solid fa-bullseye"></i></div>
+                    </div>
+                    <div class="stat-val" id="stat-qualified">0</div>
+                    <div class="stat-footer"><i class="fa-solid fa-check"></i> High digital score</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Public Business Emails</span>
+                        <div class="stat-icon icon-blue"><i class="fa-solid fa-at"></i></div>
+                    </div>
+                    <div class="stat-val" id="stat-emails">0</div>
+                    <div class="stat-footer"><i class="fa-solid fa-envelope"></i> Verified public contacts</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Confirmed Subscribers</span>
+                        <div class="stat-icon icon-purple"><i class="fa-solid fa-user-check"></i></div>
+                    </div>
+                    <div class="stat-val" id="stat-confirmed-sub">0</div>
+                    <div class="stat-footer"><i class="fa-solid fa-shield-halved"></i> NDPA 2023 double opt-in</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Pending Confirmations</span>
+                        <div class="stat-icon icon-amber"><i class="fa-solid fa-clock"></i></div>
+                    </div>
+                    <div class="stat-val" id="stat-pending-sub">0</div>
+                    <div class="stat-footer"><i class="fa-solid fa-hourglass-half"></i> Awaiting verification</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Active Campaigns</span>
+                        <div class="stat-icon icon-blue"><i class="fa-solid fa-paper-plane"></i></div>
+                    </div>
+                    <div class="stat-val" id="stat-campaigns">0</div>
+                    <div class="stat-footer"><i class="fa-solid fa-circle-play"></i> Running or scheduled</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Emails Delivered</span>
+                        <div class="stat-icon icon-green"><i class="fa-solid fa-inbox"></i></div>
+                    </div>
+                    <div class="stat-val" id="stat-delivered">0</div>
+                    <div class="stat-footer"><i class="fa-solid fa-paper-plane"></i> Sent via Brevo</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Click-Through Rate</span>
+                        <div class="stat-icon icon-purple"><i class="fa-solid fa-arrow-pointer"></i></div>
+                    </div>
+                    <div class="stat-val" id="stat-ctr">0.0%</div>
+                    <div class="stat-footer"><i class="fa-solid fa-chart-line"></i> Subscriber engagement</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Unsubscribes</span>
+                        <div class="stat-icon icon-red"><i class="fa-solid fa-user-minus"></i></div>
+                    </div>
+                    <div class="stat-val" id="stat-unsub">0</div>
+                    <div class="stat-footer"><i class="fa-solid fa-ban"></i> Suppressed contacts</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Converted Customers</span>
+                        <div class="stat-icon icon-green"><i class="fa-solid fa-trophy"></i></div>
+                    </div>
+                    <div class="stat-val" id="stat-converted">0</div>
+                    <div class="stat-footer"><i class="fa-solid fa-sack-dollar"></i> Paying contracts</div>
+                </div>
+            </div>
+
+            <!-- Opportunity Breakdown & Activity Logs -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px;">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h3>Opportunities by Amee Technology Service</h3>
+                            <p>Real prospects mapped to services based on technical audit findings.</p>
+                        </div>
+                    </div>
+                    <div id="service-breakdown-list" style="display:flex; flex-direction:column; gap:12px;"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <h3>Recent Security & CRM Activity</h3>
+                            <p>Immutable audit trail of administrator and discovery actions.</p>
+                        </div>
+                    </div>
+                    <div id="recent-activity-list" style="display:flex; flex-direction:column; gap:12px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 2: DISCOVER BUSINESSES                               -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view" id="view-discover">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>Search & Discovery Engine</h3>
+                        <p>Search approved business directories, registries, and authorized URLs without violating terms.</p>
+                    </div>
+                </div>
+
+                <form id="discovery-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-globe"></i> Country</label>
+                            <input type="text" id="disc-country" class="form-control" value="Nigeria" />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-map-location-dot"></i> State</label>
+                            <input type="text" id="disc-state" class="form-control" placeholder="e.g. Kano, Abuja, Lagos" />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-city"></i> City</label>
+                            <input type="text" id="disc-city" class="form-control" placeholder="e.g. Kano, Hadejia, Ikeja" />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-industry"></i> Industry / Category</label>
+                            <input type="text" id="disc-industry" class="form-control" placeholder="e.g. Hospitality, Schools, Real Estate" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" style="flex:2;">
+                            <label><i class="fa-solid fa-magnifying-glass"></i> Keyword / Business Name Search</label>
+                            <input type="text" id="disc-query" class="form-control" placeholder="e.g. Restaurants in Kano, Schools in Hadejia, SMEs without websites" />
+                        </div>
+                        <div class="form-group" style="flex:2;">
+                            <label><i class="fa-solid fa-link"></i> Or Direct Website URL Audit</label>
+                            <input type="text" id="disc-url" class="form-control" placeholder="e.g. https://targetbusiness.ng" />
+                        </div>
+                        <div class="form-group" style="display:flex; align-items:flex-end;">
+                            <button type="submit" class="btn btn-primary" id="btn-run-discover" style="height:42px; width:100%; justify-content:center;">
+                                <i class="fa-solid fa-bolt"></i> Run Discovery
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Discovery Results -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>Discovered Results (<span id="disc-count">0</span>)</h3>
+                        <p>Extracting public emails, phone numbers, and identifying technology service opportunities.</p>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table id="table-discovered">
+                        <thead>
+                            <tr>
+                                <th>Business Name</th>
+                                <th>Industry / Location</th>
+                                <th>Public Email / Phone</th>
+                                <th>Website Audit</th>
+                                <th>Confidence</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-discovered">
+                            <tr><td colspan="6" style="text-align:center; padding:32px; color:var(--text-muted);">No discovery results yet. Run a search above!</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 3: PROSPECTS (LEAD CRM)                             -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view" id="view-prospects">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>Prospect CRM Pipeline</h3>
+                        <p>Organize, score, qualify and follow up with commercial business leads.</p>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-outline btn-sm" onclick="app.exportProspectsCsv()"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+                        <button class="btn btn-primary btn-sm" onclick="app.openNewProspectModal()"><i class="fa-solid fa-user-plus"></i> New Prospect</button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="form-row" style="margin-bottom:16px;">
+                    <div class="form-group">
+                        <input type="text" id="crm-search" class="form-control" placeholder="Search by name, email, city..." oninput="app.loadProspects()" />
+                    </div>
+                    <div class="form-group">
+                        <select id="crm-status-filter" class="form-control" onchange="app.loadProspects()">
+                            <option value="All">All Statuses</option>
+                            <option value="New">New</option>
+                            <option value="Needs Review">Needs Review</option>
+                            <option value="Qualified">Qualified</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Interested">Interested</option>
+                            <option value="Meeting Scheduled">Meeting Scheduled</option>
+                            <option value="Proposal Sent">Proposal Sent</option>
+                            <option value="Converted">Converted</option>
+                            <option value="Not Interested">Not Interested</option>
+                            <option value="Archived">Archived</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="crm-service-filter" class="form-control" onchange="app.loadProspects()">
+                            <option value="">All Services</option>
+                            <option value="Web design and development">Web design and development</option>
+                            <option value="Custom software development">Custom software development</option>
+                            <option value="Mobile application development">Mobile application development</option>
+                            <option value="UI/UX design">UI/UX design</option>
+                            <option value="Search engine optimisation">Search engine optimisation</option>
+                            <option value="Digital marketing">Digital marketing</option>
+                            <option value="Video production">Video production</option>
+                            <option value="AI and automation">AI and automation</option>
+                            <option value="VTU application development">VTU application development</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Lead Score</th>
+                                <th>Business Name</th>
+                                <th>Location</th>
+                                <th>Contact Details</th>
+                                <th>Assigned Service</th>
+                                <th>Follow-up</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-prospects">
+                            <tr><td colspan="8" style="text-align:center; padding:32px; color:var(--text-muted);">Loading CRM prospects...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 4: OPPORTUNITIES                                     -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view" id="view-opportunities">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>Identified Website Opportunities</h3>
+                        <p>Fact-grounded technical audit findings connected directly to Amee Technology service offerings.</p>
+                    </div>
+                </div>
+                <div id="opportunities-matrix" style="display:flex; flex-direction:column; gap:16px;">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 5: SUBSCRIBERS                                       -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view" id="view-subscribers">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>Permission-Based Marketing Subscribers</h3>
+                        <p>Strict double opt-in subscribers adhering to the Nigeria Data Protection Act 2023.</p>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-primary btn-sm" onclick="app.syncBrevoSubscribers()"><i class="fa-solid fa-arrows-rotate"></i> Sync Confirmed to Brevo</button>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Email Address</th>
+                                <th>First Name</th>
+                                <th>Business & Industry</th>
+                                <th>Topics of Interest</th>
+                                <th>Status</th>
+                                <th>Confirmed At</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-subscribers">
+                            <tr><td colspan="7" style="text-align:center; padding:32px; color:var(--text-muted);">Loading subscribers...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 6: EMAIL CAMPAIGNS                                   -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view" id="view-campaigns">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>Email Marketing Campaigns</h3>
+                        <p>Create and dispatch educational outreach campaigns strictly to confirmed subscribers.</p>
+                    </div>
+                    <button class="btn btn-primary btn-sm" onclick="app.openNewCampaignModal()"><i class="fa-solid fa-plus"></i> Create Campaign</button>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Campaign Name</th>
+                                <th>Subject</th>
+                                <th>Audience</th>
+                                <th>Recipients</th>
+                                <th>Delivered</th>
+                                <th>Opens / Clicks</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-campaigns">
+                            <tr><td colspan="8" style="text-align:center; padding:32px; color:var(--text-muted);">Loading campaigns...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 7: TEMPLATES                                         -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view" id="view-templates">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>Responsive Email Templates</h3>
+                        <p>Pre-engineered templates covering Amee Technology's core services, with mandatory NDPA unsubscribe links.</p>
+                    </div>
+                </div>
+                <div id="templates-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;"></div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 8: AUTOMATIONS                                       -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view" id="view-automations">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>Subscriber Automation Workflows</h3>
+                        <p>Trigger automated welcome sequences, topic-specific educational emails, and immediate suppression.</p>
+                    </div>
+                </div>
+                <div id="automations-list" style="display:flex; flex-direction:column; gap:16px;"></div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 9: ANALYTICS                                         -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view" id="view-analytics">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap:24px;">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title"><h3>Prospects by Nigerian Industry</h3></div>
+                    </div>
+                    <div id="analytics-industry-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title"><h3>Prospects by Location</h3></div>
+                    </div>
+                    <div id="analytics-location-list" style="display:flex; flex-direction:column; gap:10px;"></div>
+                </div>
+
+                <div class="panel" style="grid-column: 1 / -1;">
+                    <div class="panel-header">
+                        <div class="panel-title"><h3>Lead Conversion Funnel</h3></div>
+                    </div>
+                    <div id="analytics-funnel" style="display:flex; gap:12px; flex-wrap:wrap;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 10: INTEGRATIONS                                     -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view" id="view-integrations">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>Brevo API Integration Status</h3>
+                        <p>Official REST API v3 connectivity, contact list synchronization, and webhook logs.</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="app.testBrevoConnectivity()"><i class="fa-solid fa-plug"></i> Test Connection</button>
+                </div>
+
+                <div id="brevo-status-box" style="padding:16px; border-radius:10px; margin-bottom:24px;">
+                    <!-- Rendered by JS -->
+                </div>
+
+                <div class="panel-title" style="margin-bottom:12px;"><h3>Recent Synchronization & Webhook Logs</h3></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                                <th>Status</th>
+                                <th>Error / Response</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-sync-logs">
+                            <tr><td colspan="5" style="text-align:center; padding:24px; color:var(--text-muted);">No sync logs recorded yet.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <!-- VIEW 11: SETTINGS                                         -->
+        <!-- ══════════════════════════════════════════════════════════ -->
+        <div class="app-view" id="view-settings">
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>System Configuration & NDPA 2023 Compliance</h3>
+                        <p>Tune rate limits, timeouts, and data retention rules.</p>
+                    </div>
+                </div>
+
+                <form id="settings-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Default Brevo Sender Email</label>
+                            <input type="email" id="set-sender-email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Default Sender Name</label>
+                            <input type="text" id="set-sender-name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Discovery Rate Limit (Seconds per Domain)</label>
+                            <input type="number" step="0.5" id="set-rate-limit" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom:16px;">
+                        <label>NDPA 2023 Consent Notice Text</label>
+                        <textarea id="set-ndpa-text" class="form-control"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Settings</button>
+                </form>
+            </div>
+
+            <!-- Audit Logs -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h3>Full System Audit Trail</h3>
+                        <p>Immutable log of every user action, export, and campaign dispatch.</p>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>User</th>
+                                <th>Action</th>
+                                <th>Target</th>
+                                <th>IP Address</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-audit-logs"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ── MODAL: PROSPECT DETAILS / EDIT ── -->
+    <div class="modal-overlay" id="modal-prospect">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modal-prospect-title">Prospect Details</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-prospect')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="p-id" />
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Business Name</label>
+                        <input type="text" id="p-name" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Website URL</label>
+                        <input type="text" id="p-website" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Public Email</label>
+                        <input type="email" id="p-email" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Public Phone</label>
+                        <input type="text" id="p-phone" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Assigned Amee Tech Service</label>
+                        <select id="p-service" class="form-control">
+                            <option value="Web design and development">Web design and development</option>
+                            <option value="Custom software development">Custom software development</option>
+                            <option value="Mobile application development">Mobile application development</option>
+                            <option value="UI/UX design">UI/UX design</option>
+                            <option value="Search engine optimisation">Search engine optimisation</option>
+                            <option value="Digital marketing">Digital marketing</option>
+                            <option value="Video production">Video production</option>
+                            <option value="AI and automation">AI and automation</option>
+                            <option value="VTU application development">VTU application development</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Pipeline Status</label>
+                        <select id="p-status" class="form-control">
+                            <option value="New">New</option>
+                            <option value="Needs Review">Needs Review</option>
+                            <option value="Qualified">Qualified</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Interested">Interested</option>
+                            <option value="Meeting Scheduled">Meeting Scheduled</option>
+                            <option value="Proposal Sent">Proposal Sent</option>
+                            <option value="Converted">Converted</option>
+                            <option value="Not Interested">Not Interested</option>
+                            <option value="Archived">Archived</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Follow-up Date</label>
+                        <input type="date" id="p-followup" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom:16px;">
+                    <label>Internal CRM Notes</label>
+                    <textarea id="p-notes" class="form-control" placeholder="Observations, meeting notes, custom proposals..."></textarea>
+                </div>
+
+                <div id="p-timeline-box" style="margin-top:16px;">
+                    <label style="font-size:12px; font-weight:700; color:#475569;">Activity Timeline</label>
+                    <div id="p-timeline-list" style="margin-top:8px; display:flex; flex-direction:column; gap:8px;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger btn-sm" onclick="app.deleteProspect()"><i class="fa-solid fa-trash"></i> Delete</button>
+                <button class="btn btn-outline btn-sm" onclick="app.closeModal('modal-prospect')">Cancel</button>
+                <button class="btn btn-primary btn-sm" onclick="app.saveProspect()"><i class="fa-solid fa-floppy-disk"></i> Save Prospect</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── MODAL: CREATE CAMPAIGN ── -->
+    <div class="modal-overlay" id="modal-campaign">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Create Email Campaign</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-campaign')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label>Campaign Name *</label>
+                    <input type="text" id="camp-name" class="form-control" placeholder="e.g. Q4 Modern Web Architecture Outreach" required />
+                </div>
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label>Email Subject *</label>
+                    <input type="text" id="camp-subject" class="form-control" placeholder="e.g. Scale Your Operations with Fast Corporate Portals" required />
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Sender Name</label>
+                        <input type="text" id="camp-sender-name" class="form-control" value="Amee Technology" />
+                    </div>
+                    <div class="form-group">
+                        <label>Sender Email</label>
+                        <input type="email" id="camp-sender-email" class="form-control" value="support@ameetechnology.com.ng" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Select Template</label>
+                        <select id="camp-template" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Target Audience</label>
+                        <select id="camp-audience" class="form-control">
+                            <option value="all_confirmed">All Confirmed Subscribers</option>
+                            <option value="topic:Web Development">Interested in Web Development</option>
+                            <option value="topic:AI Automation">Interested in AI & WhatsApp</option>
+                            <option value="topic:SEO & Growth Marketing">Interested in SEO</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline btn-sm" onclick="app.closeModal('modal-campaign')">Cancel</button>
+                <button class="btn btn-primary btn-sm" onclick="app.saveCampaign()"><i class="fa-solid fa-plus"></i> Save Draft Campaign</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── MODAL: TEMPLATE PREVIEW ── -->
+    <div class="modal-overlay" id="modal-preview">
+        <div class="modal-box" style="max-width:720px;">
+            <div class="modal-header">
+                <h3 id="preview-modal-title">Template Preview</h3>
+                <button class="modal-close" onclick="app.closeModal('modal-preview')">&times;</button>
+            </div>
+            <div class="modal-body" style="background:#F1F5F9; padding:16px;">
+                <iframe id="preview-frame" style="width:100%; height:480px; border:none; background:#ffffff; border-radius:8px;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline btn-sm" onclick="app.closeModal('modal-preview')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── TOAST ── -->
+    <div id="toast"><i class="fa-solid fa-circle-info"></i> <span id="toast-text"></span></div>
+
+    <!-- ── FRONTEND CONTROLLER JAVASCRIPT ── -->
+    <script>
+        const app = {
+            token: localStorage.getItem('amee_lead_token') || '',
+            user: null,
+            currentView: 'overview',
+
+            init() {
+                // Check auth
+                if (this.token) {
+                    this.verifySession();
+                } else {
+                    this.showLogin();
+                }
+
+                // Setup Navigation
+                document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        this.navigate(item.dataset.view);
+                    });
+                });
+
+                // Mobile Toggle
+                document.getElementById('mobile-toggle').addEventListener('click', () => {
+                    document.getElementById('sidebar').classList.toggle('open');
+                });
+
+                // Logout
+                document.getElementById('btn-logout').addEventListener('click', () => this.logout());
+
+                // Login Form Submit
+                document.getElementById('admin-login-form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.login();
+                });
+
+                // Discovery Form Submit
+                document.getElementById('discovery-form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.runDiscovery();
+                });
+
+                // Settings Form Submit
+                document.getElementById('settings-form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.saveSettings();
+                });
+            },
+
+            showToast(msg) {
+                const toast = document.getElementById('toast');
+                document.getElementById('toast-text').textContent = msg;
+                toast.style.display = 'flex';
+                setTimeout(() => toast.style.display = 'none', 3500);
+            },
+
+            showLogin() {
+                document.getElementById('login-overlay').style.display = 'flex';
+            },
+
+            hideLogin() {
+                document.getElementById('login-overlay').style.display = 'none';
+            },
+
+            async api(endpoint, method = 'GET', body = null) {
+                const headers = { 'Content-Type': 'application/json' };
+                if (this.token) {
+                    headers['Authorization'] = 'Bearer ' + this.token;
+                }
+                const opts = { method, headers };
+                if (body) opts.body = JSON.stringify(body);
+                const resp = await fetch(endpoint, opts);
+                if (resp.status === 401) {
+                    this.showLogin();
+                    return { success: false, error: 'Unauthorized' };
+                }
+                return await resp.json();
+            },
+
+            async login() {
+                const user = document.getElementById('login-username').value.trim();
+                const pwd = document.getElementById('login-password').value.trim();
+                const errBox = document.getElementById('login-error-box');
+                errBox.style.display = 'none';
+
+                const res = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pwd })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    this.token = data.token;
+                    this.user = data.user;
+                    localStorage.setItem('amee_lead_token', this.token);
+                    document.getElementById('user-display-name').textContent = this.user.username;
+                    document.getElementById('user-display-role').textContent = this.user.role.toUpperCase();
+                    document.getElementById('user-avatar-char').textContent = this.user.username[0].toUpperCase();
+                    this.hideLogin();
+                    this.loadOverview();
+                    this.showToast('Signed in successfully.');
+                } else {
+                    errBox.textContent = data.error || 'Invalid credentials.';
+                    errBox.style.display = 'block';
+                }
+            },
+
+            async verifySession() {
+                const res = await this.api('/api/admin/verify');
+                if (res && res.success) {
+                    this.user = res.user;
+                    document.getElementById('user-display-name').textContent = this.user.username;
+                    document.getElementById('user-display-role').textContent = this.user.role.toUpperCase();
+                    document.getElementById('user-avatar-char').textContent = this.user.username[0].toUpperCase();
+                    this.hideLogin();
+                    this.loadOverview();
+                } else {
+                    this.showLogin();
+                }
+            },
+
+            async logout() {
+                await this.api('/api/admin/logout', 'POST');
+                localStorage.removeItem('amee_lead_token');
+                this.token = '';
+                this.user = null;
+                this.showLogin();
+            },
+
+            navigate(viewId) {
+                this.currentView = viewId;
+                document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => {
+                    item.classList.toggle('active', item.dataset.view === viewId);
+                });
+                document.querySelectorAll('.app-view').forEach(view => {
+                    view.classList.toggle('active', view.id === 'view-' + viewId);
+                });
+
+                // Update Topbar Title
+                const titles = {
+                    overview: ['Dashboard Overview', 'Live database statistics, qualified prospects, and Brevo outreach metrics.'],
+                    discover: ['Discover Businesses', 'Query approved directories, analyze business domains, and extract opportunities.'],
+                    prospects: ['Prospect CRM', 'Pipeline management, lead scoring, activity timeline, and follow-ups.'],
+                    opportunities: ['Website Intelligence & Opportunities', 'Fact-grounded audit findings mapped directly to Amee Technology services.'],
+                    subscribers: ['Subscribers & Consent', 'Double opt-in subscribers adhering to the Nigeria Data Protection Act 2023.'],
+                    campaigns: ['Email Campaigns', 'Compose, preview, test, and send outreach campaigns through Brevo.'],
+                    templates: ['Campaign Templates', 'Production-ready responsive email templates for all service verticals.'],
+                    automations: ['Automation Workflows', 'Event-driven triggers, nurturing sequences, and marketing suppression.'],
+                    analytics: ['Platform Analytics', 'Geographic distributions, industry breakdown, and conversion funnel.'],
+                    integrations: ['Integrations & API Status', 'Brevo API v3 connectivity, contact lists, and webhook events.'],
+                    settings: ['System Settings & Audit Logs', 'Rate limiting, NDPA notices, and administrative audit trails.']
+                };
+                const t = titles[viewId] || ['Lead Intelligence', 'Amee Technology Platform'];
+                document.getElementById('view-title').textContent = t[0];
+                document.getElementById('view-subtitle').textContent = t[1];
+
+                // Auto-close mobile sidebar
+                document.getElementById('sidebar').classList.remove('open');
+
+                this.refreshCurrentView();
+            },
+
+            refreshCurrentView() {
+                switch(this.currentView) {
+                    case 'overview': this.loadOverview(); break;
+                    case 'prospects': this.loadProspects(); break;
+                    case 'opportunities': this.loadOpportunities(); break;
+                    case 'subscribers': this.loadSubscribers(); break;
+                    case 'campaigns': this.loadCampaigns(); break;
+                    case 'templates': this.loadTemplates(); break;
+                    case 'automations': this.loadAutomations(); break;
+                    case 'analytics': this.loadAnalytics(); break;
+                    case 'integrations': this.loadIntegrations(); break;
+                    case 'settings': this.loadSettings(); break;
+                }
+            },
+
+            // ── OVERVIEW ──
+            async loadOverview() {
+                const res = await this.api('/api/admin/lead-intelligence/stats');
+                if (!res || !res.success) return;
+                const s = res.stats;
+
+                document.getElementById('stat-discovered').textContent = s.total_discovered_businesses;
+                document.getElementById('stat-qualified').textContent = s.total_qualified_prospects;
+                document.getElementById('stat-emails').textContent = s.businesses_with_public_email;
+                document.getElementById('stat-confirmed-sub').textContent = s.total_confirmed_subscribers;
+                document.getElementById('stat-pending-sub').textContent = s.pending_subscriber_confirmations;
+                document.getElementById('stat-campaigns').textContent = s.active_campaigns;
+                document.getElementById('stat-delivered').textContent = s.emails_delivered;
+                document.getElementById('stat-ctr').textContent = s.click_through_rate + '%';
+                document.getElementById('stat-unsub').textContent = s.unsubscribes;
+                document.getElementById('stat-converted').textContent = s.leads_converted;
+
+                document.getElementById('badge-prospects').textContent = s.total_prospects;
+                document.getElementById('badge-subscribers').textContent = s.total_confirmed_subscribers;
+
+                // Service breakdown
+                const svcList = document.getElementById('service-breakdown-list');
+                if (s.service_breakdown.length === 0) {
+                    svcList.innerHTML = '<p style="color:var(--text-muted);font-size:13px;">No prospects assigned to services yet.</p>';
+                } else {
+                    svcList.innerHTML = s.service_breakdown.map(b => `
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:#F8FAFC; border:1px solid var(--border); border-radius:8px;">
+                            <span style="font-weight:700; font-size:13px;"><i class="fa-solid fa-code" style="color:var(--primary);margin-right:8px;"></i> ${b.assigned_service}</span>
+                            <span class="status-pill status-qualified">${b.count} Prospects</span>
+                        </div>
+                    `).join('');
+                }
+
+                // Recent activity
+                const actList = document.getElementById('recent-activity-list');
+                if (s.recent_activity.length === 0) {
+                    actList.innerHTML = '<p style="color:var(--text-muted);font-size:13px;">No audit events recorded yet.</p>';
+                } else {
+                    actList.innerHTML = s.recent_activity.map(a => `
+                        <div style="padding:10px 14px; background:#F8FAFC; border:1px solid var(--border); border-radius:8px; font-size:12.5px;">
+                            <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:4px;">
+                                <span><i class="fa-solid fa-user-shield" style="color:#64748B;"></i> ${a.admin_username}</span>
+                                <span style="color:#94A3B8; font-size:11px;">${new Date(a.created_at).toLocaleTimeString()}</span>
+                            </div>
+                            <div style="color:#334155;"><strong>${a.action}</strong> &bull; target: ${a.target_type} (${a.target_id || 'all'})</div>
+                        </div>
+                    `).join('');
+                }
+            },
+
+            // ── DISCOVERY ──
+            async runDiscovery() {
+                const btn = document.getElementById('btn-run-discover');
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Discovering...';
+
+                const payload = {
+                    country: document.getElementById('disc-country').value,
+                    state: document.getElementById('disc-state').value,
+                    city: document.getElementById('disc-city').value,
+                    industry: document.getElementById('disc-industry').value,
+                    query: document.getElementById('disc-query').value,
+                    website_url: document.getElementById('disc-url').value
+                };
+
+                const res = await this.api('/api/admin/lead-intelligence/discover', 'POST', payload);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Run Discovery';
+
+                if (res && res.success) {
+                    this.showToast(`Discovery complete! Found ${res.total_found} businesses.`);
+                    document.getElementById('disc-count').textContent = res.results.length;
+                    this.renderDiscovered(res.results);
+                } else {
+                    this.showToast(res.error || 'Discovery search failed.');
+                }
+            },
+
+            renderDiscovered(items) {
+                const tbody = document.getElementById('tbody-discovered');
+                if (items.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:32px; color:var(--text-muted);">No businesses found matching criteria.</td></tr>';
+                    return;
+                }
+                tbody.innerHTML = items.map((item, idx) => {
+                    const audit = item.audit || {};
+                    const findingsCount = (audit.findings || []).length;
+                    const oppCount = (audit.opportunities || []).length;
+                    const confClass = item.confidence_score >= 80 ? 'score-high' : (item.confidence_score >= 50 ? 'score-med' : 'score-low');
+                    
+                    return `
+                        <tr>
+                            <td>
+                                <strong>${item.name}</strong><br>
+                                <span style="font-size:11.5px; color:var(--text-muted);">${item.website_url ? `<a href="${item.website_url}" target="_blank" style="color:var(--primary);text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${item.website_url}</a>` : '<em style="color:#EF4444;">No website discovered</em>'}</span>
+                            </td>
+                            <td>
+                                <span>${item.industry || 'General Business'}</span><br>
+                                <span style="font-size:11.5px; color:var(--text-muted);"><i class="fa-solid fa-location-dot"></i> ${item.city}, ${item.state}</span>
+                            </td>
+                            <td>
+                                <div>${item.public_email ? `<i class="fa-regular fa-envelope"></i> ${item.public_email}` : '<em style="color:#94A3B8;">No public email</em>'}</div>
+                                <div style="font-size:11.5px; color:var(--text-muted);">${item.public_phone ? `<i class="fa-solid fa-phone"></i> ${item.public_phone}` : ''}</div>
+                            </td>
+                            <td>
+                                <span class="status-pill ${oppCount > 0 ? 'status-needs-review' : 'status-qualified'}">
+                                    <i class="fa-solid fa-lightbulb"></i> ${oppCount} Opportunities (${findingsCount} findings)
+                                </span>
+                            </td>
+                            <td><span class="score-pill ${confClass}">${item.confidence_score}%</span></td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" onclick="app.promoteDiscoveredToCRM(${idx})">
+                                    <i class="fa-solid fa-user-plus"></i> Add to CRM
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+                window._lastDiscoveredItems = items;
+            },
+
+            async promoteDiscoveredToCRM(idx) {
+                const item = window._lastDiscoveredItems[idx];
+                if (!item) return;
+                const opp = (item.audit && item.audit.opportunities && item.audit.opportunities[0]) || {};
+                const res = await this.api('/api/admin/lead-intelligence/prospects', 'POST', {
+                    business_name: item.name,
+                    website: item.website_url,
+                    industry: item.industry,
+                    city: item.city,
+                    state: item.state,
+                    public_email: item.public_email,
+                    public_phone: item.public_phone,
+                    assigned_service: opp.service || 'Web design and development',
+                    notes: `Discovered via ${item.source_url || 'Search'}. Primary opportunity: ${opp.opportunity || 'Digital Modernization'}`,
+                    status: 'Qualified'
+                });
+                if (res && res.success) {
+                    this.showToast(`Promoted "${item.name}" to CRM Prospects.`);
+                    this.loadOverview();
+                }
+            },
+
+            // ── PROSPECTS CRM ──
+            async loadProspects() {
+                const search = document.getElementById('crm-search').value;
+                const status = document.getElementById('crm-status-filter').value;
+                const service = document.getElementById('crm-service-filter').value;
+
+                let url = `/api/admin/lead-intelligence/prospects?search=${encodeURIComponent(search)}&status=${encodeURIComponent(status)}`;
+                if (service) url += `&assigned_service=${encodeURIComponent(service)}`;
+
+                const res = await this.api(url);
+                if (!res || !res.success) return;
+
+                const tbody = document.getElementById('tbody-prospects');
+                if (res.prospects.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:32px; color:var(--text-muted);">No prospects found.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = res.prospects.map(p => {
+                    const scoreClass = p.lead_score >= 70 ? 'score-high' : (p.lead_score >= 40 ? 'score-med' : 'score-low');
+                    let statusClass = 'status-new';
+                    if (p.status === 'Qualified') statusClass = 'status-qualified';
+                    else if (p.status === 'Converted') statusClass = 'status-converted';
+                    else if (p.status === 'Needs Review') statusClass = 'status-needs-review';
+                    else if (p.status === 'Archived' || p.status === 'Not Interested') statusClass = 'status-archived';
+
+                    return `
+                        <tr>
+                            <td><span class="score-pill ${scoreClass}">${p.lead_score}/100</span></td>
+                            <td>
+                                <strong>${p.business_name}</strong><br>
+                                <span style="font-size:11.5px; color:var(--text-muted);">${p.website ? `<a href="${p.website}" target="_blank" style="color:var(--primary);text-decoration:none;"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${p.website}</a>` : '<em>No website</em>'}</span>
+                            </td>
+                            <td>${p.city}, ${p.state}</td>
+                            <td>
+                                <div>${p.public_email ? `<i class="fa-regular fa-envelope"></i> ${p.public_email}` : '<em style="color:#94A3B8;">No email</em>'}</div>
+                                <div style="font-size:11.5px; color:var(--text-muted);">${p.public_phone || ''}</div>
+                            </td>
+                            <td><span style="font-weight:600; font-size:12px;">${p.assigned_service || 'Unassigned'}</span></td>
+                            <td><span style="font-size:12px; color:var(--text-muted);">${p.follow_up_date || 'None'}</span></td>
+                            <td><span class="status-pill ${statusClass}">${p.status}</span></td>
+                            <td>
+                                <button class="btn btn-outline btn-sm" onclick="app.openProspectDetail(${p.id})"><i class="fa-solid fa-pen-to-square"></i> Manage</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            },
+
+            async openProspectDetail(id) {
+                const res = await this.api(`/api/admin/lead-intelligence/prospects/${id}`);
+                if (!res || !res.success) return;
+                const p = res.prospect;
+
+                document.getElementById('p-id').value = p.id;
+                document.getElementById('modal-prospect-title').textContent = `Manage: ${p.business_name}`;
+                document.getElementById('p-name').value = p.business_name;
+                document.getElementById('p-website').value = p.website || '';
+                document.getElementById('p-email').value = p.public_email || '';
+                document.getElementById('p-phone').value = p.public_phone || '';
+                document.getElementById('p-service').value = p.assigned_service || 'Web design and development';
+                document.getElementById('p-status').value = p.status;
+                document.getElementById('p-followup').value = p.follow_up_date || '';
+                document.getElementById('p-notes').value = p.notes || '';
+
+                const timeline = document.getElementById('p-timeline-list');
+                if (p.activities && p.activities.length > 0) {
+                    timeline.innerHTML = p.activities.map(a => `
+                        <div style="padding:8px 12px; background:#F8FAFC; border:1px solid var(--border); border-radius:6px; font-size:12px;">
+                            <span style="color:#94A3B8; font-size:10.5px;">${new Date(a.created_at).toLocaleString()}</span><br>
+                            <strong>${a.admin_username}:</strong> ${a.description}
+                        </div>
+                    `).join('');
+                } else {
+                    timeline.innerHTML = '<span style="font-size:11.5px; color:var(--text-muted);">No activity logged yet.</span>';
+                }
+
+                document.getElementById('modal-prospect').classList.add('active');
+            },
+
+            openNewProspectModal() {
+                document.getElementById('p-id').value = '';
+                document.getElementById('modal-prospect-title').textContent = 'Add New Prospect';
+                document.getElementById('p-name').value = '';
+                document.getElementById('p-website').value = '';
+                document.getElementById('p-email').value = '';
+                document.getElementById('p-phone').value = '';
+                document.getElementById('p-service').value = 'Web design and development';
+                document.getElementById('p-status').value = 'New';
+                document.getElementById('p-followup').value = '';
+                document.getElementById('p-notes').value = '';
+                document.getElementById('p-timeline-list').innerHTML = '';
+                document.getElementById('modal-prospect').classList.add('active');
+            },
+
+            async saveProspect() {
+                const id = document.getElementById('p-id').value;
+                const payload = {
+                    business_name: document.getElementById('p-name').value,
+                    website: document.getElementById('p-website').value,
+                    public_email: document.getElementById('p-email').value,
+                    public_phone: document.getElementById('p-phone').value,
+                    assigned_service: document.getElementById('p-service').value,
+                    status: document.getElementById('p-status').value,
+                    follow_up_date: document.getElementById('p-followup').value,
+                    notes: document.getElementById('p-notes').value
+                };
+
+                let res;
+                if (id) {
+                    res = await this.api(`/api/admin/lead-intelligence/prospects/${id}`, 'PUT', payload);
+                } else {
+                    res = await this.api('/api/admin/lead-intelligence/prospects', 'POST', payload);
+                }
+
+                if (res && res.success) {
+                    this.showToast('Prospect saved successfully.');
+                    this.closeModal('modal-prospect');
+                    this.loadProspects();
+                    this.loadOverview();
+                } else {
+                    this.showToast(res.error || 'Error saving prospect.');
+                }
+            },
+
+            async deleteProspect() {
+                const id = document.getElementById('p-id').value;
+                if (!id) return;
+                if (!confirm('Are you sure you want to delete this prospect record?')) return;
+
+                const res = await this.api(`/api/admin/lead-intelligence/prospects/${id}`, 'DELETE');
+                if (res && res.success) {
+                    this.showToast('Prospect deleted.');
+                    this.closeModal('modal-prospect');
+                    this.loadProspects();
+                    this.loadOverview();
+                }
+            },
+
+            exportProspectsCsv() {
+                window.location.href = `/api/admin/lead-intelligence/prospects/export`;
+            },
+
+            // ── OPPORTUNITIES ──
+            async loadOpportunities() {
+                const res = await this.api('/api/admin/lead-intelligence/prospects?limit=50');
+                if (!res || !res.success) return;
+
+                const matrix = document.getElementById('opportunities-matrix');
+                if (res.prospects.length === 0) {
+                    matrix.innerHTML = '<p style="color:var(--text-muted);font-size:13px;">No opportunities identified yet. Run a discovery search!</p>';
+                    return;
+                }
+
+                matrix.innerHTML = res.prospects.map(p => `
+                    <div style="background:#FFFFFF; border:1px solid var(--border); border-left:4px solid var(--primary); border-radius:10px; padding:18px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                            <strong style="font-size:15px; color:#0F172A;">${p.business_name}</strong>
+                            <span class="status-pill status-qualified">${p.assigned_service}</span>
+                        </div>
+                        <div style="font-size:13px; color:#475569; margin-bottom:12px;">
+                            ${p.notes || 'Identified potential for digital development and operations scaling.'}
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; color:#64748B;">
+                            <span><i class="fa-solid fa-location-dot"></i> ${p.city}, ${p.state} &bull; Score: <strong>${p.lead_score}/100</strong></span>
+                            <button class="btn btn-outline btn-sm" onclick="app.openProspectDetail(${p.id})">Open Lead in CRM</button>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            // ── SUBSCRIBERS ──
+            async loadSubscribers() {
+                const res = await this.api('/api/admin/lead-intelligence/subscribers');
+                if (!res || !res.success) return;
+
+                const tbody = document.getElementById('tbody-subscribers');
+                if (res.subscribers.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:32px; color:var(--text-muted);">No marketing subscribers yet.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = res.subscribers.map(s => {
+                    const topics = JSON.parse(s.preferred_topics || '[]');
+                    const isConfirmed = s.status === 'confirmed';
+                    const isUnsub = s.status === 'unsubscribed';
+                    let stClass = 'status-needs-review';
+                    if (isConfirmed) stClass = 'status-qualified';
+                    if (isUnsub) stClass = 'status-archived';
+
+                    return `
+                        <tr>
+                            <td><strong>${s.email}</strong></td>
+                            <td>${s.first_name}</td>
+                            <td>${s.business_name || 'N/A'}<br><span style="font-size:11px;color:#94A3B8;">${s.industry || ''}</span></td>
+                            <td><span style="font-size:12px;">${topics.join(', ') || 'All Insights'}</span></td>
+                            <td><span class="status-pill ${stClass}">${s.status}</span></td>
+                            <td><span style="font-size:12px;color:var(--text-muted);">${s.confirmation_timestamp ? new Date(s.confirmation_timestamp).toLocaleDateString() : 'Awaiting'}</span></td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="app.deleteSubscriber(${s.id})" title="Delete / Right to be Forgotten"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            },
+
+            async deleteSubscriber(id) {
+                if (!confirm('Execute right-to-be-forgotten contact deletion and suppress further emails?')) return;
+                const res = await this.api(`/api/admin/lead-intelligence/subscribers/${id}`, 'DELETE');
+                if (res && res.success) {
+                    this.showToast('Subscriber deleted and suppressed.');
+                    this.loadSubscribers();
+                    this.loadOverview();
+                }
+            },
+
+            async syncBrevoSubscribers() {
+                this.showToast('Synchronizing confirmed subscribers to Brevo...');
+                const res = await this.api('/api/admin/lead-intelligence/subscribers/sync', 'POST');
+                if (res && res.success) {
+                    this.showToast(`Successfully synced ${res.synced_count} subscribers to Brevo.`);
+                    this.loadOverview();
+                } else {
+                    this.showToast(res.error || 'Sync failed.');
+                }
+            },
+
+            // ── CAMPAIGNS ──
+            async loadCampaigns() {
+                const res = await this.api('/api/admin/lead-intelligence/campaigns');
+                if (!res || !res.success) return;
+
+                const tbody = document.getElementById('tbody-campaigns');
+                if (res.campaigns.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:32px; color:var(--text-muted);">No email campaigns created yet. Click "Create Campaign" to begin.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = res.campaigns.map(c => `
+                    <tr>
+                        <td><strong>${c.name}</strong></td>
+                        <td>${c.subject}</td>
+                        <td><span style="font-size:12px;">${c.target_audience}</span></td>
+                        <td>${c.total_recipients}</td>
+                        <td>${c.emails_delivered}</td>
+                        <td>${c.opens_count} / ${c.clicks_count}</td>
+                        <td><span class="status-pill ${c.status === 'sent' ? 'status-qualified' : 'status-needs-review'}">${c.status}</span></td>
+                        <td>
+                            <div style="display:flex; gap:6px;">
+                                <button class="btn btn-outline btn-sm" onclick="app.previewCampaignTemplate('${c.template_id}', '${c.subject}')" title="Preview"><i class="fa-solid fa-eye"></i></button>
+                                <button class="btn btn-outline btn-sm" onclick="app.sendTestEmail(${c.id})" title="Send Test"><i class="fa-solid fa-vial"></i></button>
+                                ${c.status !== 'sent' ? `<button class="btn btn-primary btn-sm" onclick="app.launchCampaign(${c.id})"><i class="fa-solid fa-paper-plane"></i> Send</button>` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            },
+
+            openNewCampaignModal() {
+                document.getElementById('camp-name').value = '';
+                document.getElementById('camp-subject').value = '';
+                this.populateTemplateDropdown();
+                document.getElementById('modal-campaign').classList.add('active');
+            },
+
+            async populateTemplateDropdown() {
+                const res = await this.api('/api/admin/lead-intelligence/templates');
+                if (!res || !res.success) return;
+                const sel = document.getElementById('camp-template');
+                sel.innerHTML = res.templates.map(t => `
+                    <option value="${t.id}">${t.name}</option>
+                `).join('');
+            },
+
+            async saveCampaign() {
+                const name = document.getElementById('camp-name').value.trim();
+                const subject = document.getElementById('camp-subject').value.trim();
+                const template_id = document.getElementById('camp-template').value;
+                const target_audience = document.getElementById('camp-audience').value;
+                const sender_name = document.getElementById('camp-sender-name').value;
+                const sender_email = document.getElementById('camp-sender-email').value;
+
+                if (!name || !subject) {
+                    this.showToast('Please fill campaign name and subject.');
+                    return;
+                }
+
+                const res = await this.api('/api/admin/lead-intelligence/campaigns', 'POST', {
+                    name, subject, template_id, target_audience, sender_name, sender_email
+                });
+
+                if (res && res.success) {
+                    this.showToast('Campaign draft created.');
+                    this.closeModal('modal-campaign');
+                    this.loadCampaigns();
+                }
+            },
+
+            async sendTestEmail(campId) {
+                const testEmail = prompt('Enter recipient email address for test preview delivery:');
+                if (!testEmail) return;
+
+                this.showToast('Sending test email...');
+                const res = await this.api(`/api/admin/lead-intelligence/campaigns/${campId}/test-send`, 'POST', { test_email: testEmail });
+                if (res && res.success) {
+                    this.showToast(`Test email successfully dispatched to ${testEmail}.`);
+                } else {
+                    this.showToast(res.error || 'Failed to dispatch test email.');
+                }
+            },
+
+            async launchCampaign(campId) {
+                if (!confirm('CONFIRMATION REQUIRED: Are you sure you want to send this email campaign to all eligible confirmed subscribers?')) return;
+                this.showToast('Dispatching campaign...');
+                const res = await this.api(`/api/admin/lead-intelligence/campaigns/${campId}/send`, 'POST', { admin_confirmation: true });
+                if (res && res.success) {
+                    this.showToast(`Campaign launched! Delivered to ${res.recipients_sent} verified subscribers.`);
+                    this.loadCampaigns();
+                    this.loadOverview();
+                } else {
+                    this.showToast(res.error || 'Campaign dispatch failed.');
+                }
+            },
+
+            // ── TEMPLATES ──
+            async loadTemplates() {
+                const res = await this.api('/api/admin/lead-intelligence/templates');
+                if (!res || !res.success) return;
+
+                const grid = document.getElementById('templates-grid');
+                grid.innerHTML = res.templates.map(t => `
+                    <div style="background:#FFFFFF; border:1px solid var(--border); border-radius:12px; padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                <span class="badge" style="background:#F3E8FF;color:#6C2BD9;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;">${t.recommended_topic}</span>
+                            </div>
+                            <strong style="font-size:15px; color:#0F172A;">${t.name}</strong>
+                            <p style="font-size:12.5px; color:#64748B; margin:8px 0 16px;">${t.preview_text}</p>
+                        </div>
+                        <button class="btn btn-outline btn-sm" onclick="app.previewCampaignTemplate('${t.id}', '${t.default_subject}')" style="width:100%; justify-content:center;">
+                            <i class="fa-solid fa-eye"></i> Preview Template
+                        </button>
+                    </div>
+                `).join('');
+            },
+
+            async previewCampaignTemplate(templateId, subject) {
+                const res = await this.api('/api/admin/lead-intelligence/campaigns/0/preview', 'POST', { template_id: templateId, subject: subject });
+                if (res && res.success) {
+                    document.getElementById('preview-modal-title').textContent = `Preview: ${res.rendered.template_name}`;
+                    const frame = document.getElementById('preview-frame');
+                    frame.srcdoc = res.rendered.html;
+                    document.getElementById('modal-preview').classList.add('active');
+                }
+            },
+
+            // ── AUTOMATIONS ──
+            async loadAutomations() {
+                const res = await this.api('/api/admin/lead-intelligence/automations');
+                if (!res || !res.success) return;
+
+                const list = document.getElementById('automations-list');
+                list.innerHTML = res.automations.map(a => `
+                    <div style="display:flex; align-items:center; justify-content:space-between; padding:18px; background:#FFFFFF; border:1px solid var(--border); border-radius:12px;">
+                        <div>
+                            <strong style="font-size:15px; color:#0F172A;"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--primary);margin-right:8px;"></i> ${a.name}</strong>
+                            <div style="font-size:12.5px; color:#64748B; margin-top:4px;">
+                                Trigger: <code>${a.trigger_event}</code> &bull; Executions: <strong>${a.execution_count}</strong>
+                            </div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <span class="status-pill ${a.is_active ? 'status-qualified' : 'status-archived'}">${a.is_active ? 'ACTIVE' : 'PAUSED'}</span>
+                            <button class="btn btn-outline btn-sm" onclick="app.toggleAutomation(${a.id}, ${!a.is_active})">
+                                ${a.is_active ? '<i class="fa-solid fa-pause"></i> Pause' : '<i class="fa-solid fa-play"></i> Activate'}
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            async toggleAutomation(id, isActive) {
+                const res = await this.api(`/api/admin/lead-intelligence/automations/${id}/toggle`, 'POST', { is_active: isActive });
+                if (res && res.success) {
+                    this.showToast(`Automation workflow ${isActive ? 'activated' : 'paused'}.`);
+                    this.loadAutomations();
+                }
+            },
+
+            // ── ANALYTICS ──
+            async loadAnalytics() {
+                const res = await this.api('/api/admin/lead-intelligence/analytics');
+                if (!res || !res.success) return;
+                const a = res.analytics;
+
+                // Industry list
+                const indList = document.getElementById('analytics-industry-list');
+                indList.innerHTML = a.by_industry.map(i => `
+                    <div style="display:flex; justify-content:space-between; padding:8px 12px; background:#F8FAFC; border-radius:6px; font-size:13px;">
+                        <span>${i.industry}</span>
+                        <strong>${i.count}</strong>
+                    </div>
+                `).join('');
+
+                // Location list
+                const locList = document.getElementById('analytics-location-list');
+                locList.innerHTML = a.by_location.map(l => `
+                    <div style="display:flex; justify-content:space-between; padding:8px 12px; background:#F8FAFC; border-radius:6px; font-size:13px;">
+                        <span><i class="fa-solid fa-map-pin" style="color:var(--primary);margin-right:6px;"></i> ${l.state}</span>
+                        <strong>${l.count}</strong>
+                    </div>
+                `).join('');
+
+                // Funnel
+                const funnelBox = document.getElementById('analytics-funnel');
+                funnelBox.innerHTML = a.funnel.map(f => `
+                    <div style="flex:1; min-width:110px; background:#F8FAFC; border:1px solid var(--border); border-radius:10px; padding:16px; text-align:center;">
+                        <div style="font-size:11px; text-transform:uppercase; font-weight:700; color:#64748B;">${f.stage}</div>
+                        <div style="font-size:22px; font-weight:800; color:var(--primary); margin-top:4px;">${f.count}</div>
+                    </div>
+                `).join('');
+            },
+
+            // ── INTEGRATIONS ──
+            async loadIntegrations() {
+                const res = await this.api('/api/admin/lead-intelligence/integrations/status');
+                if (!res || !res.success) return;
+
+                const box = document.getElementById('brevo-status-box');
+                const b = res.brevo;
+                if (b.connected) {
+                    box.style.background = '#ECFDF5';
+                    box.style.border = '1px solid #A7F3D0';
+                    box.innerHTML = `
+                        <div style="display:flex; align-items:center; gap:10px; color:#065F46; font-weight:700;">
+                            <i class="fa-solid fa-circle-check" style="font-size:20px;"></i>
+                            <span>Brevo API Connected & Verified</span>
+                        </div>
+                        <p style="margin-top:6px; font-size:13px; color:#065F46;">Account: <strong>${b.account.email || b.account.companyName}</strong> &bull; Sender: <code>support@ameetechnology.com.ng</code></p>
+                    `;
+                } else {
+                    box.style.background = '#FFFBEB';
+                    box.style.border = '1px solid #FDE68A';
+                    box.innerHTML = `
+                        <div style="display:flex; align-items:center; gap:10px; color:#92400E; font-weight:700;">
+                            <i class="fa-solid fa-triangle-exclamation" style="font-size:20px;"></i>
+                            <span>Brevo Live Connection Pending (Offline/Simulation Mode Active)</span>
+                        </div>
+                        <p style="margin-top:6px; font-size:13px; color:#92400E;">${b.message}</p>
+                    `;
+                }
+
+                const tbody = document.getElementById('tbody-sync-logs');
+                if (res.sync_logs.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:24px; color:var(--text-muted);">No Brevo sync logs recorded yet.</td></tr>';
+                } else {
+                    tbody.innerHTML = res.sync_logs.map(l => `
+                        <tr>
+                            <td><span style="font-size:12px;color:var(--text-muted);">${new Date(l.created_at).toLocaleTimeString()}</span></td>
+                            <td><strong>${l.email}</strong></td>
+                            <td><code>${l.sync_action}</code></td>
+                            <td><span class="status-pill ${l.status === 'success' ? 'status-qualified' : 'status-archived'}">${l.status}</span></td>
+                            <td><span style="font-size:11px;color:#64748B;">${l.error_message || 'OK'}</span></td>
+                        </tr>
+                    `).join('');
+                }
+            },
+
+            async testBrevoConnectivity() {
+                this.showToast('Testing Brevo API connectivity...');
+                const res = await this.api('/api/admin/lead-intelligence/integrations/brevo/test', 'POST');
+                if (res) {
+                    alert(res.message);
+                    this.loadIntegrations();
+                }
+            },
+
+            // ── SETTINGS ──
+            async loadSettings() {
+                const res = await this.api('/api/admin/lead-intelligence/settings');
+                if (res && res.success) {
+                    const s = res.settings;
+                    document.getElementById('set-sender-email').value = s.brevo_sender_email || '';
+                    document.getElementById('set-sender-name').value = s.brevo_sender_name || '';
+                    document.getElementById('set-rate-limit').value = s.discovery_rate_limit_seconds || '2.0';
+                    document.getElementById('set-ndpa-text').value = s.ndpa_consent_text || '';
+                }
+
+                // Load Audit Logs
+                const aRes = await this.api('/api/admin/lead-intelligence/audit-logs');
+                if (aRes && aRes.success) {
+                    const tbody = document.getElementById('tbody-audit-logs');
+                    tbody.innerHTML = aRes.audit_logs.map(l => `
+                        <tr>
+                            <td><span style="font-size:11.5px;color:var(--text-muted);">${new Date(l.created_at).toLocaleString()}</span></td>
+                            <td><strong>${l.admin_username}</strong></td>
+                            <td><code>${l.action}</code></td>
+                            <td>${l.target_type} (${l.target_id || 'all'})</td>
+                            <td>${l.ip_address || 'local'}</td>
+                            <td><span style="font-size:11px;color:#64748B;">${l.details || ''}</span></td>
+                        </tr>
+                    `).join('');
+                }
+            },
+
+            async saveSettings() {
+                const payload = {
+                    brevo_sender_email: document.getElementById('set-sender-email').value,
+                    brevo_sender_name: document.getElementById('set-sender-name').value,
+                    discovery_rate_limit_seconds: document.getElementById('set-rate-limit').value,
+                    ndpa_consent_text: document.getElementById('set-ndpa-text').value
+                };
+                const res = await this.api('/api/admin/lead-intelligence/settings', 'POST', payload);
+                if (res && res.success) {
+                    this.showToast('Settings saved successfully.');
+                    this.loadSettings();
+                }
+            },
+
+            closeModal(modalId) {
+                document.getElementById(modalId).classList.remove('active');
+            }
+        };
+
+        // Initialize application when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
+</body>
+</html>

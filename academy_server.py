@@ -14,6 +14,8 @@ import http.server
 import socketserver
 from urllib.parse import urlparse, parse_qs
 from academy_backend import process_guide_request, get_aggregate_stats
+from lead_intelligence_server import LeadIntelligenceHTTPHandler
+from lead_intelligence_db import init_db as init_lead_intel_db
 
 PORT = int(os.environ.get("ACADEMY_PORT", 8080))
 WEB_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -47,16 +49,9 @@ def verify_basic_auth(auth_header: str) -> bool:
     except Exception:
         return False
 
-class AcademyHTTPHandler(http.server.SimpleHTTPRequestHandler):
+class AcademyHTTPHandler(LeadIntelligenceHTTPHandler):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=WEB_ROOT, **kwargs)
-
-    def end_headers(self):
-        # Attach security headers to all responses
-        self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("X-Frame-Options", "DENY")
-        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
-        super().end_headers()
+        super().__init__(*args, **kwargs)
 
     def do_POST(self):
         parsed = urlparse(self.path)
@@ -84,8 +79,7 @@ class AcademyHTTPHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps(result).encode())
             return
 
-        self.send_response(404)
-        self.end_headers()
+        return super().do_POST()
 
     def do_GET(self):
         parsed = urlparse(self.path)
@@ -115,28 +109,12 @@ class AcademyHTTPHandler(http.server.SimpleHTTPRequestHandler):
             self.wfile.write(json.dumps(stats).encode())
             return
 
-        # Unsubscribe endpoint (NDPR compliant)
-        if parsed.path == "/api/unsubscribe":
-            query = parse_qs(parsed.query)
-            token = query.get("token", [""])[0]
-            self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.end_headers()
-            self.wfile.write(b"""
-            <html><body style="font-family:sans-serif;padding:40px;text-align:center;">
-                <h2>Unsubscribed Successfully</h2>
-                <p>You have been removed from Ameetech promotional learning updates. You can still access all free online lessons at any time.</p>
-                <a href="/academy/business-economics/">Return to Academy</a>
-            </body></html>
-            """)
-            return
-
-        # Fallback to standard static file serving
         return super().do_GET()
 
 def run_server():
+    init_lead_intel_db()
     with socketserver.TCPServer(("", PORT), AcademyHTTPHandler) as httpd:
-        print(f"[OK] Academy Server running on http://localhost:{PORT}")
+        print(f"[OK] Unified Academy & Lead Intelligence Server running on http://localhost:{PORT}")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:

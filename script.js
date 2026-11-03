@@ -151,3 +151,74 @@ if (storiesTrack) {
 
 
 
+
+// ── Public Email Subscription Handler (Lead Intelligence & NDPA 2023) ──
+(function() {
+    const subForm = document.getElementById('public-newsletter-form');
+    if (!subForm) return;
+
+    subForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const alertBox = document.getElementById('sub-alert');
+        const submitBtn = document.getElementById('sub-submit-btn');
+
+        alertBox.style.display = 'none';
+        alertBox.className = 'sub-alert';
+
+        const firstName = document.getElementById('sub-first-name').value.trim();
+        const email = document.getElementById('sub-email').value.trim();
+        const businessName = document.getElementById('sub-business-name').value.trim();
+        const industry = document.getElementById('sub-industry').value;
+        const consent = document.getElementById('sub-consent').checked;
+
+        const topicCheckboxes = document.querySelectorAll('input[name="topics"]:checked');
+        const preferredTopics = Array.from(topicCheckboxes).map(cb => cb.value);
+
+        if (!consent) {
+            alertBox.className = 'sub-alert error';
+            alertBox.textContent = 'Please confirm marketing consent under the Nigeria Data Protection Act 2023.';
+            alertBox.style.display = 'block';
+            return;
+        }
+
+        const originalBtnHtml = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Securing your subscription...';
+
+        try {
+            const resp = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    first_name: firstName,
+                    email: email,
+                    business_name: businessName,
+                    industry: industry,
+                    preferred_topics: preferredTopics,
+                    consent_given: true,
+                    source_page: window.location.pathname
+                })
+            });
+
+            const data = await resp.json();
+
+            if (resp.ok && data.success) {
+                alertBox.className = 'sub-alert success';
+                alertBox.innerHTML = '<i class="fa-solid fa-circle-check"></i> ' + (data.message || 'Verification link sent! Please check your email inbox to confirm your subscription.');
+                alertBox.style.display = 'block';
+                subForm.reset();
+            } else {
+                alertBox.className = 'sub-alert error';
+                alertBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> ' + (data.error || 'Unable to register subscription. Please try again.');
+                alertBox.style.display = 'block';
+            }
+        } catch (err) {
+            alertBox.className = 'sub-alert error';
+            alertBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Connection issue. Please check your internet connection.';
+            alertBox.style.display = 'block';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+        }
+    });
+})();
