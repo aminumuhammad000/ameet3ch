@@ -14,8 +14,25 @@ from typing import Dict, List, Any, Optional
 
 BREVO_BASE_URL = "https://api.brevo.com/v3"
 
+def _load_env_if_present():
+    env_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), ".env")
+    if os.path.isfile(env_file):
+        try:
+            with open(env_file, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith("#") and "=" in line:
+                        k, v = line.split("=", 1)
+                        k, v = k.strip(), v.strip()
+                        if k not in os.environ or not os.environ[k]:
+                            os.environ[k] = v
+        except Exception:
+            pass
+
+_load_env_if_present()
+
 def get_brevo_config() -> Dict[str, str]:
-    """Retrieves Brevo environment configuration safely."""
+    _load_env_if_present()
     api_key = os.environ.get("BREVO_API_KEY", "").strip()
     sender_email = os.environ.get("BREVO_SENDER_EMAIL", "support@ameetechnology.com.ng").strip()
     sender_name = os.environ.get("BREVO_SENDER_NAME", "Amee Technology").strip()
