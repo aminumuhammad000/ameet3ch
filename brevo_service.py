@@ -58,7 +58,8 @@ def _make_brevo_request(endpoint: str, method: str = "GET", payload: Optional[Di
     headers = {
         "api-key": config["api_key"],
         "Content-Type": "application/json",
-        "Accept": "application/json"
+        "Accept": "application/json",
+        "User-Agent": "AmeeTech-BrevoClient/1.0 (compatible; AmeeTech/1.0; +https://ameetechnology.com.ng)"
     }
 
     data = json.dumps(payload).encode("utf-8") if payload else None
