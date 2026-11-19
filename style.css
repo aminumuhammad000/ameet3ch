@@ -1018,7 +1018,8 @@ main #portfolio {
 
 .pf-img-wrap img[src$=".svg"],
 .pf-img-wrap img[src*="northcdesigners"],
-.pf-img-wrap img[src*="medicata"] {
+.pf-img-wrap img[src*="medicata"],
+.pf-img-wrap img[src*="sulhab"] {
   object-fit: contain;
   padding: 30px;
 }
