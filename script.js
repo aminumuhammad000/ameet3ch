@@ -171,8 +171,8 @@ if (storiesTrack) {
         const industry = document.getElementById('sub-industry').value;
         const consent = document.getElementById('sub-consent').checked;
 
-        const topicCheckboxes = document.querySelectorAll('input[name="topics"]:checked');
-        const preferredTopics = Array.from(topicCheckboxes).map(cb => cb.value);
+        const selectedTopic = document.getElementById('sub-topics')?.value;
+        const preferredTopics = selectedTopic ? [selectedTopic] : [];
 
         if (!consent) {
             alertBox.className = 'sub-alert error';
@@ -222,3 +222,17 @@ if (storiesTrack) {
         }
     });
 })();
+
+// ── Expand/Collapse Services Grid ──
+const toggleServicesBtn = document.getElementById('toggle-services-btn');
+const servicesGrid = document.querySelector('#services .service-grid');
+if (toggleServicesBtn && servicesGrid) {
+    toggleServicesBtn.addEventListener('click', () => {
+        const isExpanded = servicesGrid.classList.toggle('expanded');
+        toggleServicesBtn.setAttribute('aria-expanded', String(isExpanded));
+        const label = toggleServicesBtn.querySelector('span');
+        if (label) {
+            label.textContent = isExpanded ? 'Show Fewer Services' : 'See All Services';
+        }
+    });
+}
